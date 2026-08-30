@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevkiyat Talimatnamesi</title>
+<meta name="description" content="Kurumsal İlişkiler / İş Geliştirme Paneli'ni bir kodlama ajanına yaptırmak için kopyalanabilir talimat metni ve adım adım kullanım kılavuzu.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --paper: #f5f2ea;
+    --surface: #ffffff;
+    --ink: #23201a;
+    --ink-soft: #5c574c;
+    --line: #ddd6c6;
+    --accent: #a6431e;
+    --accent-ink: #ffffff;
+    --accent-soft: #f1e2d6;
+    --stamp: #33594b;
+    --stamp-soft: #e3ebe4;
+    --code-bg: #1d1a15;
+    --code-ink: #f2ead9;
+    --code-line: #3a352a;
+    --shadow: 0 1px 0 rgba(35,32,26,0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17150f;
+      --surface: #201d16;
+      --ink: #efe9db;
+      --ink-soft: #b3ab98;
+      --line: #3a3527;
+      --accent: #e2703f;
+      --accent-ink: #1a1006;
+      --accent-soft: #34241a;
+      --stamp: #7fb89e;
+      --stamp-soft: #22322a;
+      --code-bg: #0e0c08;
+      --code-ink: #ede4d0;
+      --code-line: #33301f;
+      --shadow: 0 1px 0 rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17150f;
+    --surface: #201d16;
+    --ink: #efe9db;
+    --ink-soft: #b3ab98;
+    --line: #3a3527;
+    --accent: #e2703f;
+    --accent-ink: #1a1006;
+    --accent-soft: #34241a;
+    --stamp: #7fb89e;
+    --stamp-soft: #22322a;
+    --code-bg: #0e0c08;
+    --code-ink: #ede4d0;
+    --code-line: #33301f;
+    --shadow: 0 1px 0 rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; text-wrap: balance; margin: 0; }
+
+  header.masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 22px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  header.masthead h1 {
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header.masthead p.lede {
+    max-width: 62ch;
+    margin: 14px 0 0;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 30px 0 40px;
+  }
+  .flow-step {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 16px 16px 18px;
+    box-shadow: var(--shadow);
+  }
+  .flow-step .n {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .flow-step .t {
+    font-weight: 700;
+    margin-top: 6px;
+    font-size: 14.5px;
+  }
+  .flow-step .d {
+    color: var(--ink-soft);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  section { margin-bottom: 44px; }
+  section > h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  section > .sub {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin-bottom: 18px;
+  }
+
+  .prompt-shell {
+    background: var(--code-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--code-line);
+  }
+  .prompt-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--code-line);
+  }
+  .prompt-bar .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #9c9584;
+    letter-spacing: 0.06em;
+  }
+  button.copy-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: none;
+    border-radius: 4px;
+    padding: 7px 13px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.15s ease;
+  }
+  button.copy-btn:hover { opacity: 0.88; }
+  button.copy-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  button.copy-btn[data-copied="true"] { background: var(--stamp); }
+
+  pre#promptBlock {
+    margin: 0;
+    padding: 20px 18px 24px;
+    color: var(--code-ink);
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    line-height: 1.68;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  pre#promptBlock::-webkit-scrollbar { width: 10px; }
+  pre#promptBlock::-webkit-scrollbar-thumb { background: var(--code-line); border-radius: 6px; }
+
+  ol.guide {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: step;
+    border-top: 1px solid var(--line);
+  }
+  ol.guide > li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 14px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  ol.guide > li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+  ol.guide h3 {
+    font-size: 15.5px;
+    font-weight: 700;
+    font-family: 'Karla', sans-serif;
+    margin-bottom: 3px;
+  }
+  ol.guide p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  ol.guide code {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--accent-soft);
+    color: var(--ink);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 12.5px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--stamp-soft);
+    color: var(--stamp);
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    padding: 16px 18px;
+  }
+  .callout h3 {
+    font-family: 'Karla', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .callout ul { margin: 0; padding-left: 18px; color: var(--ink-soft); font-size: 13.5px; }
+  .callout li { margin-bottom: 5px; }
+  .callout li:last-child { margin-bottom: 0; }
+
+  footer {
+    border-top: 2px solid var(--ink);
+    padding-top: 18px;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  @media (max-width: 620px) {
+    .flow { grid-template-columns: 1fr; }
+    ol.guide > li { grid-template-columns: 26px 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Aktarım Kiti — v1</p>
+    <h1>Kurumsal İlişkiler Paneli'ni Bir Başkası İçin Kurdurma Talimatnamesi</h1>
+    <p class="lede">Bu sayfadaki metni bir kodlama ajanına (Claude Code, Codex CLI vb.) yapıştırıp CV'sini vererek, aynı işleyişte kendi kişisel iş-arama panelini kurmasını sağlayabilirsin. Aşağıda önce metin, sonra kullanım adımları var.</p>
+  </header>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="n">01</div>
+      <div class="t">Talimatı yapıştır</div>
+      <div class="d">Boş bir klasörde ajanı aç, metni yapıştır, gönder.</div>
+    </div>
+    <div class="flow-step">
+      <div class="n">02</div>
+      <div class="t">CV'yi ver</div>
+      <div class="d">Ajan CV dosyasını ve başlangıç bölgesini soracak.</div>
+    </div>
+    <div class="flow-step">
+      <div class="n">03</div>
+      <div class="t">Paneli çalıştır</div>
+      <div class="d">Ajan araştırıp paneli kurar, tek komutla bilgisayarında açılır.</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Kopyalanacak Talimat</h2>
+    <p class="sub">Tamamını kopyala, kodlama ajanına ilk mesaj olarak yapıştır.</p>
+    <div class="prompt-shell">
+      <div class="prompt-bar">
+        <span class="label">talimat.txt</span>
+        <button class="copy-btn" id="copyBtn" type="button">Kopyala</button>
+      </div>
+      <pre id="promptBlock">Sen benim kişisel iş arama asistanımsın. Amacımız: CV'ime uygun büyük firmaları (açık iş ilanı şartı aranmıyor) bulman, bu firmaların GERÇEK ve DOĞRULANMIŞ kurumsal iletişim / İK / Kurumsal İlişkiler e-postalarını bulman, her firma için bana özel kişiselleştirilmiş bir tanıtım maili taslağı hazırlaman ve tüm bunları yönetebileceğim, kendi bilgisayarımda çalışan bir web paneli kurman.
+
+## 0) Önce CV'imi oku
+CV dosyamı sana vereceğim (PDF). Analiz et: hedef ünvanlar, uygun sektörler, iş deneyimi (somut başarılar dahil), eğitim, beceriler, diller, iletişim bilgilerim (isim, e-posta, telefon, LinkedIn). Bunu `data/candidate.json` gibi yapılandırılmış bir dosyada tut — taslak maillerde bu somut deneyimlere atıfta bulunacaksın. Hangi şehir/bölgeden ve hangi sektörlerden başlamamı istediğimi sor.
+
+## 1) KRİTİK KURAL — E-POSTA UYDURMA YASAK
+Hiçbir firma için `info@firma.com` gibi TAHMİNİ e-posta üretme. Sadece firmanın kendi resmi kaynağından (İletişim/Kurumsal/Kariyer sayfası, borsa kayıt platformu, basın bülteni, LinkedIn şirket sayfası) doğruladığın GERÇEK e-postaları kullan ve HER ZAMAN kaynak linkini (`sourceUrl`) kaydet. Bulamazsan firmayı yine de listeye ekle, e-postayı boş bırak, durumunu "kaynak_bulunamadı" yap — yine de o firma için taslak mail yaz, ben kaynağa gidip e-postayı bulup taslağı yapıştırayım.
+
+Üçüncü taraf bir listeden (blog, PDF, aracı site) e-posta bulursan körü körüne güvenme — mümkünse firmanın kendi resmi sitesinden çapraz doğrula. Doğrulayamıyorsan "kaynak_bulunamadı" yap. Şirket adı değişmiş, marka değiştirmiş ya da kapanmış olabilir — bunu yakala.
+
+## 2) Firma araştırması — "tur" mantığıyla ilerle
+- Bir tur en fazla 15-30 firma bulduğunda ya da tek bir bölge/sektör bitince TAMAMLANMIŞ sayılır.
+- Her turda belirli bir bölge/ilçe ya da sektör grubuna odaklan.
+- Zaten bulduğun firmaların listesini bir sonraki tura "bunları tekrar arama" diye ver.
+- Küçük/butik firmalara gerek yok, orta-büyük ölçekli tanınır firmalar hedefle.
+- Borsada işlem gören şirketler için resmi kayıt platformlarından adres/iletişim doğrula.
+- Her tur sonunda, "e-postalı" bulduğun kayıtlardan birkaçını KENDİN tekrar kontrol et (resmi siteye git, e-postanın hâlâ orada olduğunu doğrula).
+- HER TURUN SONUNDA DUR. Bir sonraki tura KENDİ KARARINLA GEÇME. Bana kısa bir özet ver (kaç firma, kaçında e-posta var, öne çıkanlar), "devam edeyim mi, hangi bölge/sektör?" diye sor ve gerçekten cevabımı bekle — ben yanıt vermeden yeni bir arama başlatma.
+
+## 3) Kategori normalizasyonu
+Firma sektörlerini serbest metin olarak topla ama ayrı bir "category" alanıyla ~15-30 arası temiz, tutarlı bir kategori setine indir (anahtar kelime kurallarıyla, tekrar çalıştırılabilir bir script olarak). Kategorisiz kalan firma olmasın, her tur sonunda kontrol et.
+
+## 4) Taslak mailler
+Her firma için `data/drafts/{slug}.md` formatında: `Konu: ...` satırı, boş satır, gövde. Gövde CV'deki somut deneyimlere atıf yapsın, firmaya özel bir cümle içersin, "Merhaba," ile başlasın, sonunda imza + telefon + LinkedIn olsun. E-postası doğrulanmış firmalar için elle daha özenli, kalanlar için sektöre göre şablon bir paragraf kullan.
+
+## 5) Panel (web uygulaması)
+Next.js (App Router, TypeScript, Tailwind CSS) ile bir web paneli kur:
+- Dosya tabanlı JSON veri (`data/candidate.json`, `data/companies.json`, `data/drafts/*.md`).
+- Ana sayfa: firma tablosu (arama, kategori filtresi, kategori dağılım rozetleri), her satırda seçim kutusu + satır içi durum değiştirme, üstte "seçilenlere toplu durum uygula" çubuğu.
+- Firma detay sayfası: iletişim bilgisi + kaynak linki, düzenlenebilir taslak editörü, "Gmail'de Taslağı Aç" butonu (alıcı+konu+gövde ön-dolu compose linki; e-posta yoksa alıcısız aç), CV eklemeyi hatırlatan not, ayrı bir "gönderildi olarak işaretle" butonu.
+- Durum akışı: araştırılıyor, bulundu, taslak_hazır, gönderildi, yanıt_geldi, kaynak_bulunamadı, gönderilmeyecek.
+- Profil/CV sayfası: CV özeti + PDF görüntüleme/indirme.
+- ASLA otomatik mail gönderme — panel sadece taslak hazırlar, gönderme kararı ve tıklaması bende.
+- Panel SADECE kendi bilgisayarımda çalışacak, internete yayınlamana gerek yok. Kurulumun ve çalıştırmanın tek bir komutla (örn. `npm run dev`) sorunsuz başlaması yeterli; işin sonunda paneli hangi komutla açacağımı ve tarayıcıda hangi adrese gireceğimi (örn. http://localhost:3000) açıkça yaz.
+
+## Şimdi başla
+Önce benden CV dosyamı (PDF) iste ve hangi şehir/bölgeden başlamamı istediğimi sor.</pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kullanım Kılavuzu</h2>
+    <p class="sub">Panele ihtiyacı olan kişiye sadece bu adımları anlatman yeterli.</p>
+    <ol class="guide">
+      <li>
+        <div>
+          <h3>Bir kodlama ajanı aç</h3>
+          <p>Claude Code, Codex CLI ya da benzeri bir ajan olabilir <span class="tag">terminal</span>. Bilgisayarda boş, yeni bir klasör aç ve ajanı o klasörde başlat.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>İnternet erişiminin açık olduğundan emin ol</h3>
+          <p>Ajanın web araması / sayfa okuma (browsing) ve terminal komutu çalıştırma izni olmalı — firma araştırması bunlarsız yapılamaz. Panelin kendisi yayınlanmayacak, sadece kendi bilgisayarında çalışacak.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Yukarıdaki metni yapıştır</h3>
+          <p>Talimatın tamamını kopyala <code>Kopyala</code> düğmesiyle, ajana ilk mesaj olarak gönder.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>CV'ni ve başlangıç bölgesini ver</h3>
+          <p>Ajan CV dosyasının yolunu soracak (PDF) ve hangi şehir/ilçe/sektörden başlamak istediğini soracak. Ne kadar netsen o kadar isabetli başlar — "İstanbul, Kadıköy ve Üsküdar, kurumsal iletişim ve pazarlama" gibi.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Araştırma turlarını takip et</h3>
+          <p>Ajan bölge/sektör bazlı turlar halinde ilerleyip her turda özet verecek, yeni bölge önerecek ya da soracak. Bu adım <strong>saatler sürebilir</strong> — istediğin kadar bölge/sektör ekleyip genişletebilirsin, ya da "bu kadarı yeterli" deyip bir sonraki adıma geçebilirsin.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Paneli çalıştır ve kontrol et</h3>
+          <p>Ajan işin sonunda sana paneli hangi komutla başlatacağını ve tarayıcıda hangi adrese (ör. <code>http://localhost:3000</code>) gireceğini söyleyecek. Firma listesini, taslak mailleri gözden geçir, gerekirse metinleri düzenlemesini iste.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Her kullanımda aynı komutla aç</h3>
+          <p>Panel yalnızca o bilgisayarda çalışır, internete kurulmaz. Sonraki seferlerde de aynı klasörde aynı komutu çalıştırıp tarayıcıdan açman yeterli — ajana bir kısayol/başlatma dosyası hazırlamasını da isteyebilirsin.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Beklenti ve Sınırlamalar</h2>
+    <div class="callout">
+      <h3>Bilmesi gerekenler</h3>
+      <ul>
+        <li>Tek mesajla saniyeler içinde biten bir işlem değil — kaliteli bir araştırma turu başına 10-30 dakika sürebilir, toplamda birkaç saati bulabilir.</li>
+        <li>Ajan her turun sonunda durup onay bekleyecek şekilde talimatlandırıldı, kendi kendine sonsuza kadar aramaya devam etmemeli. Yine de durmuyor gibi görünüyorsa çekinmeden kes (Ctrl+C) ya da "dur, yeterli" yaz — anında durur, sonsuza dek sürecek bir işlem değildir.</li>
+        <li>Sonuç, ajanın araştırma titizliğine bağlı; talimat "körü körüne güvenme, kendin doğrula" diye özellikle uyarıyor ama yine de ara sıra birkaç firmayı elle kontrol etmek iyi bir alışkanlık.</li>
+        <li>Panel yalnızca kurulduğu bilgisayarda çalışır, dışarıdan (internetten) erişilemez — başka bir cihazdan kullanmak istersen aynı kurulumu o cihazda da tekrarlamak gerekir.</li>
+        <li>Bu talimat "Codex" dahil, terminalde çalışan ve internete/komut satırına erişimi olan herhangi bir kodlama ajanıyla kullanılabilir; ajanın araç yeteneklerine göre akış küçük farklarla ilerleyebilir.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Sevkiyat Talimatnamesi · Aktarım Kiti v1</footer>
+
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copyBtn');
+    var block = document.getElementById('promptBlock');
+    if (!btn || !block) return;
+
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    btn.addEventListener('click', function () {
+      var text = block.textContent || '';
+      function done(ok) {
+        btn.textContent = ok ? 'Kopyalandı' : 'Kopyalanamadı, elle seçip kopyala';
+        btn.dataset.copied = ok ? 'true' : 'false';
+        setTimeout(function () {
+          btn.textContent = 'Kopyala';
+          btn.dataset.copied = 'false';
+        }, 2200);
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallbackCopy(text)); });
+      } else {
+        done(fallbackCopy(text));
+      }
+    });
+  })();
+</script>
+</body>
+</html>
