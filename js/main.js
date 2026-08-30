@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initServicesAccordion();
   initProcessAnimation();
+  initServiceCtaLinks();
   initSpotlight('.spot');
   initHeroParallax();
 });
@@ -408,6 +409,19 @@ function initServicesAccordion(){
   window.addEventListener('resize', () => {
     rows.forEach(row => {
       if(row.classList.contains('active')) setOpen(row, true);
+    });
+  });
+}
+
+/* ---------------- Service CTA -> pre-fill contact topic ---------------- */
+function initServiceCtaLinks(){
+  document.querySelectorAll('.service-cta[data-topic]').forEach(link => {
+    link.addEventListener('click', () => {
+      const select = document.getElementById('f-topic');
+      if(!select) return;
+      const wanted = link.dataset.topic;
+      const match = [...select.options].find(o => o.value === wanted);
+      if(match) select.value = wanted;
     });
   });
 }
