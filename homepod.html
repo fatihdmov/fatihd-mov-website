@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomePod 2'yi Windows'a Bağla — fatihd.mov</title>
+<meta name="description" content="HomePod 2'yi Claude Code ile Windows'a bağla: videodaki programı kendi bilgisayarına göre yazdıran prompt ve adım adım kurulum.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">fatihd<span class="dot">.</span>mov</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#drops">Kaynaklar</a></li>
+      <li><a href="prompts.html">Promptlar</a></li>
+      <li><a href="index.html#services">Hizmetler</a></li>
+      <li><a href="index.html#about">Hakkımda</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç">☰</button>
+  </div>
+</nav>
+
+<header class="wrap guide-hero">
+  <div class="guide-intro">
+    <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
+    <div class="section-eyebrow">homepod 2 → windows</div>
+    <h1>HomePod 2'yi Windows'a<br>Claude Code ile bağla.</h1>
+    <p>Repo yerine promptu paylaşıyorum. Çünkü program senin ağına, ses çıkışına ve kullanım şekline göre yazılmalı. Claude önce bilgisayarını inceliyor, tercihlerini soruyor, sonra programı yazıp seninle birlikte test ediyor.</p>
+    <p><strong>Telefondaysan:</strong> kurulum Windows bilgisayarda yapılıyor, bu sayfayı orada aç.</p>
+    <a href="#prompt" class="btn btn-primary">Promptu Al</a>
+
+    <dl class="guide-facts">
+      <div>
+        <dt>Gerekenler</dt>
+        <dd>Windows 10 (1809 veya üstü) ya da Windows 11, aynı ağda bir HomePod 2 ve ücretli bir Claude planı (Pro veya üstü). Ücretsiz planda Claude Code yok. Python gerekirse Claude söyler.</dd>
+      </div>
+      <div>
+        <dt>Denendiği ortam</dt>
+        <dd>HomePod 2, OS 27.2, Windows 10, kablolu ağ. Başka sürümlerde ve Wi-Fi'da farklı davranabilir, çalışma garantisi yok.</dd>
+      </div>
+      <div>
+        <dt>Benim sonucum</dt>
+        <dd>Windows'tan HomePod'dan çıkan sese yaklaşık 129 ms. Bu tek bir ortamdaki ölçüm, seninki ağına göre değişir.</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<section class="guide-section" id="prompt">
+  <div class="wrap">
+    <div class="term prompt-sheet">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">claude code promptu</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="homepod-prompt">Promptu Kopyala</button>
+      </div>
+      <pre id="homepod-prompt" tabindex="0">Sen deneyimli bir ses ve ağ protokolü geliştiricisisin. Amacımız: HomePod 2'yi Windows bilgisayarımla uyumlu hale getirmek. Bilgisayarda çalan tüm ses, düşük gecikmeyle ve ağ üzerinden HomePod'dan çıkacak (TuneBlade benzeri, ama kendime ait ve ihtiyacıma göre). Benimle Türkçe konuş; ben başka dilde yazarsam o dile geç.
+
+Dosya yazıp komut çalıştıramıyorsan bunu hemen söyle ve Claude Code'da açmamı iste. Boş bir proje klasöründe çalış.
+
+# Sonuç ne olacak
+- Windows sesini yakalayıp AirPlay 2 ile HomePod'a gönderen bir program
+- Görev çubuğunun sağ altında simge: sol tıkla aktif veya pasif olur. Pasifken HomePod tamamen serbest kalır ve bilgisayar ona hiç bağlanmaz
+- Bağlıyken mümkün olan en düşük gecikme, ama kesintisiz ses
+- Kişisel tercihlerime göre şekillenmiş ayarlar ve Türkçe README
+
+# Çalışma kuralları
+- Bir adım çalışmadan bir sonrakine geçme. Sesi yalnızca ben duyabilirim: "bağlantı kuruldu" sesin çıktığını kanıtlamaz, HomePod bazı oturumları kabul edip hiçbir şey çalmayabilir. Ses testlerinde bana duyup duymadığımı sor.
+- Ölçmediğin veya denemediğin şeyi çalışıyor diye anlatma. Kalan belirsizlikleri açıkça söyle.
+- Bir sorunda ilk tahmine göre geçici çözüm yazma; önce nedenini kanıtla.
+- Şunları iznimi almadan yapma: güvenlik duvarını değiştirmek, sürücü veya sanal ses aygıtı kurmak, otomatik başlatma eklemek, mikrofonu açmak, sistem ayarı değiştirmek. Güvenlik duvarını veya antivirüsü asla kapatma.
+- Yalnızca bana ait HomePod'a bağlan. Ev ayarlarında değişiklik gerekiyorsa adımları bana anlat, yapmayı bana bırak.
+- Mikrofon ölçümlerinde sesi diske kaydetme, yalnızca bellekte işle ve işin bitince bırak.
+- Testlerde önce kısık sesle başla. Ben istemedikçe HomePod'un ses düzeyini değiştirme.
+- Kod sade olsun. Sormadığım özelliği ekleme.
+
+# 1. Önce incele
+Soru sormadan bunları kendin bul ve kısaca özetle: Windows sürümü, Python 3.12 var mı, ses çıkışları ve varsayılan çıkış, ağ bağlantısı, ağdaki AirPlay cihazları (mDNS: _airplay._tcp, model değeri "AudioAccessory" ile başlayanlar HomePod'dur). Birden fazla HomePod varsa hangisini kullanacağımı sonra sor. Bilgisayara yalnızca okuyarak bak.
+
+# 2. Sonra kişiselleştirme sorularını sor
+Sorularını tek seferde değil, en fazla 3-4'lük gruplar halinde sor. İncelemede cevabını bulduğun soruyu sorma. Her soruda önerdiğin seçeneği nedeniyle belirt. "Sen seç" dersem öneriyle devam et.
+
+Kullanım:
+- Bunu en çok ne için kullanacaksın: film ve dizi, oyun, müzik, hepsi? (Görüntüyle eşleşme gerekiyorsa gecikme, yalnızca müzikse kesintisizlik öne çıkar.)
+- Gecikme tercihin: en düşük, dengeli yoksa en güvenli?
+- Bilgisayarın kablolu mu, Wi-Fi'da mı? Wi-Fi'daysa daha büyük tampon öner.
+
+Ses çıkışı:
+- HomePod çalarken bilgisayar hoparlöründen de ses gelsin mi? Sistem bu aygıttan yakaladığı için Windows'ta sessize almak HomePod'u da susturur. Seçenekler: hoparlörü fiziksel kapatmak (denenmiş ve en basit) veya sanal ses aygıtı (kurulum ister; denenmedi, ayrıca test etmemiz gerekir).
+- Hangi çıkış dinlensin: her zaman Windows varsayılanı mı, yoksa menüden seçilebilir mi olsun?
+
+Kontrol:
+- Simge dışında kısayol tuşu ister misin?
+- Windows açılınca otomatik başlasın mı, yoksa elle mi açacaksın?
+- Program kapanıp açılınca son aktif veya pasif durumu hatırlasın mı?
+- HomePod'dan ses düzeyi kontrolü programda olsun mu? Yoksa dokunmayalım mı?
+- Arayüz dili ne olsun?
+
+Başka cihazlarla kullanım:
+- Telefondan da HomePod'a AirPlay yapıyor musun? Telefon HomePod'u devraldığında program ne yapsın: sen simgeye tıklayana kadar beklesin mi (telefonla sık kullanıyorsan önerilir), yoksa 30 saniye sonra bilgisayarda yeni ses çalınca geri mi alsın?
+- Stereo çift veya birden çok HomePod var mı? Bu senaryolar denenmedi. Varsa önce tek HomePod ile çalıştıralım, sonra ayrıca deneyelim.
+
+Sorular bitince seçimlerimi kısa bir liste halinde göster, onaylayınca kodlamaya başla.
+
+# 3. Teknik bilgiler
+Aşağıdakiler HomePod 2, OS 27.2 ve Windows 10'da kablolu ağda çalıştı. Başlangıç noktası olarak kullan ama kendi cihazımda doğrula; farklı davranış görürsen bana söyle. Protokol kaynakları: pyatv, OwnTone ve libraop PR #55. Kodu kendin yaz; kaynaklardan kod alacaksan önce lisansına bak.
+
+Neden AirPlay 2: HomePod OS 27 eski AirPlay 1 oturumlarını kabul ediyor ama ses çalmıyor. Bu yüzden AirPlay 2 "realtime" akışı kullanılır (akış tipi 96 / 0x60), port 7000.
+
+Teknoloji: Python 3.12, PyAudioWPatch (WASAPI loopback), soxr, numpy, cryptography, zeroconf, pystray, Pillow, pycaw, comtypes. Başka bir dil seçersen nedenini söyle.
+
+Eşleşme: PIN gerektirmeyen HomeKit geçici eşleşmesi. Tüm isteklerde X-Apple-HKP: 4 ve Content-Type: application/octet-stream.
+1. POST /pair-pin-start (hata dönerse yok say)
+2. POST /pair-setup, TLV: 0x00=00, 0x06=01, 0x13=10. Yanıtta 0x02 tuz, 0x03 sunucu anahtarı; 0x07 hatadır.
+3. SRP-6a, SHA-512, RFC 5054 3072 bit grup, g=5, kullanıcı "Pair-Setup", parola "3939" (protokolün sabit değeridir, kullanıcı şifresi değil). Paylaşılan anahtar: SHA512(premaster).
+4. POST /pair-setup, TLV: 0x06=03, 0x03=istemci anahtarı (384 bayta tamamlanmış), 0x04=kanıt. Yanıttaki 0x04 sunucu kanıtını doğrula.
+Eşleşme reddedilirse bana Ev uygulamasındaki "Hoparlör ve TV Erişimi" ayarını kontrol ettir. "Herkes" seçeneği ağdaki herkese izin verir, bunu da söyle.
+
+Şifreli kanallar: HKDF-SHA512, 32 bayt.
+- Kontrol kanalı: tuz "Control-Salt"; yazma "Control-Write-Encryption-Key", okuma "Control-Read-Encryption-Key".
+- Olay kanalı: tuz "Events-Salt". Anahtarlar ters: bizim yazma anahtarımız "Events-Read-Encryption-Key", okuma anahtarımız "Events-Write-Encryption-Key".
+- Çerçeve: en çok 1024 baytlık bloklar. 2 bayt little-endian uzunluk (AAD olarak da kullanılır), ardından ChaCha20-Poly1305 şifreli blok ve 16 bayt etiket. Nonce: 4 sıfır bayt + 8 bayt little-endian sayaç. Sayaçlar her yönde ayrı.
+
+Oturum sırası (sıra önemli):
+1. TCP bağlantısı, TCP_NODELAY, eşleşme.
+2. Kontrol ve saat UDP soketlerini aç ve dinlemeye SETUP'tan ÖNCE başla. HomePod saat eşitlemesi tamamlanmadan SETUP'a yanıt vermez. Yanıt gelmemesini güvenlik duvarına bağlamadan önce bunu kontrol et.
+3. Oturum SETUP'ı (binary plist, RTSP/1.0): deviceID, sessionUUID, timingPort, timingProtocol "NTP", isMultiSelectAirPlay true, groupContainsGroupLeader false, macAddress, model, name, osBuildVersion, osName, osVersion, senderSupportsRelay false, sourceVersion, statsCollectionEnabled false. Çalışan değerler: model "iPhone14,3", osName "iPhone OS", osVersion "16.5", osBuildVersion "20F66", sourceVersion "690.7.1", User-Agent "AirPlay/690.7.1". İsteklerde DACP-ID, Active-Remote ve Client-Instance başlıkları da olsun.
+4. Yanıttaki timingPort'a saat soketinden 1 bayt gönder; Windows Güvenlik Duvarı yanıtları böyle geçirir.
+5. Yanıttaki eventPort'a bağlan, olay kanalını şifrele. Bu sokette zaman aşımı olmasın, çünkü kanal uzun süre sessiz kalabilir. Gelen her mesaja 200 OK ve CSeq ile yanıt ver. Kanalın kapanması genelde başka bir kaynağın HomePod'u devraldığı anlamına gelir.
+6. Akış SETUP'ı: audioFormat 0x800 (PCM 44100/16/2), audioMode "default", controlPort, ct 1, isMedia true, latencyMin ve latencyMax aynı değerde, shk (rastgele 32 bayt), spf 352, sr 44100, type 0x60, supportsDynamicStreamID false, streamConnectionID.
+7. Yanıttaki controlPort'a kontrol soketinden 1 bayt gönder, dataPort'a veri soketi aç.
+8. Her 2 saniyede POST /feedback gönder.
+9. RECORD (Range: npt=0-, Session: 0), sonra FLUSH (RTP-Info: seq=..;rtptime=..).
+10. İlk senkron paketini gönder, 8 ms arayla ses paketlerine başla.
+Kapanışta TEARDOWN gönder.
+
+Paketler:
+- Ses: 352 kare, PCM 16 bit stereo, big-endian. RTP başlığı ">BBHII": 0x80, 0x60 (ilk pakette 0xE0), sıra, zaman damgası, SSRC. Şifreleme: ChaCha20-Poly1305, anahtar shk, nonce 4 sıfır bayt + 8 bayt little-endian sayaç, AAD başlığın 4-12. baytları. Paket: başlık + şifreli veri ve etiket + 8 baytlık sayaç.
+- Senkron, kontrol soketinden, 100 ms'de bir, ">BBHIIII": 0x80 (ilkinde 0x90), 0xD4, 7, (rtp - gecikme_karesi), NTP saniye, NTP kesir, rtp.
+- Saat, ikinci bayt &amp; 0x7F == 0x52 ise yanıtla: ">BBHI" 0x80 0xD3 7 0, ardından isteğin 24-32. baytları, sonra iki kez şu anki NTP zamanı (saniye, kesir).
+- Yeniden gönderim, kontrol soketinde ikinci bayt &amp; 0x7F == 0x55 ise: 4-8. baytlar ilk sıra ve adet (big-endian). Saklanan her paket için 0x80 0xD6 + sıra + özgün paket gönder. Son 1024 paketi sakla.
+- Saat için time.time değil monoton saat kullan (NTP'ye çevirirken 0x83AA7E80 ekle). UDP okurken Windows'taki ConnectionResetError hatasını yok say.
+
+Gecikme için çalışan yöntem ve ölçümler:
+- Windows'ta 1 ms zamanlayıcı (timeBeginPeriod) ve yalnızca bu işlem için yüksek öncelik.
+- Yakalama: 5 ms WASAPI tamponu ve 18 ms hedefli halka tampon. 14 ms'de eksik veri oldu.
+- 48 kHz → 44,1 kHz için soxr LQ; yaklaşık 5 ms tutuyor.
+- Çalma başlarken bağlantı sırasında biriken sesi at. Atılmazsa tampon ortalaması 66 ms'ye çıkmıştı.
+- Saat kaymasını sıçramayla değil, gerektiğinde pakette 1 kare esneterek veya sıkıştırarak düzelt. Tampon hedef + 40 ms'yi geçerse hedefe indir.
+- Geç kalan paketi patlama halinde yollama; 60 ms'den fazla geride kalırsan ileri atla.
+- Bu HomePod'da gerçek gecikme yaklaşık 2 x tampon - 15 ms: HomePod SETUP penceresini senkron ofsetinin üstüne ekliyor.
+- SETUP yanıtındaki arrivalToRenderLatencyMs 87 idi. Alt sınır (bu değer + 33) / 2 = 60 ms. 50 ms'de ses bozuldu. İstenen değer sınırın altındaysa sessizce düşürme veya yükseltme: SETUP ve senkron uyuşmazsa ses bozulur. Oturumu yeni değerle baştan kur.
+- Mikrofonla ölçülen toplam gecikme: 60 ms tamponda 129 ms, 100 ms tamponda 224 ms (+-10 ms). Kendi ortamımda yeniden ölçmeden bu değerleri iddia etme.
+
+Bilinen tuzaklar:
+- 7.1 Surround gibi sanal aygıtların loopback'i sessiz olabilir; ses asıl aygıtta görünür. Yakalanan ses sıfırsa bunu kontrol et.
+- Çok kanallı aygıtlarda kanalları stereoya indir. PortAudio aygıt değişikliklerini ancak yeniden başlatılınca görür.
+- mDNS yanıtı saniyeler sürebilir: 10 saniye bekle, HomePod bulununca hemen çık. Son adresi kaydet ve önce 1 saniyelik TCP denemesiyle onu dene.
+- Kapanan oturumları ve bağlantı hatalarını ayrı ele al. Oturum nadiren nedeni belirsiz şekilde kapanabiliyor; gerçek bağlantı hatasında kendiliğinden yeniden bağlan.
+
+Görev çubuğu simgesi:
+- pythonw ile konsolsuz çalışsın. Durumlar: yeşil (ses gidiyor), turuncu (bağlanıyor, hata veya HomePod başka kaynakta), gri (kapalı).
+- Sol tık aktif ve pasif arasında geçer; pasifte oturum TEARDOWN ile kapanır ve yakalama durur.
+- Sağ tık menüsü: durum satırı, gönderme aç/kapa, seçtiklerime göre ses çıkışı ve gecikme seçimleri, çıkış.
+- Windows varsayılanı seçiliyse çıkış değişimini 2 saniyede takip et. Tek kopya çalışsın (mutex). Ayarlar JSON dosyasında, kayıtlar log dosyasında dursun. Tek tıkla başlatan bir .bat yaz.
+
+# 4. Şu sırayla ilerle
+Her adımın sonunda ne yaptığını ve sonucu bana söyle.
+1. Eşleşme ve oturum: bağlantıyı kur, HomePod'un yanıtlarını doğrula.
+2. Test tonu: 5 saniye kısık bip gönder. Duyup duymadığımı sor. Duymadan devam etme.
+3. Sistem sesi: Windows sesini gönder, müzik veya video açmamı iste, temiz olup olmadığını sor. 30 saniyelik testte eksik paket sayısına bak.
+4. Gecikmeyi düşür: önce güvenli değerle başla, sonra adım adım in. Sesi bana dinlet.
+5. Ölçüm: izin verirsem kulaklık veya bilgisayar mikrofonuyla ölç. Windows'a kısa tarama sesleri çal, aynı anda loopback referansı ve mikrofonu kaydet, çapraz korelasyonla medyanı hesapla. Bilgisayar hoparlöründen gelen ilk sesi HomePod'unkiyle karıştırma. Mikrofon istemezsem elle dinleme testi yap ve sayı uydurma.
+6. Simge: aktif/pasif geçişini, seçtiğim menüleri, kapatıp yeniden açmayı dene. Pasifteyken bağlantının gerçekten bittiğini doğrula.
+7. Devralma: telefonum varsa AirPlay ile HomePod'u devralmamı iste, programın seçtiğim şekilde davrandığını doğrula.
+8. Bitiş: bilgisayarı yeniden başlatınca nasıl açacağımı (veya izin verdiysem otomatik başlatmayı) göster. README'ye kullanımı, seçimlerimi, ölçülen sonuçları, denenmeyen konuları ve sorun gidermeyi yaz.
+
+Şimdi 1. bölümdeki incelemeyle başla.</pre>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="kurulum">
+  <div class="wrap">
+    <div class="section-eyebrow">kurulum</div>
+    <div class="section-head">
+      <h2>Beş adımda kurulum</h2>
+      <p>Claude Code kurulu değilse önce <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">resmi kurulum sayfasına</a> bak.</p>
+    </div>
+
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <svg class="flow-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <span class="flow-label">homepod-windows</span>
+        </div>
+        <h3>Klasör aç</h3>
+        <p>Masaüstünde boş bir klasör oluştur.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-app">&gt;_ Claude Code</span>
+          <span class="flow-label">homepod-windows</span>
+        </div>
+        <h3>Claude Code'da aç</h3>
+        <p>Bu klasörü proje olarak aç.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-pill">Opus 5.5</span>
+          <span class="flow-pill">High</span>
+        </div>
+        <h3>Modeli seç</h3>
+        <p>Model Opus 5.5, effort High olsun.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-paste">[Pasted text] <b>↵</b></span>
+        </div>
+        <h3>Promptu yapıştır</h3>
+        <p>Yukarıdan kopyala, yapıştır, Enter'a bas.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-bubble">Sesi duydun mu?</span>
+          <span class="flow-bubble me">Evet</span>
+        </div>
+        <h3>Sorulara cevap ver</h3>
+        <p>Kararsız kalırsan "sen seç" yaz. Ses testlerinde HomePod'un yanında ol.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="guide-section" id="sorunlar">
+  <div class="wrap">
+    <div class="section-eyebrow">takılırsan</div>
+    <div class="section-head">
+      <h2>Sık karşılaşılan sorunlar</h2>
+      <p>Burada olmayan bir hatada, hata metnini olduğu gibi Claude'a yapıştır. Çoğu sorunu kendi bilgisayarında inceleyerek çözebilir.</p>
+    </div>
+
+    <div class="guide-faq">
+      <details>
+        <summary>Opus 5.5 seçilemiyor veya model hatası alıyorum</summary>
+        <p><code>claude update</code> çalıştırıp Claude Code'u yeniden aç. Ücretsiz planda Claude Code çalışmaz. Açıkken değiştirmek için <code>/model claude-opus-5-5</code> ve <code>/effort high</code> yazabilirsin.</p>
+      </details>
+      <details>
+        <summary>Pencere kapandı, kaldığım yerden nasıl devam ederim?</summary>
+        <p>Terminaldeysen aynı klasörde <code>claude --continue --model claude-opus-5-5 --effort high</code> çalıştır. Masaüstü uygulamasındaysan kenar çubuğundan aynı oturumu aç. Kullanım limitine takılırsan limit yenilenince aynı şekilde devam edebilirsin.</p>
+      </details>
+      <details>
+        <summary>Claude HomePod'u bulamıyor</summary>
+        <p>Bilgisayar ile HomePod aynı ağda olmalı; misafir Wi-Fi veya ayrı bir ağ işe yaramaz. Windows Güvenlik Duvarı izin penceresi çıkarsa Claude'a sor. Promptta güvenlik duvarını izinsiz değiştirmemesi ve asla kapatmaması yazıyor.</p>
+      </details>
+      <details>
+        <summary>Eşleşme reddedildi</summary>
+        <p>Ev uygulamasındaki <strong>Hoparlör ve TV Erişimi</strong> ayarına bak. "Herkes" seçeneği ağdaki herkese izin verir, bunu bilerek seç. Ayarı senin değiştirmen gerekiyor; Claude adımları anlatır.</p>
+      </details>
+      <details>
+        <summary>"Bağlandı" diyor ama ses gelmiyor</summary>
+        <p>Claude'a "ses duymadım" de. HomePod bazı oturumları kabul edip hiçbir şey çalmayabiliyor, bu yüzden bağlantı kurulması sesin çıktığını kanıtlamaz. 7.1 Surround gibi sanal ses aygıtları da yakalanan sesi sessiz bırakabilir.</p>
+      </details>
+      <details>
+        <summary>Bilgisayarı sessize alınca HomePod da susuyor</summary>
+        <p>Bu normal: program sesi o aygıttan yakalıyor. En basit çözüm hoparlörü fiziksel olarak kapatmak. Sanal ses aygıtı da bir seçenek ama kurulum ister ve ben denemedim.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
+    <div class="social-row">
+      <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
+      <a href="index.html#drops">Kaynaklar</a>
+      <a href="index.html#contact">İletişim</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> fatihd.mov</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

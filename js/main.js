@@ -346,6 +346,14 @@ function renderPrompts(){
   });
 }
 
+/* ---------------- Guide pages: copy a block's text by id ---------------- */
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-copy-from]');
+  if(!btn) return;
+  const source = document.getElementById(btn.dataset.copyFrom);
+  if(source) copyToClipboard(source.textContent, btn);
+});
+
 function copyToClipboard(text, btn){
   const original = btn.innerHTML;
   const done = () => {

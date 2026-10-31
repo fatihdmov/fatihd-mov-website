@@ -14,6 +14,23 @@
 
 const DROPS = [
   {
+    slug: "homepod-windows",
+    date: "2026-10-31",
+    tag: "Claude Code",
+    title: "HomePod 2'yi Windows'a Bağla — Prompt",
+    description:
+      "Videodaki programı kendi bilgisayarına göre yazdırman için hazırladığım Claude Code promptu. Masaüstünde klasör açmaktan ilk ses testine kadar adım adım kurulum da içinde.",
+    instagramUrl: "https://instagram.com/fatihd.mov",
+    resources: [
+      {
+        type: "guide",
+        label: "Promptu Al & Kurulumu Gör",
+        filename: "homepod.html",
+        path: "homepod.html"
+      }
+    ]
+  },
+  {
     slug: "is-bulma-ajani",
     date: "2026-08-29",
     tag: "AI Agent",
