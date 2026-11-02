@@ -555,7 +555,7 @@ section{ position:relative; z-index:1; padding: 90px 0; }
 }
 .link-item a:hover{ text-decoration:underline; }
 
-/* ---------- guide page (homepod.html) ---------- */
+/* ---------- guide pages (homepod.html, windrop.html) ---------- */
 .guide-hero{
   position:relative; z-index:1; padding-top:64px; padding-bottom:24px;
 }
@@ -565,6 +565,8 @@ section{ position:relative; z-index:1; padding: 90px 0; }
 .guide-facts{ margin:36px 0 0; display:grid; grid-template-columns: repeat(3,1fr); gap:24px; }
 .guide-facts dt{ font-family: var(--mono); font-size:12.5px; color: var(--accent); margin-bottom:4px; }
 .guide-facts dd{ margin:0; color: var(--text-dim); font-size:14.5px; }
+.guide-facts.four{ grid-template-columns: repeat(4,1fr); }
+.guide-section .guide-facts{ margin-top:0; }
 .guide-section{ padding:48px 0; }
 .guide-section .section-head{ margin-bottom:28px; }
 .guide-section code, .guide-faq code{
@@ -572,7 +574,7 @@ section{ position:relative; z-index:1; padding: 90px 0; }
   background: var(--surface-2); border-radius:4px; padding:1px 5px;
 }
 .guide-section .section-head a{ color: var(--accent); text-decoration:underline; }
-.flow{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns: repeat(5,1fr); gap:28px; counter-reset:flow; }
+.flow{ list-style:none; margin:0; padding:0; display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:28px; counter-reset:flow; }
 .flow-step{
   counter-increment:flow; position:relative; min-width:0;
   background: var(--surface); border:1px solid var(--border); border-radius: var(--radius);
@@ -589,7 +591,7 @@ section{ position:relative; z-index:1; padding: 90px 0; }
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px;
   font-family: var(--mono); overflow:hidden;
 }
-.flow-folder{ width:34px; height:34px; color: var(--accent); }
+.flow-folder, .flow-icon{ width:34px; height:34px; color: var(--accent); }
 .flow-label{ font-size:10.5px; color: var(--text-dim); }
 .flow-app{ font-size:12px; font-weight:600; color: var(--accent); white-space:nowrap; }
 .flow-pill{
@@ -608,7 +610,7 @@ section{ position:relative; z-index:1; padding: 90px 0; }
 .flow-step p{ color: var(--text-dim); font-size:13.5px; line-height:1.5; }
 
 @media (max-width: 1000px){
-  .flow{ grid-template-columns:1fr; gap:26px; max-width:560px; }
+  .flow{ grid-auto-flow:row; grid-template-columns:1fr; gap:26px; max-width:560px; }
   .flow-step{ display:grid; grid-template-columns:130px 1fr; column-gap:16px; align-items:center; }
   .flow-visual{ grid-row: span 2; margin-bottom:0; }
   .flow-step h3{ align-self:end; }
@@ -637,9 +639,53 @@ section{ position:relative; z-index:1; padding: 90px 0; }
 .guide-faq strong{ color: var(--text); }
 .guide-faq a{ color: var(--accent); text-decoration:underline; }
 
+.shortcut-layout{ display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:32px; align-items:start; }
+.guide-steps{
+  list-style:none; margin:0; padding:0; counter-reset:gs;
+  border:1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+}
+.guide-steps > li{
+  counter-increment:gs; position:relative; padding:14px 20px 14px 58px;
+  border-bottom:1px solid var(--border); color: var(--text-dim); font-size:14.5px;
+}
+.guide-steps > li:last-child{ border-bottom:none; }
+.guide-steps > li::before{
+  content:counter(gs, decimal-leading-zero); position:absolute; left:20px; top:15px;
+  font-family: var(--mono); font-size:12.5px; font-weight:600; color: var(--accent);
+}
+.guide-steps strong{ color: var(--text); }
+.guide-steps ul{ margin-top:8px; display:grid; gap:4px; }
+.guide-steps ul li::before{ content:"– "; color: var(--text-faint); }
+.shortcut-aside{ position:sticky; top:96px; display:grid; gap:16px; }
+/* mock of the finished iOS shortcut */
+.shortcut-mock{
+  background: var(--bg-alt); border:1px solid var(--border); border-radius: var(--radius-lg);
+  padding:16px; display:grid; gap:8px;
+}
+.shortcut-mock-title{ font-family: var(--mono); font-size:12.5px; color: var(--accent); margin-bottom:4px; }
+.sc-action{
+  background: var(--surface-2); border-radius:10px; padding:10px 12px;
+  font-size:13.5px; line-height:1.75; color: var(--text); overflow-wrap:anywhere;
+}
+.sc-var{
+  color: var(--blue); background: rgba(110,168,216,0.14); border-radius:6px; padding:1px 6px; font-weight:500;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone;
+}
+.sc-loop{ margin-left:10px; padding-left:12px; border-left:2px solid var(--border); }
+.shortcut-mock-note{ margin-top:4px; font-size:12.5px; color: var(--text-dim); }
+.guide-note{ border:1px solid var(--accent); background: var(--accent-soft); border-radius: var(--radius); padding:16px 18px; }
+.guide-note > strong{ display:block; color: var(--text); font-size:14.5px; margin-bottom:6px; }
+.guide-note p{ color: var(--text-dim); font-size:14px; }
+.guide-note p strong{ color: var(--text); }
+
+@media (max-width: 1000px){
+  .shortcut-layout{ grid-template-columns:1fr; }
+  .shortcut-aside{ position:static; max-width:560px; }
+}
+
 @media (max-width: 860px){
   .guide-hero{ padding-top:40px; }
-  .guide-facts{ grid-template-columns:1fr; gap:18px; }
+  .guide-facts, .guide-facts.four{ grid-template-columns:1fr; gap:18px; }
 }
 @media (max-width: 560px){
   .prompt-sheet pre{ padding:16px; max-height:420px; }

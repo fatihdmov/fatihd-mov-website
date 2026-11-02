@@ -14,6 +14,23 @@
 
 const DROPS = [
   {
+    slug: "windrop",
+    date: "2026-11-01",
+    tag: "Claude Code",
+    title: "Windrop: iPhone'dan Windows'a Tek Tuşla Gönder — Prompt",
+    description:
+      "Videodaki Windrop'u kendi bilgisayarına kurdurman için hazırladığım Claude Code promptu. Fotoğraflar'da Paylaş → Windrop deyince dosyalar ev ağından Windows'a gelir; iPhone'daki kestirme kurulumu da adım adım içinde.",
+    instagramUrl: "https://instagram.com/fatihd.mov",
+    resources: [
+      {
+        type: "guide",
+        label: "Promptu Al & Kurulumu Gör",
+        filename: "windrop.html",
+        path: "windrop.html"
+      }
+    ]
+  },
+  {
     slug: "homepod-windows",
     date: "2026-10-31",
     tag: "Claude Code",

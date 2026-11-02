@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windrop: iPhone'dan Windows'a Gönder — fatihd.mov</title>
+<meta name="description" content="Windrop'u Claude Code ile kur: iPhone'da Paylaş → Windrop deyince fotoğraf ve videolar ev ağından Windows bilgisayarına gelsin. Prompt, kurulum ve kestirme adımları.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">fatihd<span class="dot">.</span>mov</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#drops">Kaynaklar</a></li>
+      <li><a href="prompts.html">Promptlar</a></li>
+      <li><a href="index.html#services">Hizmetler</a></li>
+      <li><a href="index.html#about">Hakkımda</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç">☰</button>
+  </div>
+</nav>
+
+<header class="wrap guide-hero">
+  <div class="guide-intro">
+    <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
+    <div class="section-eyebrow">windrop · iphone → windows</div>
+    <h1>iPhone'dan Windows'a<br>tek tuşla gönder.</h1>
+    <p>Bu kılavuzla iPhone'daki Paylaş menüsüne <strong>Windrop</strong> adında bir seçenek eklersin; fotoğraf ve videoların ev ağı üzerinden Windows bilgisayarına gider. Kurulumu sen yapmazsın: aşağıdaki promptu Claude Code'a verirsin, o senin bilgisayarına göre kurar.</p>
+    <p><strong>Telefondaysan:</strong> kurulum Windows bilgisayarda başlıyor, promptu orada kopyala. Kestirme adımlarını sonra telefondan takip edebilirsin.</p>
+    <a href="#prompt" class="btn btn-primary">Promptu Al</a>
+
+    <dl class="guide-facts">
+      <div>
+        <dt>Gerekenler</dt>
+        <dd>Windows 10 veya 11 bir bilgisayar, Kestirmeler uygulaması yüklü bir iPhone veya iPad, ikisinin aynı ev ağında olması ve ücretli bir Claude planı (Pro veya üstü). Kablolu ya da Wi-Fi fark etmez; misafir ağı çoğu zaman çalışmaz. Node.js yoksa Claude onayını isteyerek kurar.</dd>
+      </div>
+      <div>
+        <dt>Denendiği ortam</dt>
+        <dd>Bir Windows 10 bilgisayar ve bir iPhone. Farklı bilgisayarlarda Claude kurulumu uyarlar, ama sonucu kendi telefonunla doğrula.</dd>
+      </div>
+      <div>
+        <dt>Neden gerçek AirDrop değil?</dt>
+        <dd>AirDrop modem üzerinden çalışmaz; Apple cihazları Bluetooth ve doğrudan Wi-Fi ile konuşur, Windows bu protokolü desteklemez. Windrop bu yüzden ev ağını kullanır.</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<section class="guide-section" id="nedir">
+  <div class="wrap">
+    <div class="section-eyebrow">ne yapar</div>
+    <div class="section-head">
+      <h2>Windrop nedir?</h2>
+      <p>Bilgisayarında çalışan küçük bir alıcı program. Bulut, üyelik veya hazır aktarım uygulaması kullanmaz; dosyalar ev ağının dışına çıkmaz.</p>
+    </div>
+
+    <dl class="guide-facts four">
+      <div>
+        <dt>Gönderim</dt>
+        <dd>Fotoğraflar'da Paylaş → Windrop. Dosya İndirilenler klasörüne gelir.</dd>
+      </div>
+      <div>
+        <dt>Arayüz</dt>
+        <dd>AirDrop havasında, mavi halkalı simgeli bir ekran. Gönderirken simgenin çevresinde ilerleme halkası döner.</dd>
+      </div>
+      <div>
+        <dt>Bildirim</dt>
+        <dd>Windows'ta fotoğrafın önizlemesiyle bildirim çıkar.</dd>
+      </div>
+      <div>
+        <dt>Kontrol</dt>
+        <dd>Saatin yanındaki simgeden açılıp kapatılır, bilgisayar açılınca kendiliğinden başlar.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="guide-section" id="prompt">
+  <div class="wrap">
+    <div class="term prompt-sheet">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">claude code promptu</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="windrop-prompt">Promptu Kopyala</button>
+      </div>
+      <pre id="windrop-prompt" tabindex="0">Windows bilgisayarıma "Windrop" adında bir sistem kurmanı istiyorum. iPhone'da Fotoğraflar → Paylaş → Windrop dediğimde fotoğraf ve videolar ev ağı üzerinden bu bilgisayara gelsin. Benim teknik bilgim sınırlı olabilir: her aşamada ne yaptığını kısaca, sade Türkçeyle anlat.
+
+## Kurallar
+- Hazır aktarım uygulaması (LocalSend, PairDrop, Snapdrop, KDE Connect vb.) kurma ve bulut kullanma. Kodu sen yaz. Sunucu yalnızca Node.js standart kütüphanesini kullansın, çalışma anında npm paketi olmasın.
+- Önce bilgisayarımı incele, varsayma: Windows sürümü, ağ bağdaştırıcıları, yerel IP, ağ profili, VPN, Node.js, ffmpeg, İndirilenler klasörünün gerçek yolu ve 8765 portunun boş olup olmadığı. Bulduklarını 3-4 satırda özetle.
+- Şunları yapmadan önce onayımı al: Node.js kurmak, ağ profilini veya güvenlik duvarını değiştirmek. Güvenlik duvarı kuralını sen ekleyemiyorsan komutu bana ver, Yönetici PowerShell'de ben çalıştırayım.
+- Projeyi `Belgeler\Windrop` klasörüne kur. Bir adım engellenirse dolanmaya çalışma; nedenini söyle ve bana ne yapmam gerektiğini anlat.
+- Test etmediğin hiçbir şeye "çalışıyor" deme. Gerçek iPhone ile denemeden işi bitmiş sayma.
+
+## Dosyalar
+`src/server.js`, `src/qr.js`, `src/mdns.js`, `src/toast.js`, `public/send.html`, `public/panel.html`, `public/awake.mp4` (ffmpeg varsa), `tray.ps1`, `Windrop.vbs`, `kur.ps1`, `test/server.test.js`, `README.md`, çalışma anında oluşan `data/`.
+
+## Sunucu (`src/server.js`)
+- `0.0.0.0:8765` üzerinde HTTP dinler; port doluysa başka bir port seç. `data/config.json` içinde `port`, rastgele 16 hex `token`, `dest` tutulur. `dest` varsayılanı gerçek İndirilenler klasörüdür (`HKCU\...\Explorer\User Shell Folders` altındaki `{374DE290-123F-4565-9140-6D6B6F0A5F2F}`; değer yoksa `%USERPROFILE%\Downloads`).
+- Yalnızca özel ağ adreslerinden (127/8, 10/8, 172.16/12, 192.168/16, 169.254/16, IPv6 yerel) gelen isteği kabul et. Telefon yolları `/&lt;token&gt;/` altındadır; yanlış token 404 alır. Panel yalnızca loopback bağlantıda ve Host `localhost` veya `127.0.0.1` iken açılır.
+- Kesilirse devam eden yükleme, önce sayfanın kullanacağı yol:
+  - `POST /&lt;token&gt;/api/begin` gövdesi `{name,size,lastModified,key}`. `id`, ad+boyut+key karmasıdır. Aynı dosya daha önce tamamlandıysa `{done:true,savedAs}`; değilse `.part` dosyasının boyutunu `offset` olarak döndür. Boş alanı denetle, yetmezse 507 ver.
+  - `POST /&lt;token&gt;/api/chunk?id=&amp;offset=` en çok 16 MB ham veri ve `X-CRC32` başlığı alır (`zlib.crc32`). CRC tutmazsa 422, offset yanlışsa veya başka parça işleniyorsa `{offset,busy}` ile 409 döner.
+  - `POST /&lt;token&gt;/api/finish?id=` boyutu doğrular, dosyayı hedefe taşır ve varsa `lastModified` tarihini uygular.
+- Kestirmenin kullanacağı yol: `POST /&lt;token&gt;/api/raw`. Gövde dosyanın kendisidir, ad `filename` başlığından gelir (yüzde kodlaması varsa çöz). Akış olarak diske yaz; yarım kalırsa geçici dosyayı sil. `multipart` gelirse "İstek gövdesi Dosya olmalı" diyen 415 döndür. Adda uzantı yoksa ilk baytlardan belirle: JPEG, PNG, GIF, WEBP, `ftyp` markasına göre HEIC, MOV veya MP4.
+- Dosya adı güvenliği: yol bölümlerini at, `&lt;&gt;:"|?*` ve kontrol karakterlerini `_` yap, baştaki nokta ve boşluğu sil, CON/PRN/AUX/NUL/COM/LPT adlarının başına `_` koy, uzunluğu sınırla, Türkçe karakterleri koru. Asla üstüne yazma: `ad (2).uzantı` kullan ve taşımayı sıraya al. Geçici dosyalar hedef klasörde gizli `.windrop-tmp` içinde dursun, 7 günden eskiler temizlensin.
+- Gelenleri `data/received.json`, olayları `data/windrop.log` dosyasına yaz. Hiçbir hata süreci düşürmesin. Port doluysa sessizce çık.
+- Simgeyi Node ile PNG olarak üret: mavi gradyan (#5095FB → #3A7BF5) zemin, ortada beyaz nokta, çevresinde altı açık üç beyaz halka. `apple-touch-icon` olarak sun.
+
+## Ağda bulunma (`src/mdns.js`)
+Standart kütüphaneyle mDNS yanıtlayıcı yaz. `windrop.local` için A kaydı dönsün. Her LAN IPv4 arayüzüne ayrı soket aç (`reuseAddr`, `addMembership`, `setMulticastInterface`), 30 saniyede bir arayüzleri yenile, 5353 dışındaki kaynak porta tek yönlü (unicast) yanıt ver. VPN ve sanal bağdaştırıcıları atla. Bu kod hata verirse sunucu çalışmaya devam etsin.
+
+## QR (`src/qr.js`)
+Bağımlılıksız QR kodlayıcı yaz: bayt modu, hata düzeltme M, sürüm 1-10. Tuzak: hizalama desenlerini yalnızca üç köşe bulucunun üstündekilerde atla; zamanlama çizgisinin üstündekileri atlarsan sürüm 7 ve üstü bozulur. Testte kodu bağımsız bir çözücüyle doğrula (`jsqr`, yalnızca geçici test klasöründe).
+
+## Telefon sayfası (`public/send.html`)
+Mobil öncelikli, açık ve koyu temalı, Türkçe; `apple-mobile-web-app-capable` içersin.
+- AirDrop havasında: ortada mavi simge, çevresinde dışa doğru yayılan halka animasyonu, altında Windrop başlığı. Simgeye dokunmak fotoğraf seçiciyi açar (`accept="image/*,video/*"`, `multiple`). Gönderirken simgenin çevresinde dairesel ilerleme halkası dönsün. Altta iOS tarzı liste satırı "Dosyalar'dan seç" (accept yok), dosya başına ilerleme, hız, kalan süre ve bağlantı durumu olsun.
+- 8 MB'lık parçalarla XHR ile gönder. CRC32'yi JS ile hesapla, çünkü HTTP'de `crypto.subtle` yok. Bağlantı koparsa `begin` ile kaldığı yerden sınırsız dene, bekleme en çok 8 saniye olsun. `visibilitychange` ve `online` olaylarında hemen dene.
+- Altta "Kestirme adresini kopyala" düğmesi: `new URL('api/raw', location.href)`. HTTP'de `navigator.clipboard` yok; `document.execCommand('copy')` kullan, başarısızsa adresi seçilebilir yazı olarak göster.
+- Ekran açık kalsın diye gönderim sırasında sessiz, döngülü, çok küçük `awake.mp4` oynat. Dosyayı ffmpeg ile üret; yoksa bu özelliği atla ve ekranı açık tutmamı söyle.
+
+## Bilgisayar paneli (`public/panel.html`)
+`http://localhost:8765`, telefon sayfasıyla aynı AirDrop havasında: üstte halkalı simge, başlık ve durum yazısı; alım sırasında dairesel ilerleme. Altta iOS tarzı gruplu listeler: "Ad ile" ve "IP ile" sekmeli QR kod, klasörü açma satırı, tür simgeli son gelen dosyalar, açılır kestirme adımları. Sistemin açık ve koyu temasına uysun, 1,5 saniyede bir `/api/state` ile yenilensin, simge önbelleğe takılmasın (`no-cache`).
+
+## Bildirim (`src/toast.js`)
+- `HKCU\Software\Classes\AppUserModelId\Windrop` altına `DisplayName` ve `IconUri` yaz (yönetici gerekmez), yoksa bildirim "Windows PowerShell" görünür.
+- PowerShell ile WinRT toast göster. Toast XML'ini ortam değişkeniyle ve XML kaçışlı aktar; dosya adı asla komut olarak çalışmasın. Script `-EncodedCommand` ile çalışsın, `$ProgressPreference='SilentlyContinue'` olsun, stderr'e değil çıkış koduna bak.
+- Tıklayınca klasör açılsın (`activationType="protocol"`, `file:///` URI); "Aç" ve "Klasörü göster" düğmeleri olsun. Dosyalar 2,5 saniye içinde toplu bildirilsin.
+- Önizleme için ffmpeg ile 640x480 JPEG üret (`data/thumbs`, 1 gün sonra silinir). Tuzak: iPhone HEIC dosyaları karo ızgarasıdır, `-vf` ile aynı anda çalışmaz; önce filtresiz tam JPEG'e çevir, sonra küçült. ffmpeg yoksa yalnızca küçük JPEG/PNG/GIF önizlensin, gönderim etkilenmesin.
+
+## Bildirim alanı simgesi (`tray.ps1`)
+- PowerShell ile WinForms `NotifyIcon`. Açıkken mavi, kapalıyken gri; koddan çizilmiş yuvarlak köşeli kare, beyaz nokta ve altı açık halkalar. Sistem ikon boyutunda çiz; 24 pikselin altında iki kalın halka kullan. Sol tık paneli açar.
+- Sağ tık menüsü: Paneli aç, Gelenler klasörünü aç, Windrop'u durdur/başlat, Windows açılışında başlat (işaretli), Çıkış.
+- Mutex ile tek kopya çalışsın. Sunucuyu gizli başlat, 3 saniyede bir denetle, kapanmışsa ve kullanıcı durdurmadıysa yeniden başlat. Durdururken portun sahibini komut satırında `src\server.js` var mı diye doğrula.
+- Dosya UTF-8 BOM ile kaydedilmeli, yoksa Windows PowerShell 5.1 Türkçe karakterleri bozar.
+- `Windrop.vbs` simgeyi pencere açmadan başlatır (`powershell -NoProfile -STA -WindowStyle Hidden -ExecutionPolicy Bypass -File tray.ps1`). VBScript kapalıysa `kur.ps1` kısayolları doğrudan bu komutla oluştursun.
+- `kur.ps1` Masaüstü ve Başlangıç kısayollarını oluşturup simgeyi başlatsın; `-Kaldir` ile ikisini de kaldırsın.
+
+## Test et
+`node --test` ile şunları doğrula: yanlış token, 50 MB dosyanın SHA-256 eşleşmesi ve tarihi, bozuk CRC, yanlış offset, sunucu yeniden başladıktan sonra devam, aynı dosyanın kopyalanmaması, aynı adlı farklı dosya, zararlı dosya adları, Türkçe ad, boş dosya, kestirme yolu, yarım kalan yükleme, panelin dışarıya kapalı olması, mDNS yanıtı, QR çözümü, toast XML kaçışı. Testler geçici klasör ve ayrı port kullansın, İndirilenler'e yazmasın. Sayfanın gönderimini tarayıcıda da dene: 200 MB gönderirken sunucuyu öldür, kendiliğinden tamamlanmalı. Simgede sunucu öldürülünce geri geldiğini ve ikinci açılışta ikinci kopya çıkmadığını doğrula. Bir gerçek bildirim göster.
+
+## Kurulumu bitir ve benimle telefonu bağla
+1. Ağ profilini kontrol et, Özel değilse onayımla düzelt. Node.js için 8765/TCP ve 5353/UDP gelen trafiğine yalnızca Özel ağda izin verilmesini sağla. Windows izin penceresi çıkarsa Özel ağlar için izin vermemi söyle.
+2. `kur.ps1` ile açılış ve Masaüstü kısayollarını kur, paneli aç. Simge `^` okunun altında olabilir; görev çubuğuna sürükleyebileceğimi söyle.
+3. Bana QR'ı okutmamı, sayfayı Safari'de açmamı, Paylaş → Ana Ekrana Ekle demem gerektiğini anlat ve küçük bir fotoğraf göndermemi iste. Geldiğini `data/windrop.log` dosyasından doğrula. `windrop.local` açılmazsa IP ile QR'ı kullandır.
+4. Kestirmeyi aşağıdaki adımlarla, her seferinde 1-2 adım vererek kurdur. Ekran görüntüsü atarsam ona göre yönlendir; iOS adları sürüme göre değişebilir, atılan ekrandaki adı kullan:
+   - Windrop sayfasında "Kestirme adresini kopyala"ya dokun.
+   - Kestirmeler → + → adını **Windrop** yap (üstteki ad → ⌄ → Yeniden Adlandır).
+   - Alttaki ⓘ → **Paylaşma Sayfasında Göster**'i aç. Üst blokta tür olarak yalnızca **Görüntüler** ve **Ortam** (Medya) seçili kalsın; **Uygulamalar** kapalı olsun.
+   - **Her Biri ile Yinele** ekle, girişi **Kestirme Girişi** olsun.
+   - **URL İçeriğini Al** ekle, bloğu döngünün **içine** taşı, adresi yapıştır. Mavi oktan: Yöntem **POST**; Başlıklar: `filename` = **Yineleme Öğesi**; İstek Gövdesi: **Dosya**, Dosya = **Yineleme Öğesi**.
+   - iPhone Ayarlar → Kestirmeler → Gelişmiş → Büyük Miktarda Veri Paylaşımına İzin Ver.
+   - Fotoğraflar'ı kapatıp aç. Paylaş → menüyü yukarı kaydır → dikey listede Windrop'a dokun. İzin sorarsa Her Zaman İzin Ver.
+   - Bana açıkça söyle: Paylaş ekranında Biçim varsayılan olarak Otomatik gelir ve kaliteyi düşürebilir. Kalite düşmemesi için her gönderimde Seçenekler → Biçim → Şu Anki seçilmelidir. Denemede 325 MB, 60 fps HEVC bir video Otomatik ile 74 MB, 30 fps H.264 geldi; Şu Anki ile 325 MB geldi.
+   - Eylemleri Düzenle → Windrop'u Favoriler'e ekleyip en üste taşı. Simge için üstteki ad → ⌄ → Simge Seç: mavi renk ve halkalı simge.
+5. Bilinen karışıklıklar: Windrop, AirDrop'un olduğu üst sırada veya "Diğer → Uygulamalar" listesinde çıkmaz, çünkü orada yalnızca gerçek uygulamalar olur; dikey listeye bakılmalı. Arama kutusunda "Paylaşma Sayfası" diye bir eylem aranmaz, o bir ayardır.
+6. Son kontrol: gerçek bir fotoğraf ve bir video gönderildi mi, videonun bilgisayardaki boyutu Fotoğraflar'daki boyutla aynı mı (iOS videoyu göndermeden önce küçültebilir; öyleyse Paylaş → Seçenekler → Biçim → Şu Anki'ni seçtir), bildirim önizlemeli çıktı mı, tıklama klasörü açtı mı, simge menüsü çalışıyor mu? Doğrulanmayanı açıkça söyle. Kısa README bırak: kullanım, kapatma, kaldırma.</pre>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="kurulum">
+  <div class="wrap">
+    <div class="section-eyebrow">kurulum</div>
+    <div class="section-head">
+      <h2>Altı adımda kurulum</h2>
+      <p>Kodu Claude Code yazar; sen izin verir ve telefonda dokunursun. Claude Code kurulu değilse önce <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">resmi kurulum sayfasına</a> bak.</p>
+    </div>
+
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-paste">[Pasted text] <b>↵</b></span>
+        </div>
+        <h3>Promptu gönder</h3>
+        <p>Yukarıdaki promptun tamamını kopyala, Claude Code'a yapıştır ve gönder.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-app">&gt;_ inceleniyor</span>
+          <span class="flow-label">ağ · node.js</span>
+        </div>
+        <h3>İncelemesine izin ver</h3>
+        <p>Claude Windows sürümünü, ağını ve eksik araçları bulup özetler.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-bubble">Node.js kurayım mı?</span>
+          <span class="flow-bubble me">Evet</span>
+        </div>
+        <h3>İzinleri ver</h3>
+        <p>Node.js ve güvenlik duvarı için onay ister. Windows izin penceresi çıkarsa Özel ağlara izin ver.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-paste">node --test <b>✓</b></span>
+        </div>
+        <h3>Testleri bekle</h3>
+        <p>Claude sistemi yazar ve kendi testlerinden geçirir.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17.5 21H21v-3.5"/></svg>
+          <span class="flow-label">localhost:8765</span>
+        </div>
+        <h3>QR kodu okut</h3>
+        <p>Paneldeki QR'ı iPhone kamerasıyla okut, Paylaş → Ana Ekrana Ekle de ve bir fotoğraf gönder.</p>
+      </li>
+
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">Paylaş →</span>
+          <span class="flow-pill">Windrop</span>
+        </div>
+        <h3>Kestirmeyi kur</h3>
+        <p>Claude adım adım anlatır; takılırsan ekran görüntüsü gönder. Adımlar aşağıda da var.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="guide-section" id="kestirme">
+  <div class="wrap">
+    <div class="section-eyebrow">iphone'da</div>
+    <div class="section-head">
+      <h2>Kestirmeyi kurmak</h2>
+      <p>Kestirmeyi bir kez kurarsan Fotoğraflar'daki Paylaş menüsünde Windrop çıkar. Adlar iOS sürümüne göre biraz değişebilir; takılırsan ekran görüntüsünü Claude Code'a gönder.</p>
+    </div>
+
+    <div class="shortcut-layout">
+      <ol class="guide-steps">
+        <li>Ana ekrandaki Windrop ikonunu aç, en alttaki <strong>Kestirme adresini kopyala</strong>'ya dokun.</li>
+        <li><strong>Kestirmeler</strong> uygulamasını aç, <strong>+</strong> ile yeni kestirme oluştur. Üstteki adın yanındaki <strong>⌄</strong> okundan adını <strong>Windrop</strong> yap.</li>
+        <li>Alttaki <strong>ⓘ</strong> simgesine dokun, <strong>Paylaşma Sayfasında Göster</strong>'i aç. Bu bir eylem değil, ayardır; arama kutusunda arama.</li>
+        <li>Üstte beliren blokta tür yazısına dokun. Yalnızca <strong>Görüntüler</strong> ve <strong>Ortam</strong> seçili kalsın, <strong>Uygulamalar</strong> kapalı olsun.</li>
+        <li>Arama kutusundan <strong>Her Biri ile Yinele</strong> ekle. Girişi <strong>Kestirme Girişi</strong> olsun.</li>
+        <li><strong>URL İçeriğini Al</strong> ekle, bloğu sürükleyip <strong>Yinelemeyi Bitir</strong>'in üstüne, döngünün içine bırak. Soluk URL yazısına kopyaladığın adresi yapıştır.</li>
+        <li>Mavi <strong>›</strong> okuna dokun ve şunları ayarla:
+          <ul>
+            <li>Yöntem: <strong>POST</strong></li>
+            <li>Başlıklar: yeni başlık ekle, anahtar <code>filename</code>, değer <strong>Yineleme Öğesi</strong></li>
+            <li>İstek Gövdesi: <strong>Dosya</strong>; Dosya satırında <strong>Yineleme Öğesi</strong></li>
+          </ul>
+        </li>
+        <li>iPhone <strong>Ayarlar → Kestirmeler → Gelişmiş</strong> bölümünde <strong>Büyük Miktarda Veri Paylaşımına İzin Ver</strong>'i aç.</li>
+        <li>Fotoğraflar'ı arka plandan kapatıp yeniden aç. Bir fotoğrafta Paylaş'a dokun, menüyü yukarı kaydır ve dikey listede <strong>Windrop</strong>'u seç. İzin sorarsa <strong>Her Zaman İzin Ver</strong> de.</li>
+        <li>Aynı listenin altındaki <strong>Eylemleri Düzenle</strong>'den Windrop'u Favoriler'e ekle ve en üste taşı. Simge için kestirmede adın yanındaki ⌄ okundan <strong>Simge Seç</strong>'e gir; mavi rengi ve halkalı simgeyi seç.</li>
+      </ol>
+
+      <aside class="shortcut-aside">
+        <div class="shortcut-mock">
+          <div class="shortcut-mock-title">Bitince kestirme böyle görünmeli</div>
+          <div class="sc-action"><span class="sc-var">Paylaşma Sayfası</span> giriş yüzeyinden <span class="sc-var">Görüntü ve ...</span> girişini al</div>
+          <div class="sc-action"><span class="sc-var">Kestirme Girişi</span> girişinde her öğeyle yinele</div>
+          <div class="sc-loop">
+            <div class="sc-action"><span class="sc-var">http://windrop.local:8765/.../api/raw</span> içeriğini al</div>
+          </div>
+          <div class="sc-action">Yinelemeyi Bitir</div>
+          <p class="shortcut-mock-note">Adresteki <code>...</code> yerinde senin gizli anahtarın durur. Bu adresi kimseyle paylaşma.</p>
+        </div>
+
+        <div class="guide-note">
+          <strong>Kalite düşmemesi için her gönderimde</strong>
+          <p>Paylaş ekranında Biçim varsayılan olarak Otomatik gelir ve kaliteyi düşürebilir. Göndermeden önce <strong>Seçenekler → Biçim → Şu Anki</strong>'ni seç, sonra Windrop'a dokun. Denemede 325 MB, yaklaşık 60 fps HEVC bir video Otomatik ile 74 MB, 30 fps H.264 geldi; Şu Anki ile 325 MB geldi.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="kullanim">
+  <div class="wrap">
+    <div class="section-eyebrow">her gün</div>
+    <div class="section-head">
+      <h2>Günlük kullanım</h2>
+      <p>Kurulumdan sonra bilgisayarda bir şey açman gerekmez; Windrop Windows açılınca kendiliğinden başlar.</p>
+    </div>
+
+    <dl class="guide-facts">
+      <div>
+        <dt>Göndermek</dt>
+        <dd>Fotoğraflar → fotoğraf veya videoları seç → Paylaş → Windrop. Kalite düşmemesi için her seferinde önce Seçenekler → Biçim → Şu Anki'ni seç.</dd>
+      </div>
+      <div>
+        <dt>Çok büyük video</dt>
+        <dd>Ana ekrandaki Windrop ikonunu kullan. Bağlantı koparsa kaldığı yerden devam eder, ama gönderim bitene kadar ekranı açık tut.</dd>
+      </div>
+      <div>
+        <dt>Bildirim</dt>
+        <dd>Gelen dosya önizlemeyle görünür. Tıklayınca klasör açılır, Aç düğmesi dosyayı açar.</dd>
+      </div>
+      <div>
+        <dt>Dosyaların yeri</dt>
+        <dd>İndirilenler klasörü.</dd>
+      </div>
+      <div>
+        <dt>Saatin yanındaki simge</dt>
+        <dd>Mavi açık, gri kapalı demektir. Sol tık paneli açar; sağ tık menüsünden durdurabilir ve açılışta başlamayı kapatabilirsin. Simge görünmüyorsa <code>^</code> okunun altındadır; görev çubuğuna sürükleyebilirsin.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="guide-section" id="sorunlar">
+  <div class="wrap">
+    <div class="section-eyebrow">takılırsan</div>
+    <div class="section-head">
+      <h2>Sık karşılaşılan sorunlar</h2>
+      <p>Sorunların çoğu ağ veya kestirme ayarından çıkar. Çözülmezse hatayı ve ekran görüntüsünü Claude Code'a gönder.</p>
+    </div>
+
+    <div class="guide-faq">
+      <details>
+        <summary>Sayfa telefonda açılmıyor</summary>
+        <p><strong>Neden:</strong> Güvenlik duvarı, farklı ağ veya VPN.<br><strong>Çözüm:</strong> Windows izin penceresinde Özel ağlara izin ver, telefon aynı ağda olsun, VPN'i kapat.</p>
+      </details>
+      <details>
+        <summary>windrop.local açılmıyor</summary>
+        <p><strong>Neden:</strong> Modem cihaz adı duyurularını geçirmiyor.<br><strong>Çözüm:</strong> Paneldeki IP ile QR'ı kullan; kestirmede de IP'li adresi yapıştır.</p>
+      </details>
+      <details>
+        <summary>IP'li adres bir süre sonra bozuldu</summary>
+        <p><strong>Neden:</strong> Modem bilgisayara yeni IP verdi.<br><strong>Çözüm:</strong> Modemde bilgisayara sabit IP ayır veya paneldeki yeni adresi kullan.</p>
+      </details>
+      <details>
+        <summary>Windrop Paylaş menüsünde yok</summary>
+        <p><strong>Neden:</strong> Dosya türü kapalı veya yanlış listeye bakılıyor. Windrop, AirDrop'un olduğu üst sırada çıkmaz; oraya yalnızca gerçek uygulamalar girebilir.<br><strong>Çözüm:</strong> Görüntüler ve Ortam'ı aç, Fotoğraflar'ı yeniden başlat, alttaki dikey listeye bak.</p>
+      </details>
+      <details>
+        <summary>"İstek gövdesi Dosya olmalı" hatası</summary>
+        <p><strong>Neden:</strong> İstek Gövdesi Form olarak kalmış.<br><strong>Çözüm:</strong> Dosya yap, Yineleme Öğesi'ni seç.</p>
+      </details>
+      <details>
+        <summary>Dosya boş geliyor</summary>
+        <p><strong>Neden:</strong> Dosya satırı seçilmemiş.<br><strong>Çözüm:</strong> Değişken Seç → Yineleme Öğesi.</p>
+      </details>
+      <details>
+        <summary>Büyük video kestirmede takılıyor</summary>
+        <p><strong>Neden:</strong> Kestirmeler büyük dosyada zorlanabilir.<br><strong>Çözüm:</strong> Ana ekrandaki Windrop ikonundan gönder.</p>
+      </details>
+      <details>
+        <summary>Fotoğraf JPEG geldi veya video küçülmüş</summary>
+        <p><strong>Neden:</strong> iOS dosyayı göndermeden önce dönüştürüyor; kestirmede de olabilir.<br><strong>Çözüm:</strong> Paylaş → Seçenekler → Biçim → Şu Anki'ni seç. Olmazsa dosyayı Dosyalar'a kaydet ve Windrop sayfasında Dosyalar'dan seç'i kullan.</p>
+      </details>
+      <details>
+        <summary>Bildirimde önizleme yok</summary>
+        <p><strong>Neden:</strong> ffmpeg kurulu değil.<br><strong>Çözüm:</strong> Gönderim etkilenmez. Önizleme istiyorsan Claude Code'a kurdur.</p>
+      </details>
+      <details>
+        <summary>Yeniden başlattıktan sonra çalışmıyor</summary>
+        <p><strong>Neden:</strong> Açılış kısayolu yok.<br><strong>Çözüm:</strong> Simge menüsünde Windows açılışında başlat'ı işaretle.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="guvenlik">
+  <div class="wrap">
+    <div class="section-eyebrow">güvenlik</div>
+    <div class="section-head">
+      <h2>Güvenlik ve sınırlar</h2>
+      <p>Windrop yalnızca güvendiğin ev ağında kullanılmak için tasarlandı.</p>
+    </div>
+
+    <dl class="guide-facts">
+      <div>
+        <dt>Gizli adres</dt>
+        <dd>Telefon adresinde 16 haneli rastgele bir anahtar var. Bu adresi ekran görüntüsü veya videoda paylaşma; çekim yapacaksan bulandır. Sızarsa <code>data/config.json</code> dosyasındaki anahtarı değiştirip kestirmeyi güncelle.</dd>
+      </div>
+      <div>
+        <dt>Ağ sınırı</dt>
+        <dd>Yalnızca yerel ağ adresleri kabul edilir, panel yalnızca bilgisayarın kendisinden açılır.</dd>
+      </div>
+      <div>
+        <dt>Şifreleme yok</dt>
+        <dd>Bağlantı HTTP'dir. Kafe veya otel ağı gibi ortak ağlarda kullanma.</dd>
+      </div>
+      <div>
+        <dt>Tek yön</dt>
+        <dd>Dosyalar telefondan bilgisayara gider; bilgisayardan telefona gönderim yoktur.</dd>
+      </div>
+      <div>
+        <dt>Arka plan</dt>
+        <dd>Bir uygulama olmadığı için ekran kilitliyken gönderim durabilir.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
+    <div class="social-row">
+      <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
+      <a href="index.html#drops">Kaynaklar</a>
+      <a href="index.html#contact">İletişim</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> fatihd.mov</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
