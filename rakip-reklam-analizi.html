@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rakip Reklam Analizi: Claude Code ile Meta Reklam Kütüphanesi — fatihd.mov</title>
+<meta name="description" content="Claude Code'a tek prompt ver: sektöründeki 10 markanın aktif Meta reklamlarını tarasın, kime hangi dille konuştuklarını çıkarsın ve çekilecek 5 kreatifle birlikte PDF sunum hazırlasın. Kopyalanabilir prompt ve .md dosyası.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">fatihd<span class="dot">.</span>mov</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#drops">Kaynaklar</a></li>
+      <li><a href="prompts.html">Promptlar</a></li>
+      <li><a href="index.html#services">Hizmetler</a></li>
+      <li><a href="index.html#about">Hakkımda</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç">☰</button>
+  </div>
+</nav>
+<header class="wrap guide-hero">
+  <div class="guide-intro">
+    <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
+    <div class="section-eyebrow">rakip analizi · meta reklam kütüphanesi</div>
+    <h1>Rakiplerinin reklamlarını<br>Claude'a analiz ettir.</h1>
+    <p>Bu kılavuzdaki promptu Claude Code'a verirsin. Claude <strong>Meta Reklam Kütüphanesi</strong>'nde sektöründeki 10 markanın aktif reklamlarını tek tek açar, metinleri sayar, kreatiflere bakar ve sana 5 sayfalık bir PDF sunum hazırlar. Sunum tek soruya cevap verir: hangi personaya, hangi dille, hangi kreatifle çıkmalısın?</p>
+    <p><strong>İki parça var:</strong> .md dosyası Claude'un çalışma talimatı, prompt ise senin bilgilerin. Dosyayı indirip sohbete eklersin, promptu kendi bilgilerinle gönderirsin; videodaki gibi.</p>
+    <p><strong>Telefondaysan:</strong> tarama bilgisayarda çalışıyor. Bu sayfayı bilgisayarında aç.</p>
+    <a href="#prompt" class="btn btn-primary">Promptu Al</a>
+    <a href="assets/downloads/rakip-reklam-analizi/rakip-reklam-analizi-prompt.md" class="btn btn-ghost" download>.md Dosyasını İndir</a>
+    <dl class="guide-facts">
+      <div>
+        <dt>Gerekenler</dt>
+        <dd>Windows veya Mac bir bilgisayar, ücretli bir Claude planı (Pro veya üstü) ve Claude masaüstü uygulamasındaki Code sekmesi. Terminalde Claude Code kullanıyorsan Claude in Chrome uzantısı da olur. PDF için Chrome veya Edge, hesaplar için Python 3 gerekir; eksik paketi Claude onayını isteyerek kurar.</dd>
+      </div>
+      <div>
+        <dt>Denendiği ortam</dt>
+        <dd>Windows 10, Claude masaüstü uygulaması ve yerleşik tarayıcı. 10 marka yaklaşık 20 dakika sürdü. Mac'te PDF adımını Claude kendi sistemine göre uyarlar.</dd>
+      </div>
+      <div>
+        <dt>Hangi sektörde çalışır?</dt>
+        <dd>Meta'da reklam veren her sektörde. Videoda koltuk takımı satan bir markaymışım gibi davrandım. Sen promptun altındaki sektör satırına kendi ürününü yazarsın.</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+<section class="guide-section" id="nedir">
+  <div class="wrap">
+    <div class="section-eyebrow">ne yapar</div>
+    <div class="section-head">
+      <h2>Bu prompt ne yapıyor?</h2>
+      <p>Tahmin yürütmez. Her sayı Reklam Kütüphanesi'nde gördüğü aktif reklamlardan gelir, hesapları Python ile yapar. Giriş yapmaz, reklam indirmez.</p>
+    </div>
+    <dl class="guide-facts four">
+      <div>
+        <dt>Markaları seçer</dt>
+        <dd>Senin pazarından 5, globalden 5 marka. 10'dan az aktif reklamı olanı, pazar yerlerini ve kişisel sayfaları eler.</dd>
+      </div>
+      <div>
+        <dt>Metinleri sayar</dt>
+        <dd>Reklamları kaydırıp okur, kopyaları ayıklar, her metni fiyat, kalite, teslimat gibi mesaj türlerine ayırır.</dd>
+      </div>
+      <div>
+        <dt>Kreatiflere bakar</dt>
+        <dd>Görselleri tek ekranda toplayıp inceler: UGC mi, ürün + fiyat kartı mı, kullanım gösterimi mi.</dd>
+      </div>
+      <div>
+        <dt>Sunum hazırlar</dt>
+        <dd>5 sayfalık A4 yatay PDF: özet, personalar, dil ve kreatif türleri, marka tablosu ve çekilecek 5 kreatif.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="ornek">
+  <div class="wrap">
+    <div class="section-eyebrow">videodaki örnek</div>
+    <div class="section-head">
+      <h2>Koltuk takımı taramasında ne çıktı?</h2>
+      <p>Bir mobilya markasıymışım gibi davrandım: Türkiye'den 5, ABD ve İngiltere'den 5 koltuk markası. Aşağıdaki sayılar Claude'un hazırladığı sunumdan.</p>
+    </div>
+    <dl class="guide-facts four">
+      <div>
+        <dt>738 aktif reklam</dt>
+        <dd>10 markanın o gün yayındaki reklamları. Koltuk dışındakiler ayıklanınca 582 kaldı; içinde 252 benzersiz metin vardı.</dd>
+      </div>
+      <div>
+        <dt>196 kreatif</dt>
+        <dd>Claude 196 görseli tek tek inceleyip türüne ayırdı: UGC, ürün + fiyat, kullanım gösterimi, indirim kartı.</dd>
+      </div>
+      <div>
+        <dt>%66'ya %14</dt>
+        <dd>Türkiye'deki metinlerin %66'sı fiyat ve taksitle konuşuyor. Globalde bu oran %14.</dd>
+      </div>
+      <div>
+        <dt>%9'a %48</dt>
+        <dd>Küçük alanda işlev (yataklı, modüler, sandıklı) globalde %48, Türkiye'de %9. Sunum bu payın çoğunun tek markadan geldiğini de ayrıca yazdı.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="prompt">
+  <div class="wrap">
+    <div class="section-eyebrow">prompt</div>
+    <div class="section-head">
+      <h2>Dosyayı ekle, promptu gönder</h2>
+      <p>.md dosyasını indir ve Claude Code sohbetine ekle; içine dokunman gerekmez. Sonra aşağıdaki promptu kopyala, en alttaki Bilgilerim listesini doldur ve dosyayla birlikte gönder. Her taramada yalnızca bu listeyi değiştirirsin.</p>
+    </div>
+    <div class="term prompt-sheet">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">claude code promptu</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="rakip-prompt">Promptu Kopyala</button>
+        <a class="mini-btn" href="assets/downloads/rakip-reklam-analizi/rakip-reklam-analizi-prompt.md" download>.md İndir</a>
+      </div>
+      <pre id="rakip-prompt" tabindex="0">Eklediğim rakip-reklam-analizi-prompt.md dosyası bu işin çalışma talimatı. Önce tamamını oku, sonra adımlarını sırayla ve kurallarına uyarak uygula. Dosyayı göremiyorsan çalışma klasöründe ara; bulamazsan bana söyle.
+
+Meta Reklam Kütüphanesi'nde rakiplerimin aktif reklamlarını taramanı istiyorum. Görmek istediğim şu: rakiplerim hangi personalara, hangi dille ve hangi kreatif türleriyle konuşuyor, hangi reklamlar aylardır yayında kalıyor ve ben hangi kreatiflerle çıkmalıyım. Sonucu 5 sayfalık bir PDF sunum olarak ver; son sayfada hemen çekebileceğim 5 kreatif fikri olsun.
+
+Tahmin yürütme; her sayı Reklam Kütüphanesi'nde gördüğün reklamlardan gelsin. Aşağıda boş bıraktığım alanlarda dosyadaki varsayılanları kullan ve sunumda belirt. Giriş, doğrulama veya beklenmedik bir engel çıkarsa dur ve bana söyle.
+
+Bilgilerim:
+- Sektör / ürün: [ör. kahve makinesi, diş kliniği, online İngilizce kursu]
+- Marka adı ve sitesi:
+- Ana pazar: Türkiye
+- Karşılaştırma pazarı: ABD + İngiltere
+- Rakip adayları:
+- Marka sayısı: 5 ana pazar + 5 karşılaştırma
+- Sunum dili: Türkçe
+- Marka renkleri ve yazı tipi:
+- Ek isteklerim:</pre>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="kurulum">
+  <div class="wrap">
+    <div class="section-eyebrow">kurulum</div>
+    <div class="section-head">
+      <h2>Altı adımda çalıştır</h2>
+      <p>Taramayı Claude yapar; sen sektörünü yazar ve izin verirsin. Claude Code kurulu değilse önce <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">resmi kurulum sayfasına</a> bak.</p>
+    </div>
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span class="flow-label">rakip-analizi</span>
+        </div>
+        <h3>Klasör aç</h3>
+        <p>Boş bir klasör aç, Claude masaüstü uygulamasının Code sekmesinde bu klasörü seç. Claude bütün dosyaları buraya yazar.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">sohbete ekle</span>
+          <span class="flow-pill">.md</span>
+        </div>
+        <h3>Dosyayı sohbete ekle</h3>
+        <p>.md dosyasını indir, Claude'daki mesaj kutusuna sürükle ya da + düğmesiyle ekle. Olmazsa dosyayı klasöre koy, mesaj kutusuna @ yazıp listeden seç.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-paste">Sektör / ürün: <b>kahve makinesi</b></span>
+        </div>
+        <h3>Bilgilerini yaz, gönder</h3>
+        <p>Promptu kopyala, en alttaki Bilgilerim listesinde sektör satırını doldur ve dosya ekliyken gönder. Diğer satırlar isteğe bağlı; boş kalanlarda Claude varsayılanı kullanır.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-app">&gt;_ taranıyor</span>
+          <span class="flow-label">10 marka · ~20 dk</span>
+        </div>
+        <h3>Taramayı izle</h3>
+        <p>Claude tarayıcı panelini açar, Reklam Kütüphanesi'nde markaları tek tek gezer. Giriş veya doğrulama çıkarsa durup sana söyler.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-bubble">Python paketi kurayım mı?</span>
+          <span class="flow-bubble me">Evet</span>
+        </div>
+        <h3>İzinleri ver</h3>
+        <p>Hesaplar ve PDF kontrolü için paket kurmak isterse onay ister. Paketler sistemine değil, çalışma klasöründeki sanal ortama kurulur.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">PDF →</span>
+          <span class="flow-pill">5 sayfa</span>
+        </div>
+        <h3>Sunumu al</h3>
+        <p>İş bitince PDF ve kısa bir özet gelir: en önemli 3 bulgu, ilk çekilecek kreatif ve açık kalan riskler.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="guide-section" id="uyarla">
+  <div class="wrap">
+    <div class="section-eyebrow">kendine uyarla</div>
+    <div class="section-head">
+      <h2>Promptu kendine uyarlamak</h2>
+      <p>Talimat sektörden bağımsız yazıldı. Arama kelimelerini ve mesaj türlerini Claude senin sektörüne göre kendisi kurar. Sen yalnızca promptun altındaki Bilgilerim listesini değiştirirsin; .md dosyasına dokunman gerekmez.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Sektör / ürün</dt>
+        <dd>Tek zorunlu alan. "Mobilya" yerine "koltuk takımı" gibi dar ve net yaz; sayım o kadar temiz çıkar. Hizmet de olur: diş kliniği, online İngilizce kursu.</dd>
+      </div>
+      <div>
+        <dt>Marka adı ve sitesi</dt>
+        <dd>Kendi markanı veya müşterini yazarsan Claude siteye bakar, kanca metinlerini ona göre kurar. Marka reklam veriyorsa onu da sayar ve sunumda ayrı gösterir. Boş bırakırsan öneriler sektöre genel olur.</dd>
+      </div>
+      <div>
+        <dt>Pazarlar</dt>
+        <dd>Varsayılan: Türkiye'ye karşı ABD ve İngiltere. Almanya'da satıyorsan ana pazarı DE yap; Claude arama kelimelerini Almancaya çevirir.</dd>
+      </div>
+      <div>
+        <dt>Rakip adayları</dt>
+        <dd>Bildiğin rakipleri yaz, Claude önce onları dener. 10'dan az aktif reklamı olanı eler ve nedenini sunuma yazar.</dd>
+      </div>
+      <div>
+        <dt>Marka sayısı</dt>
+        <dd>5 + 5 iyi bir başlangıç. Her yeni marka süreyi birkaç dakika uzatır.</dd>
+      </div>
+      <div>
+        <dt>Renk ve yazı tipi</dt>
+        <dd>Sunum kendi marka renklerinle çıksın istiyorsan hex kodlarını yaz. Yazı tipi bilgisayarında yüklüyse onu kullanır.</dd>
+      </div>
+      <div>
+        <dt>Ek isteklerim</dt>
+        <dd>Sunumda farklı bir şey istiyorsan bu satıra yaz: "5. sayfaya aylık test bütçesi ekle" ya da "yalnızca video reklamlara bak" gibi. Claude dosyadaki talimatın üstüne bunu uygular.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="sunum">
+  <div class="wrap">
+    <div class="section-eyebrow">sonuç</div>
+    <div class="section-head">
+      <h2>PDF'te ne var?</h2>
+      <p>Tam 5 sayfa, A4 yatay. Her sayfanın tek bir ana mesajı var; başlıklar konuyu değil bulguyu söyler.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>1. Özet</dt>
+        <dd>Kaç marka, reklam ve kreatif tarandı, en önemli bulgu ve "ne çıkmalıyız" diye 3 madde.</dd>
+      </div>
+      <div>
+        <dt>2. Kime konuşuluyor</dt>
+        <dd>Personalar sıklığa göre, iki pazarın çubuklu karşılaştırması, en büyük farklar ve en uzun süredir yayındaki reklamlar.</dd>
+      </div>
+      <div>
+        <dt>3. Nasıl konuşuyor</dt>
+        <dd>Sen/siz dili, emoji, aciliyet gibi dil kalıpları, kreatif türleri ve gerçek reklamlardan örnekler.</dd>
+      </div>
+      <div>
+        <dt>4. Markalar</dt>
+        <dd>Her marka için reklam sayısı, video oranı, ana persona, dil ve kreatif tarzı; elenen markalar ve nedeni.</dd>
+      </div>
+      <div>
+        <dt>5. Ne çıkmalıyız</dt>
+        <dd>Öncelik sırasıyla 5 kreatif briefi (persona, kanca, format, gereken çekim), test planı ve verinin sınırları.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="sorunlar">
+  <div class="wrap">
+    <div class="section-eyebrow">takılırsan</div>
+    <div class="section-head">
+      <h2>Sık karşılaşılan sorunlar</h2>
+      <p>Sorunların çoğu tarayıcıdan veya marka adından çıkar. Claude çoğunu kendisi fark edip düzeltir; takılırsa ekran görüntüsünü ona gönder.</p>
+    </div>
+    <div class="guide-faq">
+      <details>
+        <summary>Sadece dosyayı eklesem yetmez mi?</summary>
+        <p><strong>Neden:</strong> .md dosyası yalnızca çalışma talimatı; hangi sektörü ve hangi pazarı tarayacağını bilmez.<br><strong>Çözüm:</strong> Promptu Bilgilerim listesiyle birlikte gönder. Yalnızca dosyayı gönderirsen Claude önce sektörünü sorar.</p>
+      </details>
+      <details>
+        <summary>Claude dosyayı görmüyor</summary>
+        <p><strong>Neden:</strong> Dosya sohbete eklenmemiş ya da indirirken adı değişmiş.<br><strong>Çözüm:</strong> Dosyayı çalışma klasörüne koy, mesaj kutusuna @ yazıp listeden seç, sonra promptu gönder.</p>
+      </details>
+      <details>
+        <summary>Facebook giriş istiyor</summary>
+        <p><strong>Neden:</strong> Reklam Kütüphanesi çoğu zaman girişsiz açılır, bazen giriş duvarı veya doğrulama çıkar.<br><strong>Çözüm:</strong> Claude giriş yapmaz, doğrulama çözmez; durup sana söyler. Tarayıcı panelinde kendin geç, sonra "devam et" yaz.</p>
+      </details>
+      <details>
+        <summary>Tarayıcı paneli açılmadı</summary>
+        <p><strong>Neden:</strong> Yerleşik tarayıcı yalnızca Claude masaüstü uygulamasının Code sekmesinde var.<br><strong>Çözüm:</strong> Promptu uygulamadaki Code sekmesinden çalıştır. Terminalde Claude Code kullanıyorsan Claude in Chrome uzantısını kur; prompt onu da kullanabilir.</p>
+      </details>
+      <details>
+        <summary>Başka sayfaların reklamları karıştı</summary>
+        <p><strong>Neden:</strong> Arama, marka adını içeren her sayfayı getirir. Testte "Ashley" araması kişisel bir "Ashley Gomez" sayfasını da getirdi.<br><strong>Çözüm:</strong> Prompt her markadan sonra sayfa listesini kontrol ettirir ve filtreyi daraltır. İstersen <code>rakip_analiz/ham/</code> klasöründeki dosyalara sen de bak.</p>
+      </details>
+      <details>
+        <summary>Bir marka listeden çıktı</summary>
+        <p><strong>Neden:</strong> Filtreden sonra 10'dan az aktif reklamı kaldı ya da reklamlarının çoğu metinsiz katalog.<br><strong>Çözüm:</strong> Bu normal. Claude sıradaki adaya geçer, elediği markayı nedeniyle birlikte sunuma yazar.</p>
+      </details>
+      <details>
+        <summary>Reklam sayısı az geldi</summary>
+        <p><strong>Neden:</strong> Sayfa aşağı kaydırıldıkça yeni reklam yükler; yavaş bağlantıda hepsi gelmeyebilir.<br><strong>Çözüm:</strong> Kart sayısı hâlâ artıyorsa Claude kaydırma sayısını yükseltir. Sen de "bu markayı daha çok kaydırarak yeniden say" diyebilirsin.</p>
+      </details>
+      <details>
+        <summary>PDF çıkmadı veya Türkçe harfler bozuk</summary>
+        <p><strong>Neden:</strong> Chrome veya Edge bulunamadı ya da yazı tipi ğ, ş, İ harflerini desteklemiyor.<br><strong>Çözüm:</strong> Chrome veya Edge kur. Claude PDF sayfalarını görüntüye çevirip kontrol eder; bozuk harf görürse yazı tipini değiştirir.</p>
+      </details>
+      <details>
+        <summary>Bu sonuçlar reklamların iyi çalıştığını mı gösteriyor?</summary>
+        <p><strong>Neden:</strong> Kütüphanede harcama, satış ve hedefleme verisi görünmez.<br><strong>Çözüm:</strong> Sunum bunu açıkça yazar. Aylardır yayında olan reklamları daha güçlü kanıt sayar, çünkü kâr getirmeyen reklam genelde kapatılır. Önerileri yine de kendi hesabında küçük bütçeyle test et.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="guvenlik">
+  <div class="wrap">
+    <div class="section-eyebrow">güvenlik</div>
+    <div class="section-head">
+      <h2>Güvenlik ve sınırlar</h2>
+      <p>Prompt yalnızca herkese açık Reklam Kütüphanesi'ni okur.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Giriş ve hesap</dt>
+        <dd>Claude giriş yapmaz, hesap açmaz, CAPTCHA çözmez. Takılırsa durur ve sana söyler.</dd>
+      </div>
+      <div>
+        <dt>Reklamlar</dt>
+        <dd>İndirilmez, birebir kopyalanmaz. Yapısı ve mantığı alınır; kanca metinleri sıfırdan yazılır.</dd>
+      </div>
+      <div>
+        <dt>Veri</dt>
+        <dd>Harcama, satış ve hedefleme görünmez. Personalar reklam dilinden çıkarılır; sunum bunu yazar.</dd>
+      </div>
+      <div>
+        <dt>Kullanım</dt>
+        <dd>Kendi pazar araştırman için, düşük hacimde çalıştır. Meta'nın kullanım koşullarına uy; toplu veri toplamak için kullanma.</dd>
+      </div>
+      <div>
+        <dt>Dosyalar</dt>
+        <dd>Her şey bilgisayarındaki <code>rakip_analiz</code> klasöründe kalır. Ücretli AI aracı veya alt ajan kullanılmaz.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
+    <div class="social-row">
+      <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
+      <a href="index.html#drops">Kaynaklar</a>
+      <a href="index.html#contact">İletişim</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> fatihd.mov</div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

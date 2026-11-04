@@ -14,6 +14,29 @@
 
 const DROPS = [
   {
+    slug: "rakip-reklam-analizi",
+    date: "2026-11-04",
+    tag: "Claude Code",
+    title: "Rakip Reklam Analizi: Meta Reklam Kütüphanesi'nden 5 Sayfalık Sunum — Prompt",
+    description:
+      "Claude Code'a .md dosyasını ekle ve bilgilerini yaz: sektöründeki 10 markanın aktif Meta reklamlarını tarasın, kime hangi dille konuştuklarını çıkarsın ve çekilecek 5 kreatifle birlikte PDF sunum hazırlasın. Her sektöre uyarlanır.",
+    instagramUrl: "https://instagram.com/fatihd.mov",
+    resources: [
+      {
+        type: "guide",
+        label: "Promptu Al & Kurulumu Gör",
+        filename: "rakip-reklam-analizi.html",
+        path: "rakip-reklam-analizi.html"
+      },
+      {
+        type: "file",
+        label: ".md Dosyasını İndir",
+        filename: "rakip-reklam-analizi-prompt.md",
+        path: "assets/downloads/rakip-reklam-analizi/rakip-reklam-analizi-prompt.md"
+      }
+    ]
+  },
+  {
     slug: "windrop",
     date: "2026-11-01",
     tag: "Claude Code",
