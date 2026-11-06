@@ -14,6 +14,29 @@
 
 const DROPS = [
   {
+    slug: "meta-reklam-analizi",
+    date: "2026-11-06",
+    tag: "Claude Code",
+    title: "Meta Reklam Analizi: Ads Manager Dosyasından Karar Sunumu",
+    description:
+      "Ads Manager'dan indirdiğin dosyayı ve .md dosyasını Claude Code'a sürükle, \"başla\" yaz: her reklama istatistikle tek bir karar versin (kapat, bekle, bütçe ekle, bütçeyi kaydır, varyant üret), ne harcadığını ve ne kadar ciro getirdiğini yan yana yazsın, yatay PDF sunum hazırlasın. Prompt yok, soru sormaz.",
+    instagramUrl: "https://instagram.com/fatihd.mov",
+    resources: [
+      {
+        type: "guide",
+        label: "Kurulumu Gör",
+        filename: "meta-reklam-analizi.html",
+        path: "meta-reklam-analizi.html"
+      },
+      {
+        type: "file",
+        label: ".md Dosyasını İndir",
+        filename: "meta-reklam-analizi-prompt.md",
+        path: "assets/downloads/meta-reklam-analizi/meta-reklam-analizi-prompt.md"
+      }
+    ]
+  },
+  {
     slug: "rakip-reklam-analizi",
     date: "2026-11-04",
     tag: "Claude Code",

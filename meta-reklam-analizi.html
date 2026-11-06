@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Reklam Analizi: Claude Code ile Ads Manager Raporu — fatihd.mov</title>
+<meta name="description" content="Ads Manager'dan indirdiğin Excel'i ve .md dosyasını Claude Code'a ver: her reklama tek bir karar versin, ne harcadığını ve ne kadar ciro getirdiğini yazsın, PDF sunum hazırlasın. Prompt yazmana gerek yok; Excel'i doğru indirme adımları burada.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">fatihd<span class="dot">.</span>mov</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#drops">Kaynaklar</a></li>
+      <li><a href="prompts.html">Promptlar</a></li>
+      <li><a href="index.html#services">Hizmetler</a></li>
+      <li><a href="index.html#about">Hakkımda</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç">☰</button>
+  </div>
+</nav>
+<header class="wrap guide-hero">
+  <div class="guide-intro">
+    <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
+    <div class="section-eyebrow">reklam analizi · meta ads manager</div>
+    <h1>Meta reklamlarını<br>Claude'a analiz ettir.</h1>
+    <p>İki dosya yeter: <strong>Ads Manager'dan indirdiğin Excel</strong> ve bu sayfadaki <strong>.md dosyası</strong>. İkisini Claude Code'a sürükle, <strong>başla</strong> yaz; prompt kopyalamana gerek yok. Yaklaşık 15 dakika sonra her reklam için ne yapman gerektiğini, ne harcadığını ve ne kadar ciro getirdiğini gösteren bir PDF sunum gelir.</p>
+    <p><strong>Telefondaysan:</strong> analiz bilgisayarda çalışıyor. Bu sayfayı bilgisayarında aç.</p>
+    <a href="#excel" class="btn btn-primary">Excel'i Doğru İndir</a>
+    <a href="assets/downloads/meta-reklam-analizi/meta-reklam-analizi-prompt.md" class="btn btn-ghost" download>.md Dosyasını İndir</a>
+    <dl class="guide-facts">
+      <div>
+        <dt>Gerekenler</dt>
+        <dd>Ads Manager'a erişimin olan bir reklam hesabı, ücretli bir Claude planı (Pro veya üstü) ve Claude Code. Windows'ta da Mac'te de çalışır.</dd>
+      </div>
+      <div>
+        <dt>Süre</dt>
+        <dd>Excel'i indirmek ilk seferde 5 dakika, sonra 1 dakika. Videodaki 81 reklamlık hesabın analizi yaklaşık 15 dakika sürdü.</dd>
+      </div>
+      <div>
+        <dt>Soru sorar mı?</dt>
+        <dd>Hayır. Claude bütün kararları dosyadaki rakamlardan verir. İstersen hedefini "başla"nın yanına yazarsın: <code>başla, hedef CPA 400 TL</code>.</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+<section class="guide-section" id="kurulum">
+  <div class="wrap">
+    <div class="section-eyebrow">kurulum</div>
+    <div class="section-head">
+      <h2>Üç adımda sonuç</h2>
+      <p>Claude Code kurulu değilse önce <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">resmi kurulum sayfasına</a> bak.</p>
+    </div>
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">Ads Manager →</span>
+          <span class="flow-pill">reklamlar.xlsx</span>
+        </div>
+        <h3>Excel'i indir</h3>
+        <p>Ads Manager'da <strong>Reklamlar</strong> sekmesinden, gereken sütunlar açıkken indir. Bütün sonuç bu dosyaya bağlı; <a href="#excel">aşağıda adım adım</a>.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-pill">.md</span>
+          <span class="flow-pill">.xlsx</span>
+          <span class="flow-label">+ başla</span>
+        </div>
+        <h3>İki dosyayı sürükle, "başla" yaz</h3>
+        <p>Boş bir klasör aç, <a href="assets/downloads/meta-reklam-analizi/meta-reklam-analizi-prompt.md" download>.md dosyasını</a> ve Excel'i içine koy. Claude Code'u o klasörde aç, iki dosyayı mesaj kutusuna sürükle, <strong>başla</strong> yaz ve gönder. Bütün talimat .md dosyasında.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">PDF →</span>
+          <span class="flow-pill">yatay sunum</span>
+        </div>
+        <h3>Sunumu al</h3>
+        <p>Claude hesapları yapar, her reklama karar verir ve <code>analiz/sunum.pdf</code> dosyasını hazırlar. Python paketi kurmak isterse onay verirsin.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="guide-section" id="excel">
+  <div class="wrap">
+    <div class="section-eyebrow">en önemli adım</div>
+    <div class="section-head">
+      <h2>Excel'i doğru indir</h2>
+      <p>Claude yalnızca dosyada olanı görür. Yanlış sekmeden ya da eksik sütunla indirirsen analiz yarım kalır. Bu beş adımı bir kez doğru yap, gerisi kolay.</p>
+    </div>
+    <ol class="guide-steps">
+      <li><strong>Ads Manager'ı aç</strong>, reklam hesabını ve tarih aralığını seç: son 30 gün ya da incelemek istediğin kampanyanın tarihleri.</li>
+      <li>Tablonun üstündeki üç sekmeden <strong>en sağdakini, Reklamlar'ı</strong> seç.
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 8px">
+          <span class="tag-pill">Kampanyalar</span>
+          <span class="tag-pill">Reklam setleri</span>
+          <span class="tag-pill active">Reklamlar ✓</span>
+        </div>
+        En soldaki Kampanyalar'dan indirme: orada her kampanya tek satırdır, Claude hangi reklamın sattığını göremez. Reklamlar sekmesinde her reklam ayrı satırdır.
+      </li>
+      <li><strong>Sütunlar</strong> menüsünü aç ve <strong>Sütunları özelleştir</strong>'e tıkla. Aşağıdaki listede tabloda olmayan bir sütun varsa soldaki arama kutusuna adını yaz, işaretle ve <strong>Uygula</strong>'ya bas.</li>
+      <li>Tablonun üstündeki <strong>Dışa aktar</strong>'a bas (bazı hesaplarda Raporlar → Tablo verilerini dışa aktar) ve <strong>.xlsx</strong> seç.</li>
+      <li>Excel'i aç ve kontrol et: <strong>Reklam Adı, Harcanan Tutar, Alışverişler</strong> ve <strong>Alışveriş Dönüşüm Değeri</strong> başlıkları var mı? Biri eksikse 3. adıma dön.</li>
+    </ol>
+    <div class="section-head" style="margin-top:44px">
+      <h3>Gereken sütunlar</h3>
+      <p>Ads Manager'daki adlarıyla. Fazladan sütun sorun değil; Claude işine yaramayanları kendisi atlar.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Hangi reklam</dt>
+        <dd>Kampanya Adı<br>Reklam Seti Adı<br>Reklam Adı<br>Reklam Yayını</dd>
+      </div>
+      <div>
+        <dt>Para</dt>
+        <dd>Harcanan Tutar<br>Alışverişler<br>Alışveriş Dönüşüm Değeri <strong>(ciro)</strong></dd>
+      </div>
+      <div>
+        <dt>Müşterinin yolu</dt>
+        <dd>Gösterim, Erişim<br>Bağlantı Tıklamaları<br>Açılış Sayfası Görüntülemeleri<br>Sepete Eklemeler<br>Başlatılan Ödemeler</dd>
+      </div>
+    </dl>
+    <div class="guide-note" style="margin-top:28px">
+      <strong>En çok atlanan: Alışveriş Dönüşüm Değeri</strong>
+      <p>Ciro bu sütundan gelir ve varsayılan tabloda yoktur. Video reklamın varsa <strong>3 Saniyelik Video Oynatımları</strong> ve <strong>ThruPlay'ler</strong>'i, WhatsApp/DM kampanyan varsa <strong>Başlatılan Mesajlaşma Konuşmaları</strong>'nı da ekle. Ayarı <strong>Sütun ayarı olarak kaydet</strong> ile "Claude analiz" adıyla kaydedersen bir dahakine tek tıkla açılır.</p>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="ornek">
+  <div class="wrap">
+    <div class="section-eyebrow">videodaki örnek</div>
+    <div class="section-head">
+      <h2>Videodaki hesapta ne çıktı?</h2>
+      <p>Bir e-ticaret markasının biten bir kampanyası. Sayılar Claude'un hazırladığı 8 sayfalık sunumdan.</p>
+    </div>
+    <dl class="guide-facts four">
+      <div>
+        <dt>8 gün, 81 reklam</dt>
+        <dd>Yaklaşık 15 dakikada 81 reklamın hepsine tek tek karar verdi.</dd>
+      </div>
+      <div>
+        <dt>94.359 ₺ → 1.016.119 ₺</dt>
+        <dd>Harcama ve Meta'ya göre getirdiği ciro. Harcanan her 1 ₺ 11,1 ₺ ciro getirdi.</dd>
+      </div>
+      <div>
+        <dt>2,6× ciro</dt>
+        <dd>Aynı parayla en iyi kreatif, en zayıfının 2,6 katı ciro getirdi. Öneri "kapat" değil, "bütçeyi kaydır" oldu.</dd>
+      </div>
+      <div>
+        <dt>Ucuz gösterim tuzağı</dt>
+        <dd>1.000 gösterimi 19 ₺'ye alan kreatif 10.000 gösterimde 1,2 satış yaptı. Gösterime 3,7 kat fazla ödeyen 9,6 satış yaptı.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="detay">
+  <div class="wrap">
+    <div class="section-eyebrow">.md dosyasının içi</div>
+    <div class="section-head">
+      <h2>Claude ne yapıyor?</h2>
+      <p>Bilmen gerekmiyor ama merak edersen: .md dosyası Claude'a bir performans pazarlamacısı ve istatistikçi gibi çalışmasını söyler. Tahmin yürütmez; her sayı dosyandan gelir, hesaplar Python ile yapılır.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Her reklama tek karar</dt>
+        <dd>Kapat, bekle, bütçe ekle, bütçeyi kaydır, varyant üret ya da tekrar aç. Her kararın yanında rakamlı gerekçesi ve ne zaman yeniden bakacağın yazar.</dd>
+      </div>
+      <div>
+        <dt>Şans mı, gerçek mi?</dt>
+        <dd>Bir karara "Kesin" demesi için sonucun şans eseri olma ihtimali %5'in altında olmalı. Değilse "Güçlü", "Zayıf" ya da "Veri yetersiz" der.</dd>
+      </div>
+      <div>
+        <dt>Ciro her yerde</dt>
+        <dd>Her reklam ve kreatif için harcama ile getirdiği ciro yan yana. Kâr marjını sormaz; kâr etmek için gereken en düşük marjı yazar.</dd>
+      </div>
+      <div>
+        <dt>PDF'te ne var?</dt>
+        <dd>Kapak (harcama, ciro, ROAS), yapılacak 5 şey, kreatif karnesi, karar tablosu ve yöntem. Verisi olmayan sayfayı atlar.</dd>
+      </div>
+      <div>
+        <dt>İstersen ekle</dt>
+        <dd>"başla"nın yanına <code>hedef CPA 400 TL</code> ya da <code>kâr marjım %35</code> yazarsan kararlar ona göre verilir. Dosyada ciro yoksa <code>ortalama sepet 450 TL</code> ekle. <code>sansürlü</code> yazarsan marka ve ürün adları bulanık olur.</dd>
+      </div>
+      <div>
+        <dt>Güvenlik</dt>
+        <dd>Reklam hesabına bağlanmaz, hiçbir ayarı değiştirmez; kararları sen uygularsın. Dosyanın içeriği analiz için Claude'a gönderilir.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="sorunlar">
+  <div class="wrap">
+    <div class="section-eyebrow">takılırsan</div>
+    <div class="section-head">
+      <h2>Sık karşılaşılan sorunlar</h2>
+    </div>
+    <div class="guide-faq">
+      <details>
+        <summary>"Alışveriş Dönüşüm Değeri" sütununu bulamıyorum</summary>
+        <p><strong>Neden:</strong> Bazı hesaplarda "Web sitesi alışveriş dönüşüm değeri" ya da "Satın alma dönüşüm değeri" adıyla geçer.<br><strong>Çözüm:</strong> Arama kutusuna "dönüşüm değeri" yaz. Sütun var ama hep boşsa "başla"nın yanına ortalama sepetini yaz (<code>başla, ortalama sepet 450 TL</code>); Claude ciroyu tahmin eder ve "tahmini" diye işaretler.</p>
+      </details>
+      <details>
+        <summary>Yanlışlıkla Kampanyalar sekmesinden indirdim</summary>
+        <p><strong>Neden:</strong> Sütun ayarı bütün sekmelerde aynıdır, yalnızca satırlar değişir.<br><strong>Çözüm:</strong> En sağdaki Reklamlar sekmesine geç ve aynı ayarla yeniden indir.</p>
+      </details>
+      <details>
+        <summary>Claude dosyayı görmüyor</summary>
+        <p><strong>Neden:</strong> Dosya sohbete eklenmemiş ya da başka bir klasörde.<br><strong>Çözüm:</strong> İki dosyayı da çalışma klasörüne koy, mesaj kutusuna @ yazıp listeden seç, sonra <strong>başla</strong> yaz.</p>
+      </details>
+      <details>
+        <summary>Buradaki ciro mağaza panelimdeki ciroyla tutmuyor</summary>
+        <p><strong>Neden:</strong> Meta yalnızca reklamını gören ya da tıklayanların satışını sayar; tutar KDV ve kargo dahil olabilir.<br><strong>Çözüm:</strong> Bu ciroyu reklamları birbiriyle kıyaslamak için kullan, muhasebe için değil.</p>
+      </details>
+      <details>
+        <summary>PDF çıkmadı veya Türkçe harfler bozuk</summary>
+        <p><strong>Neden:</strong> Bilgisayarda Chrome veya Edge bulunamadı.<br><strong>Çözüm:</strong> Chrome veya Edge kur. Olmazsa Claude sunumu HTML olarak verir; tarayıcıda açıp PDF olarak yazdırabilirsin.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
+    <div class="social-row">
+      <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
+      <a href="index.html#drops">Kaynaklar</a>
+      <a href="index.html#contact">İletişim</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> fatihd.mov</div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
