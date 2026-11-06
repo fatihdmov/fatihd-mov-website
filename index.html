@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>fatihd.mov — AI Agent Builder & İçerik Üreticisi</title>
-<meta name="description" content="Instagram videolarımdaki AI agent ve otomasyon içeriklerinin kaynaklarını buradan indir. AI agent geliştirme, danışmanlık ve içerik üretimi hizmetleri.">
+<title>fatihd.mov — Videolardaki prompt, kılavuz ve dosyalar</title>
+<meta name="description" content="Instagram videolarımda bahsettiğim Claude Code kılavuzları, Gemini promptları ve dosyalar. Videonun konusunu yaz, aradığını bul. AI agent geliştirme ve danışmanlık hizmetleri.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,18 +12,16 @@
 
 <noscript>
   <div style="background:#d97757;color:#1a1a1a;text-align:center;padding:14px 20px;font-family:monospace;font-size:14px;">
-    JavaScript kapalı görünüyor, bu yüzden içerik listesi görüntülenemiyor.
-    Son video dosyasını doğrudan <a href="assets/downloads/is-bulma-ajani-kilavuz.pdf" style="color:#1a1a1a;text-decoration:underline;font-weight:700;">buradan indirebilirsin</a>
-    ya da <a href="mailto:contact.fatihdemirel@gmail.com" style="color:#1a1a1a;text-decoration:underline;font-weight:700;">e-posta ile</a> ulaşabilirsin.
+    JavaScript kapalı görünüyor, bu yüzden içerik listesi açılamıyor. Tarayıcında JavaScript'i aç
+    ya da <a href="https://instagram.com/fatihd.mov" style="color:#1a1a1a;text-decoration:underline;font-weight:700;">Instagram'dan DM at</a>.
   </div>
 </noscript>
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="brand">fatihd<span class="dot">.</span>mov</div>
+    <a class="brand" href="index.html" aria-label="fatihd.mov ana sayfa">fatihd<span class="dot">.</span>mov</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#drops">Kaynaklar</a></li>
-      <li><a href="prompts.html">Promptlar</a></li>
+      <li><a href="#icerikler">İçerikler</a></li>
       <li><a href="#services">Hizmetler</a></li>
       <li><a href="#about">Hakkımda</a></li>
       <li><a class="nav-cta" href="#contact">Görüşelim</a></li>
@@ -32,56 +30,58 @@
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO (kısa tanıtım + fotoğraf) ============ -->
 <header class="wrap hero">
-  <div>
-    <div class="hero-kicker"><span class="pulse"></span> Videoyu izledin mi? Aradığın dosya birazdan aşağıda</div>
+  <div class="hero-text">
+    <div class="hero-kicker"><span class="pulse"></span> Videoyu izledin mi? Dosyası hemen aşağıda</div>
     <h1>Videolarımın kaynak <span>kod</span>larını<br> burada paylaşıyorum.</h1>
-    <p class="hero-sub mono" style="min-height:24px;">$ <span id="typed-line"></span><span class="caret"></span></p>
-    <p class="hero-sub">AI agent'lar geliştiriyor, bunları Instagram'da anlatıyor ve videoda bahsettiğim kılavuz/dosyaları bu sitede indirmene açıyorum. Aşağıdan son videonun içeriğine direkt ulaşabilirsin.</p>
+    <p class="hero-sub mono hero-typed">$ <span id="typed-line"></span><span class="caret"></span></p>
+    <p class="hero-sub">Ben Fatih. Instagram'da AI agent ve otomasyon videoları çekiyorum. Videoda gösterdiğim sistemi sen de kurabil diye prompt, kılavuz ve dosyaları burada paylaşıyorum.</p>
     <div class="hero-ctas">
-      <a href="#latest" class="btn btn-primary">⬇ Son Video İçeriğini Al</a>
-      <a href="#services" class="btn btn-ghost">Hizmetlerimi İncele</a>
+      <a href="#icerikler" class="btn btn-primary">↓ Videonun Dosyasını Bul</a>
+      <a href="#services" class="btn btn-ghost hide-sm">Hizmetlerimi İncele</a>
     </div>
   </div>
   <div class="hero-portrait">
     <div class="portrait-glow"></div>
     <div class="portrait-frame">
-      <img src="assets/img/fatih-portrait.jpg" alt="Fatih Demirel" loading="eager">
+      <img src="assets/img/fatih-portrait-720.jpg" alt="Fatih Demirel" width="720" height="960" loading="eager">
     </div>
-    <div class="portrait-badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> <b>@fatihd.mov</b></div>
+    <a class="portrait-badge" href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> <b>@fatihd.mov</b></a>
   </div>
 </header>
 
-<!-- ============ LATEST DROP ============ -->
-<section class="latest" id="latest">
+<!-- ============ İÇERİK BULUCU ============ -->
+<section class="finder-section" id="icerikler">
   <div class="wrap">
-    <div class="section-eyebrow">öncelik #1</div>
-    <div class="section-head">
-      <h2>Son videonun kaynağı</h2>
-      <p>Instagram'da az önce izlediğin videoda bahsettiğim dosya burada. Doğrudan indir.</p>
-    </div>
-    <div class="latest-card spot" id="latest-drop-mount">
-      <!-- JS ile dolduruluyor: js/drops.js + js/main.js -->
-    </div>
-  </div>
-</section>
+    <div class="section-eyebrow">içerikler</div>
+    <h2 class="finder-title">Hangi videoyu <span>izledin?</span></h2>
+    <p class="finder-lead">Videonun konusunu yaz ya da listeden seç. En yeni video en üstte.</p>
 
-<!-- ============ CONTENT LIBRARY ============ -->
-<section id="drops">
-  <div class="wrap reveal">
-    <div class="section-eyebrow">arşiv</div>
-    <div class="section-head">
-      <h2>Tüm video kaynakları</h2>
-      <p>Daha önceki videolarda paylaştığım tüm kılavuz, PDF ve dosyalar. Videonun adına veya konusuna göre ara.</p>
-    </div>
-    <div class="lib-controls">
-      <div class="search-box">
-        🔎 <input type="text" id="drop-search" placeholder="video adı veya konu ara... (örn: ajan, otomasyon)">
+    <div class="finder">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">~/fatihd.mov/videolar</span>
       </div>
+      <div class="finder-search" role="search">
+        <div class="finder-box" id="finder-box">
+          <span class="finder-chev" aria-hidden="true">❯</span>
+          <input type="search" id="finder-input" autocomplete="off" spellcheck="false" enterkeyhint="search"
+                 placeholder='ara… örn. "reklam"' aria-label="Videolarda ara">
+          <button type="button" class="finder-clear" id="finder-clear" aria-label="Aramayı temizle" hidden>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <kbd class="finder-kbd" aria-hidden="true">/</kbd>
+        </div>
+        <div class="finder-filters">
+          <div class="finder-chips" id="finder-chips" role="group" aria-label="Türe göre filtrele"></div>
+          <span class="finder-count" id="finder-count" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="finder-list" id="finder-list"></div>
     </div>
-    <div class="tag-filter" id="tag-filter" style="margin-bottom:28px;"></div>
-    <div class="drop-grid" id="drop-grid"></div>
+
+    <p class="finder-foot">// gördüğün sistemleri kendi işin için kurdurmak istersen → <a href="#services">hizmetlere bak</a></p>
   </div>
 </section>
 
@@ -90,75 +90,70 @@
   <div class="wrap reveal">
     <div class="section-eyebrow">hizmetler</div>
     <div class="section-head">
-      <h2>Sadece içerik değil, <br>çözüm de üretiyorum.</h2>
-      <p>Videolarda gördüğün agent ve otomasyon sistemlerini kurumun veya kendi işin için de kurabilirim.</p>
+      <h2>Videolarda gösterdiğimi<br>senin işin için yapıyorum.</h2>
+      <p>Reklam yönetiminden AI ile video üretimine, agent kurulumundan danışmanlığa kadar her işte aynı yaklaşım: önce veri, sonra karar, en sonda otomasyon.</p>
     </div>
-    <div class="service-accordion" id="service-accordion">
 
-      <div class="service-row">
-        <button class="service-row-head" aria-expanded="false">
-          <span class="srow-num">01</span>
-          <span class="srow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></span>
-          <span class="srow-title">AI Agent & Otomasyon Geliştirme</span>
-          <span class="srow-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </button>
-        <div class="service-row-body">
-          <div class="service-row-body-inner">
-            <p>İşini kolaylaştıracak otonom ajanlar: iş bulma, veri toplama, içerik üretimi, müşteri yanıtlama gibi tekrarlayan süreçleri senin yerine yapan sistemler kuruyorum.</p>
-            <div class="service-skills">Claude API &nbsp;·&nbsp; Multi-Agent &nbsp;·&nbsp; Otomasyon</div>
-            <a class="service-cta" href="#contact" data-topic="AI Agent & Otomasyon Geliştirme">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
+    <div class="svc-grid">
+      <article class="svc-card">
+        <div class="svc-title-row">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+          <h3><span class="svc-num">01</span>Meta Reklam Yönetimi</h3>
         </div>
-      </div>
+        <p>Kreatifleri üretip doğru hedef kitleye çıkarıyor, e-ticaret markana uygun testlerle başarılı kreatifleri buluyor ve bütçeni en verimli şekilde kullanıyorum. Hepsini AI destekli yapıyorum.</p>
+        <div class="svc-skills">Meta Ads · Kreatif Test · ROAS · AI destekli</div>
+        <a class="service-cta" href="#contact" data-topic="Meta Reklam Yönetimi">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
 
-      <div class="service-row">
-        <button class="service-row-head" aria-expanded="false">
-          <span class="srow-num">02</span>
-          <span class="srow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-          <span class="srow-title">1:1 Danışmanlık & Mentorluk</span>
-          <span class="srow-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </button>
-        <div class="service-row-body">
-          <div class="service-row-body-inner">
-            <p>AI agent'larla nasıl çalışılır, hangi araç ne işe yarar, kendi projeni nasıl kurarsın — birebir görüşmede anlatıyorum.</p>
-            <div class="service-skills">Görüntülü Görüşme &nbsp;·&nbsp; Roadmap &nbsp;·&nbsp; 1:1</div>
-            <a class="service-cta" href="#contact" data-topic="1:1 Danışmanlık / Mentorluk">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
+      <article class="svc-card">
+        <div class="svc-title-row">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+          <h3><span class="svc-num">02</span>AI Production: Video &amp; Fotoğraf</h3>
         </div>
-      </div>
+        <p>Markan için ultra gerçekçi video ve fotoğraflar üretiyorum: ürün çekimleri, reklam kreatifleri, sosyal medya içerikleri. Bunu kendi kurduğum özel yazılımlar ve üretim akışlarıyla yapıyorum.</p>
+        <div class="svc-skills">Ultra Gerçekçi Görsel · AI Video · Özel İş Akışları</div>
+        <a class="service-cta" href="#contact" data-topic="AI Production (Video &amp; Fotoğraf)">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
 
-      <div class="service-row">
-        <button class="service-row-head" aria-expanded="false">
-          <span class="srow-num">03</span>
-          <span class="srow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-          <span class="srow-title">Özel Eğitim İçeriği & Kılavuz</span>
-          <span class="srow-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </button>
-        <div class="service-row-body">
-          <div class="service-row-body-inner">
-            <p>Ekibin veya senin için adım adım kurulum kılavuzları, dokümantasyonlar ve eğitim materyalleri hazırlıyorum.</p>
-            <div class="service-skills">Dokümantasyon &nbsp;·&nbsp; Kılavuz &nbsp;·&nbsp; Eğitim</div>
-            <a class="service-cta" href="#contact" data-topic="Özel Eğitim İçeriği & Kılavuz">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
+      <article class="svc-card">
+        <div class="svc-title-row">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></span>
+          <h3><span class="svc-num">03</span>AI Agent &amp; Otomasyon Geliştirme</h3>
         </div>
-      </div>
+        <p>İş bulma, veri toplama, içerik üretimi, müşteri yanıtlama gibi tekrarlayan işleri senin yerine yapan otonom sistemler kuruyorum.</p>
+        <div class="svc-skills">Claude API · Multi-Agent · Otomasyon</div>
+        <a class="service-cta" href="#contact" data-topic="AI Agent &amp; Otomasyon Geliştirme">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
 
-      <div class="service-row">
-        <button class="service-row-head" aria-expanded="false">
-          <span class="srow-num">04</span>
-          <span class="srow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-          <span class="srow-title">İçerik & Otomasyon Stratejisi</span>
-          <span class="srow-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-        </button>
-        <div class="service-row-body">
-          <div class="service-row-body-inner">
-            <p>Markanız için AI odaklı içerik ve otomasyon stratejisi kurguluyorum — hangi süreç otomatikleşmeli, hangi içerik hangi kanalda çalışır.</p>
-            <div class="service-skills">Strateji &nbsp;·&nbsp; İçerik &nbsp;·&nbsp; Marka</div>
-            <a class="service-cta" href="#contact" data-topic="İçerik & Otomasyon Stratejisi">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          </div>
+      <article class="svc-card">
+        <div class="svc-title-row">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          <h3><span class="svc-num">04</span>1:1 Danışmanlık &amp; Mentorluk</h3>
         </div>
-      </div>
+        <p>AI agent'larla nasıl çalışılır, hangi araç ne işe yarar, kendi projeni nasıl kurarsın: birebir görüşmede anlatıyorum.</p>
+        <div class="svc-skills">Görüntülü Görüşme · Yol Haritası · 1:1</div>
+        <a class="service-cta" href="#contact" data-topic="1:1 Danışmanlık / Mentorluk">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
 
+      <article class="svc-card">
+        <div class="svc-title-row">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+          <h3><span class="svc-num">05</span>Özel Eğitim İçeriği &amp; Kılavuz</h3>
+        </div>
+        <p>Ekibin ya da senin için adım adım kurulum kılavuzları, dokümantasyon ve eğitim materyalleri hazırlıyorum.</p>
+        <div class="svc-skills">Dokümantasyon · Kılavuz · Eğitim</div>
+        <a class="service-cta" href="#contact" data-topic="Özel Eğitim İçeriği &amp; Kılavuz">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-title-row">
+          <span class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <h3><span class="svc-num">06</span>İçerik &amp; Otomasyon Stratejisi</h3>
+        </div>
+        <p>Markan için AI odaklı içerik ve otomasyon stratejisi kuruyorum: hangi süreç otomatikleşmeli, hangi içerik hangi kanalda çalışır.</p>
+        <div class="svc-skills">Strateji · İçerik · Marka</div>
+        <a class="service-cta" href="#contact" data-topic="İçerik &amp; Otomasyon Stratejisi">Bu hizmeti konuşalım <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </article>
     </div>
   </div>
 </section>
@@ -181,18 +176,18 @@
         <div class="process-line"></div>
         <div class="num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg><span class="num-badge">2</span></div>
         <h4>Plan</h4>
-        <p>Hangi agent/otomasyonun ne kadar sürede kurulacağını netleştiriyoruz.</p>
+        <p>Neyin, ne kadar sürede ve hangi bütçeyle yapılacağını netleştiriyoruz.</p>
       </div>
       <div class="process-step">
         <div class="process-line"></div>
         <div class="num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg><span class="num-badge">3</span></div>
-        <h4>Kurulum</h4>
-        <p>Sistemi kuruyor, test ediyor ve senin ortamına entegre ediyorum.</p>
+        <h4>Uygulama</h4>
+        <p>Kampanyayı ya da sistemi kuruyor, test ediyor ve senin ortamına entegre ediyorum.</p>
       </div>
       <div class="process-step">
         <div class="num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg><span class="num-badge">4</span></div>
-        <h4>Teslim & Destek</h4>
-        <p>Kılavuzuyla birlikte teslim ediyorum, sonrasında destek veriyorum.</p>
+        <h4>Rapor & Destek</h4>
+        <p>Sonuçları rakamlarla raporluyor, sonrasında da destek veriyorum.</p>
       </div>
     </div>
   </div>
@@ -209,7 +204,7 @@
       <h2 style="margin-bottom:18px;">Merhaba, ben Fatih.</h2>
       <p><strong>Instagram'da AI agent ve otomasyon içerikleri</strong> üretiyorum. Amacım, yapay zekayı sadece konuşulan değil, gerçekten kurulup kullanılan bir şeye dönüştürmek.</p>
       <p>Her videoda gösterdiğim sistemin arkasındaki kodu, kılavuzu ya da dosyayı bu sitede paylaşıyorum ki izleyenler sadece izlemekle kalmasın, kendi ellerinde de çalıştırabilsin.</p>
-      <p>İçerik üretmenin yanında, aynı agent ve otomasyon sistemlerini <strong>markalar ve bireysel müşteriler için de kuruyorum</strong>. Bir fikrin varsa, birlikte konuşalım.</p>
+      <p>İçerik üretmenin yanında <strong>markalar ve bireysel müşteriler için de çalışıyorum</strong>: AI ile ultra gerçekçi video ve fotoğraf üretiyor, Meta reklamlarını yönetiyor, agent ve otomasyon sistemleri kuruyorum. Bir fikrin varsa, birlikte konuşalım.</p>
     </div>
   </div>
 </section>
@@ -228,15 +223,14 @@
     </div>
     <div class="form-card">
       <!--
-        FORMSPREE KURULUMU:
-        1) https://formspree.io adresinden ücretsiz hesap aç
-        2) Yeni bir form oluştur, sana verdiği "form ID"yi kopyala
-        3) Aşağıdaki action="https://formspree.io/f/YOUR_FORM_ID" kısmındaki
-           YOUR_FORM_ID yazan yeri kendi ID'inle değiştir.
-        Bağlanana kadar form, gönderilmeye çalışıldığında kullanıcıyı
-        e-posta/Instagram ile iletişime yönlendiren bir uyarı gösterir.
+        Form mesajları FormSubmit üzerinden contact.fatihdemirel@gmail.com adresine gelir
+        (hesap gerekmez). İLK gönderimde FormSubmit bu adrese bir "Activate Form" e-postası
+        yollar; o linke bir kez tıklanınca form çalışmaya başlar. Gönderim kodu: js/main.js
       -->
-      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="contact-form" action="https://formsubmit.co/contact.fatihdemirel@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="fatihd.mov iletişim formu">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="two-col">
           <div class="form-row">
             <label for="f-name">Ad Soyad</label>
@@ -250,6 +244,8 @@
         <div class="form-row">
           <label for="f-topic">Konu</label>
           <select id="f-topic" name="topic">
+            <option>Meta Reklam Yönetimi</option>
+            <option>AI Production (Video & Fotoğraf)</option>
             <option>AI Agent & Otomasyon Geliştirme</option>
             <option>1:1 Danışmanlık / Mentorluk</option>
             <option>Özel Eğitim İçeriği & Kılavuz</option>
@@ -276,7 +272,7 @@
     <div class="social-row">
       <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
       <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
-      <a href="#drops">Kaynaklar</a>
+      <a href="#icerikler">İçerikler</a>
       <a href="#contact">İletişim</a>
     </div>
     <div class="copyright">© <span id="year"></span> fatihd.mov</div>
@@ -284,6 +280,7 @@
 </footer>
 
 <script src="js/drops.js"></script>
+<script src="js/prompts.js"></script>
 <script src="js/main.js"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

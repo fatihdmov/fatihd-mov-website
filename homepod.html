@@ -12,10 +12,9 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="brand">fatihd<span class="dot">.</span>mov</div>
+    <a class="brand" href="index.html" aria-label="fatihd.mov ana sayfa">fatihd<span class="dot">.</span>mov</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html#drops">Kaynaklar</a></li>
-      <li><a href="prompts.html">Promptlar</a></li>
+      <li><a href="index.html#icerikler">İçerikler</a></li>
       <li><a href="index.html#services">Hizmetler</a></li>
       <li><a href="index.html#about">Hakkımda</a></li>
       <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
@@ -26,13 +25,15 @@
 
 <header class="wrap guide-hero">
   <div class="guide-intro">
-    <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
+    <a href="index.html#icerikler" class="back-link">← Tüm içerikler</a>
     <div class="section-eyebrow">homepod 2 → windows</div>
     <h1>HomePod 2'yi Windows'a<br>Claude Code ile bağla.</h1>
     <p>Repo yerine promptu paylaşıyorum. Çünkü program senin ağına, ses çıkışına ve kullanım şekline göre yazılmalı. Claude önce bilgisayarını inceliyor, tercihlerini soruyor, sonra programı yazıp seninle birlikte test ediyor.</p>
     <p><strong>Telefondaysan:</strong> kurulum Windows bilgisayarda yapılıyor, bu sayfayı orada aç.</p>
-    <a href="#prompt" class="btn btn-primary">Promptu Al</a>
-
+    <div class="hero-ctas">
+      <a href="#prompt" class="btn btn-primary">Promptu Al</a>
+      <button type="button" class="btn btn-ghost" data-share><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> <span class="only-touch">Bilgisayarına gönder</span><span class="only-mouse">Linki kopyala</span></button>
+    </div>
     <dl class="guide-facts">
       <div>
         <dt>Gerekenler</dt>
@@ -277,13 +278,32 @@ Her adımın sonunda ne yaptığını ve sonucu bana söyle.
   </div>
 </section>
 
+<section class="guide-section guide-next">
+  <div class="wrap">
+    <div class="next-card">
+      <div>
+        <div class="section-eyebrow">başka bir video</div>
+        <h2>Başka bir videonun dosyasını mı arıyorsun?</h2>
+        <p>Tüm prompt, kılavuz ve dosyalar ana sayfada tek listede.</p>
+      </div>
+      <div>
+        <form class="next-search" action="index.html" method="get" role="search">
+          <span class="finder-chev" aria-hidden="true">❯</span>
+          <input type="search" name="q" placeholder='ara… örn. "reklam"' aria-label="Videolarda ara" enterkeyhint="search" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Ara</button>
+        </form>
+        <a href="index.html#icerikler" class="back-link">← Tüm içeriklere dön</a>
+      </div>
+    </div>
+  </div>
+</section>
 <footer>
   <div class="wrap footer-inner">
     <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
     <div class="social-row">
       <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
       <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
-      <a href="index.html#drops">Kaynaklar</a>
+      <a href="index.html#icerikler">İçerikler</a>
       <a href="index.html#contact">İletişim</a>
     </div>
     <div class="copyright">© <span id="year"></span> fatihd.mov</div>

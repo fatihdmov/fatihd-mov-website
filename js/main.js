@@ -6,30 +6,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initReveal();
   initTyping();
-  renderLatestDrop();
-  renderLibrary();
-  renderPrompts();
+  initHeroParallax();
+  initFinder();
   initContactForm();
-  initServicesAccordion();
   initProcessAnimation();
   initServiceCtaLinks();
-  initSpotlight('.spot');
-  initHeroParallax();
+  initShare();
 });
 
 /* ---------------- Inline icon set (feather-style, currentColor) ---------------- */
-const ICONS = {
-  external: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
-  download: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
-  copy: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
-  check: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
-  instagram: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
-  search: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
-  link: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
-  arrowRight: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>',
-  file: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'
+const SVG_OPEN = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';
+const ICON_PATHS = {
+  external: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>',
+  download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+  copy: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  check: '<polyline points="20 6 9 17 4 12"/>',
+  link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+  arrowRight: '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+  chevronDown: '<polyline points="6 9 12 15 18 9"/>',
+  play: '<polygon points="6 3 20 12 6 21 6 3"/>',
+  chart: '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+  eye: '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+  send: '<line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>',
+  speaker: '<rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="4"/><line x1="12" y1="6" x2="12.01" y2="6"/>',
+  briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+  terminal: '<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>'
 };
-function icon(name){ return ICONS[name] || ''; }
+function icon(name){ return ICON_PATHS[name] ? SVG_OPEN + ICON_PATHS[name] + '</svg>' : ''; }
 
 /* ---------------- Mobile nav ---------------- */
 function initNav(){
@@ -59,23 +63,10 @@ function initReveal(){
   }, { threshold: 0.12 });
   items.forEach(el => io.observe(el));
 
-  // Güvenlik ağı: herhangi bir nedenle intersection tetiklenmezse
-  // (ör. çok hızlı scroll, tarayıcı garipliği) içerik kalıcı görünmez kalmasın.
+  // Güvenlik ağı: intersection tetiklenmezse içerik kalıcı görünmez kalmasın.
   setTimeout(() => {
     document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in'));
   }, 2500);
-}
-
-/* ---------------- Mouse spotlight (premium hover glow) ---------------- */
-function initSpotlight(selector){
-  if(matchMedia('(pointer: coarse)').matches) return; // dokunmatikte anlamsız
-  document.querySelectorAll(selector).forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width) * 100 + '%');
-      card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height) * 100 + '%');
-    });
-  });
 }
 
 /* ---------------- Hero portrait parallax ---------------- */
@@ -101,6 +92,8 @@ function initTyping(){
   if(!el) return;
   const phrases = [
     'AI Agent geliştiriyorum.',
+    'Markalar için AI ile video üretiyorum.',
+    'Meta reklamlarını AI ile yönetiyorum.',
     'Otomasyon kılavuzları paylaşıyorum.',
     'Instagram\'da AI içerikleri üretiyorum.',
     'Markalarla iş birliği yapıyorum.'
@@ -130,223 +123,332 @@ function initTyping(){
   tick();
 }
 
-/* ---------------- Resource rendering (shared: latest drop + library) ---------------- */
-let RESOURCE_SEQ = 0;
-const RESOURCE_TEXT = {};
+/* ==========================================================
+   İÇERİK BULUCU (ana sayfa): Claude Code içerikleri + Gemini promptları
+   tek listede, Türkçe karakter duyarsız arama ve tür filtresi.
+   ========================================================== */
 
-function resourceIconName(type){
-  if(type === 'guide') return 'external';
-  if(type === 'file') return 'download';
-  if(type === 'text') return 'copy';
-  return 'link';
+// "İş", "is", "IŞ", "ıs" hepsi aynı şeye dönüşür.
+function normalizeTr(str){
+  return String(str || '')
+    .toLocaleLowerCase('tr-TR')
+    .replace(/ı/g, 'i').replace(/ş/g, 's').replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+function slugify(str){ return normalizeTr(str).replace(/ /g, '-'); }
+
+const GROUPS = {
+  claude: { label: 'Claude Code', heading: 'claude code · en yeni üstte' },
+  gemini: { label: 'Gemini', heading: 'gemini promptları' }
+};
+const GEMINI_PREVIEW = 5; // "Hepsi" görünümünde ilk kaç Gemini satırı açık dursun
+
+function daysAgo(iso){
+  const d = new Date(iso + 'T00:00:00');
+  const today = new Date(); today.setHours(0,0,0,0);
+  return Math.round((today - d) / 86400000);
+}
+function relativeDate(iso){
+  const diff = daysAgo(iso);
+  if(diff <= 0) return 'bugün';
+  if(diff === 1) return 'dün';
+  if(diff < 14) return `${diff} gün önce`;
+  const d = new Date(iso + 'T00:00:00');
+  const opts = { day:'numeric', month:'long' };
+  if(d.getFullYear() !== new Date().getFullYear()) opts.year = 'numeric';
+  return d.toLocaleDateString('tr-TR', opts);
 }
 
-// size: "primary" (latest drop, bigger button) | "mini" (library grid)
-function renderResourceButton(res, size){
-  const cls = size === 'primary' ? 'btn btn-primary' : 'mini-btn';
-  if(res.type === 'guide'){
-    return `<a class="${cls}" href="${encodeURI(res.path)}" target="_blank" rel="noopener">${icon('external')} ${escapeHtml(res.label)}</a>`;
-  }
-  if(res.type === 'file'){
-    return `<a class="${cls}" href="${encodeURI(res.path)}" download>${icon('download')} ${escapeHtml(res.label)}</a>`;
-  }
-  if(res.type === 'text'){
-    const id = 'res-txt-' + (RESOURCE_SEQ++);
-    RESOURCE_TEXT[id] = res.text;
-    return `<button class="${cls}" data-copy-resource="${id}">${icon('copy')} ${escapeHtml(res.label)}</button>`;
-  }
-  return '';
+function buildCatalog(){
+  const drops = (typeof DROPS !== 'undefined' ? DROPS : [])
+    .slice().sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  const prompts = typeof PROMPTS !== 'undefined' ? PROMPTS : [];
+
+  const dropItems = drops.map((d, i) => {
+    const resources = d.resources || [];
+    const primary = resources.find(r => r.type === 'guide') || resources.find(r => r.type === 'file') || null;
+    const kinds = resources.map(r => {
+      if(r.type === 'guide') return 'kılavuz';
+      if(r.type === 'file'){ const ext = (r.filename || r.path || '').split('.').pop(); return `.${ext}`; }
+      return 'prompt';
+    });
+    return {
+      kind: 'drop', group: 'claude', id: d.slug,
+      title: d.title, summary: d.summary || d.description || '',
+      date: d.date, isNew: i === 0 && daysAgo(d.date) <= 7,
+      icon: d.icon || 'terminal', reelUrl: d.reelUrl || '',
+      primary, kinds: [...new Set(kinds)],
+      textResources: resources.filter(r => r.type === 'text'),
+      fields: [normalizeTr(d.title), normalizeTr(`${d.keywords || ''} ${d.tag || ''} ${d.slug}`), normalizeTr(d.summary || d.description)]
+    };
+  });
+
+  const promptItems = prompts.map(p => {
+    const isLink = p.type === 'link';
+    return {
+      kind: isLink ? 'link' : 'prompt', group: 'gemini', id: 'p-' + slugify(p.title),
+      title: p.title, items: p.items || [],
+      fields: [normalizeTr(p.title), normalizeTr(p.keywords), normalizeTr((p.items || []).map(it => it.label).join(' '))]
+    };
+  });
+
+  return [...dropItems, ...promptItems];
 }
 
-// Latest-drop card gets an extra inline text preview block for "text" resources.
-function renderResourceTextBlocks(resources){
-  return resources.filter(r => r.type === 'text').map(res => {
-    const id = 'res-txt-' + (RESOURCE_SEQ++);
-    RESOURCE_TEXT[id] = res.text;
+// Her kelime en az bir alanda geçmeli; başlıkta geçen daha üstte çıkar.
+function scoreItem(item, tokens){
+  let score = 0;
+  for(const t of tokens){
+    const [title, keywords, rest] = item.fields;
+    if(title.split(' ').some(w => w.startsWith(t))) score += 5;
+    else if(title.includes(t)) score += 4;
+    else if(keywords.includes(t)) score += 3;
+    else if(rest.includes(t)) score += 1;
+    else return 0;
+  }
+  return score;
+}
+
+function initFinder(){
+  const list = document.getElementById('finder-list');
+  if(!list) return;
+  const input = document.getElementById('finder-input');
+  const clearBtn = document.getElementById('finder-clear');
+  const chipsWrap = document.getElementById('finder-chips');
+  const countEl = document.getElementById('finder-count');
+  const box = document.getElementById('finder-box');
+
+  const catalog = buildCatalog();
+  const params = new URLSearchParams(location.search);
+  const state = {
+    q: params.get('q') || '',
+    tur: GROUPS[params.get('tur')] ? params.get('tur') : 'hepsi',
+    showAllGemini: false
+  };
+
+  // chips
+  const counts = { hepsi: catalog.length };
+  Object.keys(GROUPS).forEach(g => { counts[g] = catalog.filter(it => it.group === g).length; });
+  const chipDefs = [{ key: 'hepsi', label: 'Hepsi' }, ...Object.keys(GROUPS).map(k => ({ key: k, label: GROUPS[k].label }))];
+  chipsWrap.innerHTML = chipDefs.map(c =>
+    `<button type="button" class="tag-pill" data-tur="${c.key}" aria-pressed="false">${escapeHtml(c.label)}<span class="n">${counts[c.key]}</span></button>`
+  ).join('');
+
+  input.value = state.q;
+
+  function syncUrl(){
+    const p = new URLSearchParams();
+    if(state.q.trim()) p.set('q', state.q.trim());
+    if(state.tur !== 'hepsi') p.set('tur', state.tur);
+    const qs = p.toString();
+    history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+  }
+
+  function paint(){
+    const tokens = normalizeTr(state.q).split(' ').filter(Boolean);
+    chipsWrap.querySelectorAll('.tag-pill').forEach(b => {
+      const on = b.dataset.tur === state.tur;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    clearBtn.hidden = !state.q;
+
+    let pool = catalog.filter(it => state.tur === 'hepsi' || it.group === state.tur);
+    let html = '';
+    let shown = 0;
+
+    if(tokens.length){
+      const results = pool
+        .map((it, idx) => ({ it, idx, s: scoreItem(it, tokens) }))
+        .filter(r => r.s > 0)
+        .sort((a, b) => b.s - a.s || a.idx - b.idx)
+        .map(r => r.it);
+      shown = results.length;
+      html = results.map(renderItem).join('');
+      countEl.textContent = `${shown} sonuç`;
+      if(!shown) html = renderEmpty(state.q);
+    } else {
+      Object.keys(GROUPS).forEach(g => {
+        const groupItems = pool.filter(it => it.group === g);
+        if(!groupItems.length) return;
+        const collapse = state.tur === 'hepsi' && g === 'gemini' && !state.showAllGemini && groupItems.length > GEMINI_PREVIEW + 2;
+        const visible = collapse ? groupItems.slice(0, GEMINI_PREVIEW) : groupItems;
+        html += `<div class="finder-group">${escapeHtml(GROUPS[g].heading)}<span class="n">(${groupItems.length})</span></div>`;
+        html += visible.map(renderItem).join('');
+        if(collapse){
+          html += `<button type="button" class="finder-more" data-more="gemini">+ ${groupItems.length - GEMINI_PREVIEW} prompt daha göster</button>`;
+        }
+        shown += groupItems.length;
+      });
+      countEl.textContent = `${shown} içerik`;
+    }
+    list.innerHTML = html;
+  }
+
+  input.addEventListener('input', () => { state.q = input.value; paint(); syncUrl(); });
+  input.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){ state.q = ''; input.value = ''; paint(); syncUrl(); }
+    if(e.key === 'Enter'){ input.blur(); } // mobilde klavyeyi kapat, sonuçlar görünsün
+  });
+  clearBtn.addEventListener('click', () => { state.q = ''; input.value = ''; paint(); syncUrl(); input.focus(); });
+  box.addEventListener('click', (e) => { if(!e.target.closest('button')) input.focus(); });
+
+  chipsWrap.addEventListener('click', (e) => {
+    const btn = e.target.closest('.tag-pill');
+    if(!btn) return;
+    state.tur = btn.dataset.tur;
+    paint(); syncUrl();
+  });
+
+  list.addEventListener('click', (e) => {
+    const more = e.target.closest('[data-more]');
+    if(more){ state.showAllGemini = true; paint(); return; }
+    const reset = e.target.closest('[data-reset]');
+    if(reset){ state.q = ''; state.tur = 'hepsi'; input.value = ''; paint(); syncUrl(); input.focus(); }
+  });
+
+  // "/" veya Ctrl/Cmd+K → aramaya odaklan (Claude Code'daki gibi)
+  document.addEventListener('keydown', (e) => {
+    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName) || document.activeElement.isContentEditable;
+    if((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')){
+      e.preventDefault();
+      input.focus();
+      input.select();
+      if(input.getBoundingClientRect().top < 0 || input.getBoundingClientRect().top > innerHeight) {
+        document.getElementById('icerikler').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+
+  // örnek arama kelimeleri, kutu boşken placeholder'da döner
+  const examples = ['reklam', 'iphone', 'araba', 'homepod', 'linkedin', 'iş bulma', 'düğün', 'excel'];
+  let exIndex = 0;
+  setInterval(() => {
+    if(input.value || document.activeElement === input) return;
+    exIndex = (exIndex + 1) % examples.length;
+    input.placeholder = `ara… örn. "${examples[exIndex]}"`;
+  }, 2600);
+
+  paint();
+
+  // #slug ile gelindiyse o satırı bul, aç ve vurgula
+  const target = location.hash && location.hash.length > 1 ? decodeURIComponent(location.hash.slice(1)) : '';
+  const targetItem = catalog.find(it => it.id === target);
+  if(targetItem){
+    state.q = ''; input.value = '';
+    state.tur = 'hepsi'; state.showAllGemini = true;
+    paint();
+    const el = document.getElementById(target);
+    if(el){
+      if(el.tagName === 'DETAILS') el.open = true;
+      el.classList.add('flash');
+      const go = () => setTimeout(() => el.scrollIntoView({ block: 'start', behavior: 'instant' }), 30);
+      if(document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
+    }
+  }
+}
+
+function renderItem(it){
+  if(it.kind === 'drop') return renderDropItem(it);
+  if(it.kind === 'link') return renderLinkItem(it);
+  return renderPromptItem(it);
+}
+
+function renderDropItem(it){
+  const p = it.primary;
+  const href = p ? encodeURI(p.path) : (it.reelUrl || '#');
+  const dl = p && p.type === 'file' ? ' download' : '';
+  const reel = it.reelUrl
+    ? `<a class="item-reel" href="${escapeHtml(it.reelUrl)}" target="_blank" rel="noopener">${icon('play')} video</a>`
+    : '';
+  return `
+    <article class="item" id="${escapeHtml(it.id)}">
+      <div class="item-row">
+        <span class="item-icon" aria-hidden="true">${icon(it.icon)}</span>
+        <div class="item-main">
+          <h3 class="item-title"><a class="item-link" href="${href}"${dl}>${escapeHtml(it.title)}</a>${it.isNew ? '<span class="badge-new">YENİ</span>' : ''}</h3>
+          <p class="item-sub">${escapeHtml(it.summary)}</p>
+          <div class="item-meta"><span>${relativeDate(it.date)}</span><span>${escapeHtml(it.kinds.join(' + '))}</span>${reel}</div>
+        </div>
+        <span class="item-go" aria-hidden="true">${icon('arrowRight')}</span>
+      </div>
+    </article>`;
+}
+
+function renderLinkItem(it){
+  const url = (it.items[0] || {}).url || '#';
+  let host = '';
+  try { host = new URL(url).hostname.replace(/^www\./, ''); } catch(e){ /* no-op */ }
+  return `
+    <article class="item" id="${escapeHtml(it.id)}">
+      <div class="item-row">
+        <span class="item-icon muted" aria-hidden="true">${icon('link')}</span>
+        <div class="item-main">
+          <h3 class="item-title"><a class="item-link" href="${escapeHtml(url)}" target="_blank" rel="noopener">${escapeHtml(it.title)}</a></h3>
+          <div class="item-meta"><span>link</span><span>${escapeHtml(host)}</span></div>
+        </div>
+        <span class="item-go" aria-hidden="true">${icon('external')}</span>
+      </div>
+    </article>`;
+}
+
+function renderPromptItem(it){
+  const n = it.items.length;
+  const blocks = it.items.map(item => {
+    const id = storeCopyText(item.text);
     return `
       <div class="prompt-item">
         <div class="prompt-item-head">
-          <span class="prompt-item-label">${escapeHtml(res.label)}</span>
-          <button class="copy-btn" data-copy-resource="${id}">${icon('copy')} Kopyala</button>
+          <span class="prompt-item-label">${escapeHtml(item.label)}</span>
+          <button type="button" class="copy-btn" data-copy-resource="${id}">${icon('copy')} Kopyala</button>
         </div>
-        <div class="prompt-item-text">${escapeHtml(res.text)}</div>
+        <div class="prompt-item-text">${escapeHtml(item.text)}</div>
       </div>`;
   }).join('');
+  return `
+    <details class="item" id="${escapeHtml(it.id)}">
+      <summary class="item-row">
+        <span class="item-icon muted" aria-hidden="true">${icon('image')}</span>
+        <span class="item-main">
+          <span class="item-title">${escapeHtml(it.title)}</span>
+          <span class="item-meta"><span>${n} prompt</span><span>aç ve kopyala</span></span>
+        </span>
+        <span class="item-go" aria-hidden="true">${icon('chevronDown')}</span>
+      </summary>
+      <div class="item-body">${blocks}</div>
+    </details>`;
+}
+
+function renderEmpty(q){
+  return `
+    <div class="finder-empty">
+      <div class="cmd">$ grep "${escapeHtml(q.trim())}" → sonuç yok</div>
+      <p>Farklı bir kelime dene ya da <button type="button" data-reset>tüm içerikleri göster</button>.<br>
+      Yine bulamazsan <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram'dan DM at</a>, linki göndereyim.</p>
+    </div>`;
+}
+
+/* ---------------- Copy helpers ---------------- */
+let COPY_SEQ = 0;
+const COPY_TEXT = {};
+function storeCopyText(text){
+  const id = 'c' + (COPY_SEQ++);
+  COPY_TEXT[id] = text;
+  return id;
 }
 
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-copy-resource]');
   if(!btn) return;
-  const text = RESOURCE_TEXT[btn.dataset.copyResource];
+  e.preventDefault();
+  const text = COPY_TEXT[btn.dataset.copyResource];
   if(text) copyToClipboard(text, btn);
 });
 
-/* ---------------- Latest drop ---------------- */
-function getSortedDrops(){
-  return [...DROPS].sort((a,b) => new Date(b.date) - new Date(a.date));
-}
-
-function renderLatestDrop(){
-  const mount = document.getElementById('latest-drop-mount');
-  if(!mount) return;
-  const drops = getSortedDrops();
-  if(drops.length === 0){
-    mount.innerHTML = `<p class="term-out">Henüz içerik eklenmedi. Yakında burada olacak.</p>`;
-    return;
-  }
-  const d = drops[0];
-  const primaryResources = d.resources.filter(r => r.type !== 'text');
-  const previewFile = (d.resources.find(r => r.filename) || {}).filename || `${d.slug}.md`;
-
-  mount.innerHTML = `
-    <div class="latest-preview">
-      <div class="lp-bar"><span class="lp-dot r"></span><span class="lp-dot y"></span><span class="lp-dot g"></span></div>
-      <div class="lp-body">
-        <div class="lp-line">${icon('file')} <span>${escapeHtml(previewFile)}</span></div>
-        <div class="lp-line dim">// aç, oku, talimatı kopyala</div>
-        <div class="lp-line dim">// kendi ajanına yapıştır</div>
-      </div>
-    </div>
-    <div class="latest-body">
-      <span class="latest-tag">${escapeHtml(d.tag)}</span>
-      <h3>${escapeHtml(d.title)}</h3>
-      <p>${escapeHtml(d.description)}</p>
-      ${renderResourceTextBlocks(d.resources)}
-      <div class="latest-meta">${formatDate(d.date)} tarihli video için hazırlandı</div>
-    </div>
-    <div class="latest-actions">
-      ${primaryResources.map(r => renderResourceButton(r, 'primary')).join('')}
-      ${d.instagramUrl ? `<a class="btn btn-ghost" href="${d.instagramUrl}" target="_blank" rel="noopener">${icon('instagram')} Videoyu Gör</a>` : ''}
-    </div>
-  `;
-}
-
-/* ---------------- Library grid + search/filter ---------------- */
-function renderLibrary(){
-  const grid = document.getElementById('drop-grid');
-  const searchInput = document.getElementById('drop-search');
-  const tagFilterWrap = document.getElementById('tag-filter');
-  if(!grid) return;
-
-  const drops = getSortedDrops();
-  const tags = ['Hepsi', ...new Set(drops.map(d => d.tag))];
-
-  if(tagFilterWrap){
-    tagFilterWrap.innerHTML = tags.map((t,i) =>
-      `<button class="tag-pill${i===0 ? ' active':''}" data-tag="${escapeHtml(t)}">${escapeHtml(t)}</button>`
-    ).join('');
-  }
-
-  let activeTag = 'Hepsi';
-  let query = '';
-
-  function paint(){
-    const filtered = drops.filter(d => {
-      const matchesTag = activeTag === 'Hepsi' || d.tag === activeTag;
-      const matchesQuery = !query || (d.title + ' ' + d.description + ' ' + d.tag).toLowerCase().includes(query);
-      return matchesTag && matchesQuery;
-    });
-
-    if(filtered.length === 0){
-      grid.innerHTML = `<div class="empty-state">$ sonuç bulunamadı — farklı bir anahtar kelime dene</div>`;
-      return;
-    }
-
-    grid.innerHTML = filtered.map(d => `
-      <div class="drop-card spot">
-        <span class="latest-tag">${escapeHtml(d.tag)}</span>
-        <h4>${escapeHtml(d.title)}</h4>
-        <p>${escapeHtml(d.description)}</p>
-        <div class="dl-row">
-          ${d.resources.filter(r => r.type !== 'text').map(r => renderResourceButton(r, 'mini')).join('')}
-          ${d.instagramUrl ? `<a class="mini-btn" href="${d.instagramUrl}" target="_blank" rel="noopener">${icon('instagram')} Video</a>` : ''}
-        </div>
-        <div class="meta-row"><span>${formatDate(d.date)}</span><span>#${escapeHtml(d.slug)}</span></div>
-      </div>
-    `).join('');
-
-    initSpotlight('.drop-card.spot');
-  }
-
-  if(tagFilterWrap){
-    tagFilterWrap.addEventListener('click', (e) => {
-      const btn = e.target.closest('.tag-pill');
-      if(!btn) return;
-      tagFilterWrap.querySelectorAll('.tag-pill').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeTag = btn.dataset.tag;
-      paint();
-    });
-  }
-
-  if(searchInput){
-    searchInput.addEventListener('input', (e) => {
-      query = e.target.value.trim().toLowerCase();
-      paint();
-    });
-  }
-
-  paint();
-}
-
-/* ---------------- Prompt library (prompts.html) ---------------- */
-function renderPrompts(){
-  const grid = document.getElementById('prompt-grid');
-  if(!grid || typeof PROMPTS === 'undefined') return;
-
-  grid.innerHTML = PROMPTS.map((card, cardIndex) => {
-    const isLink = card.type === 'link';
-    const countLabel = isLink ? 'BAĞLANTI' : `${card.items.length} PROMPT İÇERİR`;
-
-    const itemsHtml = card.items.map((item, itemIndex) => {
-      if(isLink){
-        return `
-          <div class="prompt-item link-item">
-            <a href="${escapeAttr(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)}</a>
-            <button class="copy-btn" data-copy-id="${cardIndex}-${itemIndex}">${icon('external')} Aç</button>
-          </div>`;
-      }
-      const id = `p-${cardIndex}-${itemIndex}`;
-      return `
-        <div class="prompt-item">
-          <div class="prompt-item-head">
-            <span class="prompt-item-label">${escapeHtml(item.label)}</span>
-            <button class="copy-btn" data-copy-target="${id}">${icon('copy')} Kopyala</button>
-          </div>
-          <div class="prompt-item-text" id="${id}">${escapeHtml(item.text)}</div>
-        </div>`;
-    }).join('');
-
-    return `
-      <div class="prompt-card spot">
-        <div class="prompt-card-head">
-          <h3>${escapeHtml(card.title)}</h3>
-          <span class="prompt-count">${countLabel}</span>
-        </div>
-        ${itemsHtml}
-      </div>`;
-  }).join('');
-
-  initSpotlight('.prompt-card.spot');
-
-  grid.addEventListener('click', (e) => {
-    const btn = e.target.closest('.copy-btn');
-    if(!btn) return;
-
-    if(btn.dataset.copyId){
-      const [ci, ii] = btn.dataset.copyId.split('-').map(Number);
-      window.open(PROMPTS[ci].items[ii].url, '_blank', 'noopener');
-      return;
-    }
-
-    const targetId = btn.dataset.copyTarget;
-    const textEl = document.getElementById(targetId);
-    if(!textEl) return;
-    copyToClipboard(textEl.textContent, btn);
-  });
-}
-
-/* ---------------- Guide pages: copy a block's text by id ---------------- */
+/* Guide pages: copy a block's text by id */
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-copy-from]');
   if(!btn) return;
@@ -354,15 +456,15 @@ document.addEventListener('click', (e) => {
   if(source) copyToClipboard(source.textContent, btn);
 });
 
-function copyToClipboard(text, btn){
+function copyToClipboard(text, btn, doneLabel){
   const original = btn.innerHTML;
   const done = () => {
-    btn.innerHTML = `${icon('check')} Kopyalandı`;
+    btn.innerHTML = `${icon('check')} ${doneLabel || 'Kopyalandı'}`;
     btn.classList.add('copied');
     setTimeout(() => {
       btn.innerHTML = original;
       btn.classList.remove('copied');
-    }, 1600);
+    }, 1800);
   };
 
   if(navigator.clipboard && window.isSecureContext){
@@ -384,46 +486,23 @@ function fallbackCopy(text, done){
   document.body.removeChild(ta);
 }
 
-function escapeAttr(str){
-  return escapeHtml(str);
-}
-
-/* ---------------- Services accordion ---------------- */
-function initServicesAccordion(){
-  const wrap = document.getElementById('service-accordion');
-  if(!wrap) return;
-  const rows = wrap.querySelectorAll('.service-row');
-
-  function setOpen(row, open){
-    const body = row.querySelector('.service-row-body');
-    const inner = row.querySelector('.service-row-body-inner');
-    row.classList.toggle('active', open);
-    row.querySelector('.service-row-head').setAttribute('aria-expanded', open ? 'true' : 'false');
-    body.style.maxHeight = open ? inner.offsetHeight + 'px' : '0px';
-  }
-
-  rows.forEach((row) => {
-    const head = row.querySelector('.service-row-head');
-    head.addEventListener('click', () => {
-      const willOpen = !row.classList.contains('active');
-      rows.forEach(r => setOpen(r, false));
-      if(willOpen) setOpen(row, true);
-    });
-  });
-
-  // ilk kart açık başlasın
-  if(rows[0]) setOpen(rows[0], true);
-
-  window.addEventListener('resize', () => {
-    rows.forEach(row => {
-      if(row.classList.contains('active')) setOpen(row, true);
+/* ---------------- Guide pages: send link to your computer ---------------- */
+function initShare(){
+  document.querySelectorAll('[data-share]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const url = location.href.split('#')[0].split('?')[0];
+      if(navigator.share && matchMedia('(pointer: coarse)').matches){
+        try { await navigator.share({ title: document.title, url }); } catch(e){ /* kullanıcı vazgeçti */ }
+        return;
+      }
+      copyToClipboard(url, btn, 'Link kopyalandı');
     });
   });
 }
 
 /* ---------------- Service CTA -> pre-fill contact topic ---------------- */
 function initServiceCtaLinks(){
-  document.querySelectorAll('.service-cta[data-topic]').forEach(link => {
+  document.querySelectorAll('a[data-topic]').forEach(link => {
     link.addEventListener('click', () => {
       const select = document.getElementById('f-topic');
       if(!select) return;
@@ -455,7 +534,9 @@ function initProcessAnimation(){
   io.observe(container);
 }
 
-/* ---------------- Contact form (Formspree) ---------------- */
+/* ---------------- Contact form → contact.fatihdemirel@gmail.com (FormSubmit) ---------------- */
+const CONTACT_EMAIL = 'contact.fatihdemirel@gmail.com';
+
 function initContactForm(){
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
@@ -463,34 +544,33 @@ function initContactForm(){
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const endpoint = form.getAttribute('action');
-    const isPlaceholder = !endpoint || endpoint.includes('YOUR_FORM_ID');
-
-    if(isPlaceholder){
-      status.textContent = '⚠ Form henüz bağlanmadı: js/main.js / index.html içindeki Formspree adresini kendi form ID\'inle değiştir. Bu arada mesajını doğrudan e-posta veya Instagram DM ile gönderebilirsin.';
-      status.className = 'form-status show err';
-      return;
-    }
+    const data = Object.fromEntries(new FormData(form));
+    if(data._honey) return; // bot
 
     const submitBtn = form.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Gönderiliyor...';
 
+    data._subject = `fatihd.mov — ${data.topic || 'İletişim'}: ${data.name || ''}`.trim();
+    data._replyto = data.email;
+    delete data._honey;
+
     try{
-      const res = await fetch(endpoint, {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
       });
-      if(res.ok){
+      const json = await res.json().catch(() => ({}));
+      if(res.ok && String(json.success) === 'true'){
         status.textContent = '✓ Mesajın ulaştı, en kısa sürede dönüş yapacağım.';
         status.className = 'form-status show ok';
         form.reset();
       } else {
-        throw new Error('Form gönderilemedi');
+        throw new Error(json.message || 'Form gönderilemedi');
       }
     } catch(err){
-      status.textContent = '✗ Bir şeyler ters gitti. Doğrudan e-posta ile ulaşabilirsin.';
+      status.innerHTML = `✗ Mesaj gönderilemedi. Doğrudan <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> adresine yazabilir ya da Instagram'dan DM atabilirsin.`;
       status.className = 'form-status show err';
     } finally {
       submitBtn.disabled = false;
@@ -500,10 +580,6 @@ function initContactForm(){
 }
 
 /* ---------------- utils ---------------- */
-function formatDate(iso){
-  const d = new Date(iso);
-  return d.toLocaleDateString('tr-TR', { day:'2-digit', month:'long', year:'numeric' });
-}
 function escapeHtml(str){
   return String(str).replace(/[&<>"']/g, (c) => ({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
