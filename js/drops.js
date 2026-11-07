@@ -28,7 +28,7 @@ const DROPS = [
     summary: ".md dosyasını Claude Code'a ver: diski, ekran kartını ve işlemciyi test etsin, çökmeleri ve eski sürücüleri bulsun, grafikli PDF rapor hazırlasın. Windows için.",
     keywords: "bilgisayar pc sağlık sağlığı check-up checkup test stres testi ekran kartı gpu işlemci cpu ssd disk sürücü driver çökme explorer klasör gezgini log sfc dism chkdsk furmark cinebench crystaldiskinfo rapor pdf windows performans",
     icon: "terminal",
-    reelUrl: "",
+    reelUrl: "https://www.instagram.com/reel/DfcfLzxuA2H/",
     resources: [
       { type: "guide", label: "Kurulumu Gör", path: "bilgisayar-saglik-kontrolu.html" },
       { type: "file", label: ".md Dosyasını İndir", filename: "bilgisayar-saglik-kontrolu-prompt.md", path: "assets/downloads/bilgisayar-saglik-kontrolu/bilgisayar-saglik-kontrolu-prompt.md" }
