@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=JetBrains+Mono:wght@400;600&display=block">
+<style>
+  /* 1200x630 paylaşım görseli: Claude Code karşılama ekranı görünümü */
+  *{ box-sizing:border-box; margin:0; }
+  html,body{ width:1200px; height:630px; overflow:hidden; }
+  body{
+    background:#191918; color:#ece9e4; font-family:'JetBrains Mono', monospace;
+    background-image:
+      linear-gradient(#2f2f2d 1px, transparent 1px),
+      linear-gradient(90deg, #2f2f2d 1px, transparent 1px);
+    background-size:48px 48px; background-position:-1px -1px;
+    padding:46px 56px;
+  }
+  .win{
+    height:100%; display:flex; flex-direction:column;
+    background:#262624; border:1px solid #3a3a37; border-radius:22px; overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.7);
+  }
+  .bar{ display:flex; align-items:center; gap:10px; padding:18px 24px; background:#2d2d2b; border-bottom:1px solid #3a3a37; }
+  .dot{ width:15px; height:15px; border-radius:50%; }
+  .r{ background:#ff5f57; } .y{ background:#febc2e; } .g{ background:#28c840; }
+  .bar-title{ margin-left:12px; font-size:18px; color:#706c64; }
+  .body{ flex:1; padding:34px 44px 30px; display:flex; flex-direction:column; }
+  .welcome{
+    align-self:flex-start; border:2px solid #d97757; border-radius:12px; padding:12px 22px;
+    font-size:21px; color:#a8a49c;
+  }
+  .welcome b{ color:#d97757; font-weight:600; margin-right:10px; }
+  .welcome span{ color:#ece9e4; }
+  .title{ margin-top:auto; display:flex; gap:22px; align-items:baseline; }
+  .title i{ font-style:normal; font-size:52px; color:#706c64; }
+  .title h1{ font-family:'Inter', sans-serif; font-weight:800; font-size:{{SIZE}}px; line-height:1.08; letter-spacing:-0.02em; }
+  .sub{ margin-top:22px; display:flex; gap:16px; align-items:baseline; font-size:24px; color:#a8a49c; }
+  .sub::before{ content:""; flex-shrink:0; width:14px; height:14px; border-radius:50%; background:#7fb069; transform:translateY(-2px); }
+  .foot{ margin-top:auto; display:flex; justify-content:space-between; font-size:19px; color:#706c64; }
+  .foot b{ color:#ece9e4; font-weight:600; }
+  .foot b em{ font-style:normal; color:#d97757; }
+</style>
+</head>
+<body>
+  <div class="win">
+    <div class="bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="bar-title">claude — ~/{{SLUG}}</span>
+    </div>
+    <div class="body">
+      <div class="welcome"><b>✻</b><span>Claude Code</span> ile kuruluyor</div>
+      <div class="title"><i>&gt;</i><h1>{{TITLE}}</h1></div>
+      <div class="sub">{{SUB}}</div>
+      <div class="foot"><span>kılavuz · prompt · dosyalar</span><b>fatihd<em>.</em>mov</b></div>
+    </div>
+  </div>
+</body>
+</html>
