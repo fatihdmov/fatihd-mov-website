@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duruş Koçu: Kambur Oturunca Ekran Bulanıklaşsın — fatihd.mov</title>
+<meta name="description" content="Tek bir .md dosyasını Claude Code'a ver, başla yaz: bilgisayarının kamerası oturuşunu izleyen bir uygulama kursun. Kamburlaşınca ekran yavaşça bulanıklaşır, dikleşince netleşir. Görüntü kaydedilmez, her şey bilgisayarında çalışır. Mac ve Windows için.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="fatihd.mov">
+<meta property="og:url" content="https://fatihd.mov/durus-kocu.html">
+<meta property="og:image" content="https://fatihd.mov/assets/og/durus-kocu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="fatihd.mov ana sayfa">fatihd<span class="dot">.</span>mov</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#icerikler">İçerikler</a></li>
+      <li><a href="index.html#services">Hizmetler</a></li>
+      <li><a href="index.html#about">Hakkımda</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç">☰</button>
+  </div>
+</nav>
+<header class="wrap guide-hero">
+  <div class="guide-intro">
+    <a href="index.html#icerikler" class="back-link">← Tüm içerikler</a>
+    <div class="section-eyebrow">duruş · mac + windows</div>
+    <h1>Kambur oturunca<br>ekranın bulanıklaşsın.</h1>
+    <p>Tek dosya yeter: bu sayfadaki <strong>.md dosyası</strong>. Claude Code'a sürükle, <strong>başla</strong> yaz. Claude bilgisayarına küçük bir uygulama kurar. Uygulama kamerayla oturuşunu izler: öne eğilip kamburlaşınca birkaç saniye içinde <strong>ekran yavaşça bulanıklaşır</strong> ve ortada "Dik otur" yazar. Dikleştiğin an ekran netleşir.</p>
+    <p>Her şey bilgisayarının içinde çalışır. <strong>Görüntü kaydedilmez</strong>, internete hiçbir şey gönderilmez.</p>
+    <p><strong>Telefondaysan:</strong> uygulama bilgisayarda çalışıyor. Bu sayfayı kameralı bir bilgisayarda aç.</p>
+    <div class="hero-ctas">
+      <a href="#kurulum" class="btn btn-primary">Nasıl Başlarım?</a>
+      <a href="assets/downloads/durus-kocu/durus-kocu-kur.md" class="btn btn-ghost" download>.md Dosyasını İndir</a>
+      <button type="button" class="btn btn-ghost" data-share><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> <span class="only-touch">Bilgisayarına gönder</span><span class="only-mouse">Linki kopyala</span></button>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Gerekenler</dt>
+        <dd>Mac ya da Windows 10/11, bir kamera (dizüstünün kendi kamerası yeter), ücretli bir Claude planı (Pro veya üstü) ve Claude Code.</dd>
+      </div>
+      <div>
+        <dt>Süre</dt>
+        <dd>15–30 dakika, çoğu bekleme. Claude kurar, test eder, sonunda seninle 1 dakikalık canlı test yapar.</dd>
+      </div>
+      <div>
+        <dt>Sen ne yaparsın?</dt>
+        <dd>İzin pencerelerinde "İzin Ver"e basarsın. Sonda bir kez kamburlaşıp dikleşirsin.</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+<section class="guide-section" id="kurulum">
+  <div class="wrap">
+    <div class="section-eyebrow">kurulum</div>
+    <div class="section-head">
+      <h2>Üç adımda kurulum</h2>
+      <p>Claude Code kurulu değilse önce <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">resmi kurulum sayfasına</a> bak.</p>
+    </div>
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">kamera →</span>
+          <span class="flow-pill">omuzlar görünsün</span>
+        </div>
+        <h3>Hazırla</h3>
+        <p>Kameranın karşısına otur; yüzün ve iki omzun görünsün. Kamera kapağı varsa aç. Masaüstüne <code>durus-kocu</code> adında boş bir klasör aç.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-pill">.md</span>
+          <span class="flow-label">+ başla</span>
+        </div>
+        <h3>Dosyayı sürükle, "başla" yaz</h3>
+        <p><a href="assets/downloads/durus-kocu/durus-kocu-kur.md" download>.md dosyasını</a> indir, Claude Code'u o klasörde aç. Dosyayı mesaj kutusuna sürükle, <strong>başla</strong> yaz ve gönder. Ayar vermek istersen sonuna ekle: <code>başla, hassasiyet yüksek</code>.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">dik → kambur →</span>
+          <span class="flow-pill">dik</span>
+        </div>
+        <h3>Canlı testi yap</h3>
+        <p>Claude kurup test ettikten sonra uygulamayı açar. Dik otur, yavaşça kamburlaş: ekran bulanıklaşır. Dikleş: netleşir. Erken tetikleniyorsa <strong>çok hassas</strong>, hiç tetiklenmiyorsa <strong>hiç bulanıklaşmadı</strong> yaz; Claude eşikleri ayarlar.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+<section class="guide-section" id="izinler">
+  <div class="wrap">
+    <div class="section-eyebrow">senin bastığın yerler</div>
+    <div class="section-head">
+      <h2>Üç izin, üç düğme</h2>
+      <p>Mac'te sistem bu izinleri bir kez sorar. İzinler uygulamayı başlatan <strong>Terminal</strong>'e verilir. İzin vermesen de uygulama çalışır, sadece o özellik kısıtlanır.</p>
+    </div>
+    <ol class="guide-steps">
+      <li><strong>Kamera:</strong> "Terminal kameraya erişmek istiyor" penceresinde <strong>İzin Ver</strong>'e bas. Bu olmadan uygulama seni göremez.</li>
+      <li><strong>Ekran Kaydı:</strong> Sistem Ayarları › Gizlilik ve Güvenlik › <strong>Ekran ve Sistem Ses Kaydı</strong> bölümünde Terminal'in anahtarını aç. Bulanıklık için ekranın anlık görüntüsü gerekir; izin yoksa bulanıklık yerine buzlu bir perde çıkar. İzinden sonra uygulamayı yeniden başlat.</li>
+      <li><strong>Erişilebilirlik:</strong> Aynı yerde <strong>Erişilebilirlik</strong> bölümünde Terminal'i aç. Kısayollar (Esc, ⌘⌥P, ⌘⌥Q) bununla çalışır. İzin vermezsen menü çubuğundaki simgeden yönetirsin.</li>
+    </ol>
+    <div class="guide-note" style="margin-top:28px">
+      <strong>Kamera izni penceresi çıkmazsa korkma</strong>
+      <p>Claude Code'u Claude masaüstü uygulamasının içinde kullanıyorsan macOS oradan çalışan komutlar için kamera iznini sormaz. Claude'a <code>kamera testini Terminal'de aç</code> yaz ya da klasördeki <strong>Duruş Koçu.command</strong> dosyasına çift tıkla; izin penceresi Terminal'de çıkar.</p>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="ne-yapar">
+  <div class="wrap">
+    <div class="section-eyebrow">nasıl çalışıyor</div>
+    <div class="section-head">
+      <h2>Uygulama ne yapıyor?</h2>
+      <p>Kamera görüntüsünden yalnız beş noktayı takip eder: burun, iki kulak, iki omuz. Puanı bu noktaların senin "dik" halinden ne kadar saptığına göre hesaplar.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Kalibrasyon</dt>
+        <dd>Açılışta "Dik otur, ekrana bak: 3… 2… 1…" der. O 3 saniyedeki duruşun 100 puan sayılır. Menüden istediğin an yeniden kalibre edersin.</dd>
+      </div>
+      <div>
+        <dt>Duruş puanı</dt>
+        <dd>0–100 arası. Başın öne düşmesi, ekrana yaklaşman ve burnunun aşağı inmesi puanı düşürür. Kameraya uzaklığın puanı bozmaz.</dd>
+      </div>
+      <div>
+        <dt>Bulanıklaşma</dt>
+        <dd>Puan 2 saniye boyunca 70'in altında kalırsa ekran yaklaşık 2,5 saniyede kademe kademe bulanıklaşır. Ne kadar kamburlaşırsan o kadar bulanık.</dd>
+      </div>
+      <div>
+        <dt>Netleşme</dt>
+        <dd>Puan 80'in üstüne çıkıp yarım saniye orada kalınca ekran 0,6 saniyede netleşir. Aradaki boşluk ekranın yanıp sönmesini önler.</dd>
+      </div>
+      <div>
+        <dt>Köşe paneli</dt>
+        <dd>Sağ altta ayna görüntün, üstünde iskelet çizgileri, büyük puan (yeşil Dik, sarı Dikkat, kırmızı Kambur) ve son 60 saniyenin grafiği. Sürükleyip taşıyabilirsin.</dd>
+      </div>
+      <div>
+        <dt>Günlük özet</dt>
+        <dd>Çıkışta ya da menüden: bugün dik oturma yüzden, kaç kez uyarı aldığın ve en uzun dik serin (dakika).</dd>
+      </div>
+    </dl>
+    <div class="guide-note" style="margin-top:28px">
+      <strong>Video çekecek misin? Demo modu var</strong>
+      <p><strong>Duruş Koçu (demo)</strong> başlatıcısıyla aç: 2 saniye yerine 0,7 saniyede tepki verir, köşe paneli 1,6 kat büyür.</p>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="kisayollar">
+  <div class="wrap">
+    <div class="section-eyebrow">kısayollar</div>
+    <div class="section-head">
+      <h2>Her an kontrol sende</h2>
+      <p>Ekran asla kilitli kalmaz. Aynı seçenekler menü çubuğundaki (Windows'ta sistem tepsisindeki) simgede de var.</p>
+    </div>
+    <dl class="guide-facts four">
+      <div>
+        <dt>Esc</dt>
+        <dd>Bulanıklığı hemen kapatır, 1 dakika duraklatır.</dd>
+      </div>
+      <div>
+        <dt>⌘⌥P · Ctrl+Alt+P</dt>
+        <dd>15 dakika duraklatır. Tekrar basınca devam eder.</dd>
+      </div>
+      <div>
+        <dt>⌘⌥W · Ctrl+Alt+W</dt>
+        <dd>Köşe panelini gösterir ya da gizler.</dd>
+      </div>
+      <div>
+        <dt>⌘⌥Q · Ctrl+Alt+Q</dt>
+        <dd>Uygulamayı kapatır ve günün özetini gösterir.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="ornek">
+  <div class="wrap">
+    <div class="section-eyebrow">videodaki örnek</div>
+    <div class="section-head">
+      <h2>Benim bilgisayarımda ne çıktı?</h2>
+      <p>MacBook Air (M4), dahili kamera. Sayılar Claude'un kurulum sırasında yaptığı testlerden.</p>
+    </div>
+    <dl class="guide-facts four">
+      <div>
+        <dt>%1,5 işlemci</dt>
+        <dd>10 çekirdeğin toplamında. Tek çekirdeğin %15'i kadar; arka planda çalışırken fark edilmiyor.</dd>
+      </div>
+      <div>
+        <dt>Saniyede 10 kare</dt>
+        <dd>5 saniyede 50 kare işlendi, hepsinde vücut bulundu. Görüntü 320 piksele küçültülüp işleniyor.</dd>
+      </div>
+      <div>
+        <dt>150 ms'de hazır</dt>
+        <dd>Kamburlaşma algılanınca ekran görüntüsü alınıp 8 bulanıklık seviyesi en fazla 150 ms'de hazırlandı.</dd>
+      </div>
+      <div>
+        <dt>25/25 kontrol</dt>
+        <dd>Kimse yokken ekran bulanıklaşmıyor, kamera koparsa hemen netleşiyor, Esc ve kısayollar çalışıyor.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="guvenlik">
+  <div class="wrap">
+    <div class="section-eyebrow">gizlilik</div>
+    <div class="section-head">
+      <h2>Güvenli mi?</h2>
+      <p>Kamera görüntüsü yalnızca bilgisayarının belleğinde işlenir ve hemen atılır. Claude her adımdan önce ne yapacağını söyler; istediğin an durdurabilirsin.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Görüntü kaydedilmez</dt>
+        <dd>Ne kamera görüntüsü ne de ekran görüntüsü diske yazılır. Bulanıklık için alınan ekran görüntüsü yalnızca bellekte durur.</dd>
+      </div>
+      <div>
+        <dt>İnternet</dt>
+        <dd>Yalnızca kurulumda: Python paketleri ve Google'ın resmi MediaPipe poz modeli bir kez indirilir. Uygulama çalışırken hiçbir şey göndermez.</dd>
+      </div>
+      <div>
+        <dt>Kaydettiği tek şey</dt>
+        <dd>Dakikada bir satır sayı: saat, ortalama puan, dik geçen saniye, uyarı sayısı. Ev klasöründe <code>durus-kocu/kayit.csv</code>.</dd>
+      </div>
+      <div>
+        <dt>Kilitli kalmazsın</dt>
+        <dd>Masadan kalkarsan ya da kamera koparsa bulanıklık hemen kapanır. Uygulama çökerse ekranı kaplayan katman da onunla kapanır.</dd>
+      </div>
+      <div>
+        <dt>Kurdukları</dt>
+        <dd>Gerekirse Python 3.12 (resmi yoldan) ve paketler, yalnızca proje klasörünün içindeki sanal ortama. Sistemin Python'una dokunmaz.</dd>
+      </div>
+      <div>
+        <dt>Kaldırmak</dt>
+        <dd>Uygulamayı kapat, masaüstündeki <code>durus-kocu</code> klasörünü ve ev klasöründeki <code>durus-kocu</code> klasörünü sil. Bu kadar.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<section class="guide-section" id="sorunlar">
+  <div class="wrap">
+    <div class="section-eyebrow">takılırsan</div>
+    <div class="section-head">
+      <h2>Sık karşılaşılan sorunlar</h2>
+    </div>
+    <div class="guide-faq">
+      <details>
+        <summary>Kamera izni penceresi hiç çıkmadı</summary>
+        <p><strong>Neden:</strong> Claude Code'u Claude masaüstü uygulamasında kullanıyorsan macOS oradan çalışan komutlar için kamera iznini sormaz.<br><strong>Çözüm:</strong> Klasördeki <strong>Duruş Koçu.command</strong> dosyasına çift tıkla ya da Claude'a <code>kamera testini Terminal'de aç</code> yaz. Pencere Terminal adına çıkar, <strong>İzin Ver</strong>'e bas.</p>
+      </details>
+      <details>
+        <summary>Panelde iPhone'umun görüntüsü var</summary>
+        <p><strong>Neden:</strong> iPhone yakındaysa Mac onu Süreklilik Kamerası olarak listeler ve bazen ilk sıraya koyar.<br><strong>Çözüm:</strong> Uygulama dahili kamerayı kendisi seçer. Yine de yanlışsa <code>config.json</code> içindeki <code>"kamera"</code> değerini <code>0</code> ya da <code>1</code> yap ve yeniden aç. Ya da Claude'a "yanlış kamera seçildi" yaz.</p>
+      </details>
+      <details>
+        <summary>Ekran bulanıklaşmıyor, buzlu bir perde çıkıyor</summary>
+        <p><strong>Neden:</strong> Terminal'e Ekran Kaydı izni verilmemiş; uygulama ekranın görüntüsünü alamıyor.<br><strong>Çözüm:</strong> Sistem Ayarları › Gizlilik ve Güvenlik › Ekran ve Sistem Ses Kaydı › Terminal'i aç. Sonra uygulamayı kapatıp yeniden aç; izin ancak yeniden başlatınca geçerli olur.</p>
+      </details>
+      <details>
+        <summary>Dik otururken de bulanıklaşıyor</summary>
+        <p><strong>Neden:</strong> Kalibrasyonda başını normalden yüksek tuttun ya da kameraya bakıp sonra ekrana baktın.<br><strong>Çözüm:</strong> Menüden <strong>Yeniden kalibre et</strong>'i seç ve kalibrasyonda gerçekten çalışırken baktığın gibi ekrana bak. Hâlâ hassassa <code>config.json</code> içinde <code>"hassasiyet": "dusuk"</code> yap ya da Claude'a <strong>çok hassas</strong> yaz.</p>
+      </details>
+      <details>
+        <summary>Hiç bulanıklaşmıyor</summary>
+        <p><strong>Neden:</strong> Omuzların kadrajda değil ya da hassasiyet senin oturuşun için düşük.<br><strong>Çözüm:</strong> Köşe panelinde omuz noktalarının çizildiğini kontrol et; ekranı geriye yatırarak kamerayı biraz aşağı çevir. Sonra <code>"hassasiyet": "yuksek"</code> dene.</p>
+      </details>
+      <details>
+        <summary>Kısayollar çalışmıyor</summary>
+        <p><strong>Neden:</strong> Mac'te genel kısayollar Erişilebilirlik izni ister.<br><strong>Çözüm:</strong> Sistem Ayarları › Gizlilik ve Güvenlik › Erişilebilirlik › Terminal'i aç. O zamana kadar menü çubuğundaki figür simgesinden duraklat, kalibre et ya da çık.</p>
+      </details>
+      <details>
+        <summary>Terminal penceresi açık kalıyor</summary>
+        <p><strong>Neden:</strong> Mac'te uygulama Terminal üzerinden çalışır; izinler de Terminal'e verilmiştir.<br><strong>Çözüm:</strong> Normal. Pencereyi küçültebilirsin ama kapatma; kapatırsan uygulama da kapanır.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="guide-section guide-next">
+  <div class="wrap">
+    <div class="next-card">
+      <div>
+        <div class="section-eyebrow">başka bir video</div>
+        <h2>Başka bir videonun dosyasını mı arıyorsun?</h2>
+        <p>Tüm prompt, kılavuz ve dosyalar ana sayfada tek listede.</p>
+      </div>
+      <div>
+        <form class="next-search" action="index.html" method="get" role="search">
+          <span class="finder-chev" aria-hidden="true">❯</span>
+          <input type="search" name="q" placeholder='ara… örn. "duruş"' aria-label="Videolarda ara" enterkeyhint="search" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Ara</button>
+        </form>
+        <a href="index.html#icerikler" class="back-link">← Tüm içeriklere dön</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
+    <div class="social-row">
+      <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
+      <a href="index.html#icerikler">İçerikler</a>
+      <a href="index.html#contact">İletişim</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> fatihd.mov</div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

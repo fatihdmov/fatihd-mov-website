@@ -10,7 +10,7 @@
  * keywords -> aramada eşleşsin istediğin kelimeler; görünmez.
  *             Türkçe karakter fark etmez ("is bulma" = "iş bulma").
  *             Videoda geçen kelimeleri ve eş anlamlılarını yaz.
- * icon     -> chart | eye | send | speaker | briefcase | image | terminal
+ * icon     -> chart | eye | send | speaker | briefcase | image | terminal | user
  * reelUrl  -> videonun Instagram linki (https://www.instagram.com/reel/XXXX/)
  *
  * resources[].type:
@@ -21,6 +21,19 @@
  */
 
 const DROPS = [
+  {
+    slug: "durus-kocu",
+    date: "2026-11-09",
+    title: "Duruş koçu",
+    summary: ".md dosyasını Claude Code'a ver: kamera oturuşunu izlesin, kamburlaşınca ekran bulanıklaşsın, dikleşince netleşsin. Görüntü kaydedilmez. Mac ve Windows için.",
+    keywords: "duruş durus koçu koc kambur kamburluk dik otur oturuş postür posture boyun bel ağrısı ağrı sırt omuz kamera webcam ekran bulanık bulanıklaşır blur sağlık ergonomi mediapipe mac macbook windows uygulama",
+    icon: "user",
+    reelUrl: "https://www.instagram.com/reel/DfhfjIrO5Th/",
+    resources: [
+      { type: "guide", label: "Kurulumu Gör", path: "durus-kocu.html" },
+      { type: "file", label: ".md Dosyasını İndir", filename: "durus-kocu-kur.md", path: "assets/downloads/durus-kocu/durus-kocu-kur.md" }
+    ]
+  },
   {
     slug: "bilgisayar-saglik-kontrolu",
     date: "2026-11-07",
