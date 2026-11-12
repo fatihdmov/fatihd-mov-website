@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bir Ürün Linkinden E-Ticaret Markası: Claude Code Promptu — fatihd.mov</title>
+<meta name="description" content="AliExpress ürün linkini ve .md dosyasını Claude Code'a ver: ürünü ve pazarı araştırsın, markayı kursun, satışa hazır görünen bir site, Instagram profil paketi ve 6 reklam kreatifi hazırlasın. Videodaki .md dosyası ve çıktıları burada.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="fatihd.mov">
+<meta property="og:url" content="https://fatihd.mov/eticaret-markasi.html">
+<meta property="og:image" content="https://fatihd.mov/assets/og/eticaret-markasi.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Yalnızca bu sayfaya özel: çıktı galerileri. Renkler css/style.css değişkenlerinden. */
+.eb-blok{ margin-top:40px; }
+.eb-blok:first-of-type{ margin-top:0; }
+.eb-blok-bas{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:14px; }
+.eb-blok-bas h3{ font-size:18px; line-height:1.3; }
+.eb-blok-bas h3 span{ font-family: var(--mono); font-size:12.5px; font-weight:500; color: var(--accent); margin-right:8px; }
+.eb-blok-bas p{ color: var(--text-dim); font-size:14.5px; max-width:640px; flex-basis:100%; }
+.eb-izgara{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; }
+.eb-kare{ margin:0; position:relative; border-radius: var(--radius); overflow:hidden; border:1px solid var(--border); background: var(--surface); aspect-ratio:1; }
+.eb-kare img{ width:100%; height:100%; object-fit:cover; }
+.eb-kare figcaption{ position:absolute; left:0; right:0; bottom:0; padding:22px 10px 8px; font-family: var(--mono); font-size:11px; color: var(--text); background: linear-gradient(to top, rgba(25,25,24,.92), transparent); }
+.eb-serit{ display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:2px 2px 12px; scrollbar-width:thin; scrollbar-color: var(--border) transparent; }
+.eb-serit > *{ flex:none; scroll-snap-align:start; margin:0; }
+.eb-telefon{ width:188px; }
+.eb-telefon div{ border-radius:26px; border:6px solid var(--surface-2); overflow:hidden; background:#000; }
+.eb-telefon img{ width:100%; aspect-ratio:390/844; object-fit:cover; object-position:top; }
+.eb-telefon figcaption, .eb-story figcaption{ font-family: var(--mono); font-size:11.5px; color: var(--text-dim); text-align:center; margin-top:8px; }
+.eb-pencere{ margin-top:18px; }
+.eb-pencere img{ width:100%; }
+.eb-ig{ display:grid; grid-template-columns: 280px minmax(0,1fr); gap:20px; align-items:start; }
+.eb-ig-profil{ border-radius: var(--radius-lg); overflow:hidden; border:1px solid var(--border); }
+.eb-ig-izgara{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:4px; }
+.eb-ig-izgara img{ width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:6px; }
+.eb-story{ width:118px; }
+.eb-story img{ width:100%; aspect-ratio:9/16; object-fit:cover; border-radius:10px; border:1px solid var(--border); }
+.eb-alt{ font-family: var(--mono); font-size:12px; color: var(--text-faint); margin:18px 0 10px; }
+.eb-reklam{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; }
+.eb-reklam figure{ margin:0; background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); overflow:hidden; }
+.eb-reklam img, .eb-reklam video{ display:block; width:100%; aspect-ratio:4/5; object-fit:cover; background: var(--bg-alt); }
+.eb-reklam figcaption{ padding:10px 12px 12px; font-size:13.5px; font-weight:600; line-height:1.35; }
+.eb-reklam figcaption span{ display:block; font-family: var(--mono); font-size:11px; font-weight:500; color: var(--accent); margin-bottom:3px; }
+.eb-fiyat{ margin-top:18px; max-width:560px; }
+.eb-fiyat table{ width:100%; border-collapse:collapse; font-family: var(--mono); font-size:13px; }
+.eb-fiyat th, .eb-fiyat td{ padding:10px 16px; text-align:left; border-top:1px solid var(--border-soft); }
+.eb-fiyat th{ border-top:0; color: var(--text-faint); font-weight:500; font-size:11.5px; }
+.eb-fiyat td:not(:first-child), .eb-fiyat th:not(:first-child){ text-align:right; }
+.eb-fiyat td{ color: var(--text-dim); }
+.eb-fiyat tr.secili td{ color: var(--accent); }
+@media (max-width: 860px){
+  .eb-izgara{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .eb-ig{ grid-template-columns: minmax(0,1fr); }
+  .eb-ig-profil{ max-width:280px; }
+  .eb-reklam{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="fatihd.mov ana sayfa">fatihd<span class="dot">.</span>mov</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#icerikler">İçerikler</a></li>
+      <li><a href="index.html#services">Hizmetler</a></li>
+      <li><a href="index.html#about">Hakkımda</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç">☰</button>
+  </div>
+</nav>
+<header class="wrap guide-hero">
+  <div class="guide-intro">
+    <a href="index.html#icerikler" class="back-link">← Tüm içerikler</a>
+    <div class="section-eyebrow">e-ticaret · claude code · nano banana</div>
+    <h1>Bir ürün linkinden<br>e-ticaret markası çıkar.</h1>
+    <p>İki şey yeter: <strong>AliExpress'ten bir ürün linki</strong> ve bu sayfadaki <strong>.md dosyası</strong>. Dosyayı Claude Code'a sürükle, linki yaz, <strong>başla</strong> de. Videodaki çalıştırmada yaklaşık 48 dakika sonra araştırması yapılmış bir marka, satışa hazır görünen bir web sitesi, Instagram profil paketi ve test planıyla 6 reklam kreatifi hazırdı.</p>
+    <p><strong>Bu, videoda kullanılan .md dosyasıdır.</strong> Kendi markana ve taleplerine göre özelleştir: dosyanın başındaki ürün linkini ve ön tercihler tablosunu doldur, gerekirse aşamaları kendi işine göre değiştir. Bilgisayarda çalışır; telefondaysan sayfayı kendine gönder.</p>
+    <div class="hero-ctas">
+      <a href="assets/downloads/eticaret-markasi/eticaret-markasi-prompt.md" class="btn btn-primary" download>.md Dosyasını İndir</a>
+      <a href="#ciktilar" class="btn btn-ghost">Çıktıları Gör</a>
+      <button type="button" class="btn btn-ghost" data-share><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> <span class="only-touch">Bilgisayarına gönder</span><span class="only-mouse">Linki kopyala</span></button>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Gerekenler</dt>
+        <dd>Ücretli bir Claude planı (Pro veya üstü) ve Claude Code, görseller için bir Gemini API anahtarı. Node, Python ve ffmpeg yoksa Claude kendisi kurar. Mac ve Windows'ta çalışır.</dd>
+      </div>
+      <div>
+        <dt>Süre ve maliyet</dt>
+        <dd>Videodaki çalıştırma yaklaşık 48 dakika sürdü. 37 görselin Gemini maliyeti tahminen 4 $ civarındaydı; görsellerin çoğu Batch API ile yarı fiyatına üretildi.</dd>
+      </div>
+      <div>
+        <dt>Soru sorar mı?</dt>
+        <dd>Bir kez: marka adı, fiyat, sayfa adresi, tasarım yönü ve WhatsApp numarası. Her birinin önerisi hazır gelir; <code>önerilenler</code> yazman yeterli.</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+<section class="guide-section" id="kurulum">
+  <div class="wrap">
+    <div class="section-eyebrow">kurulum</div>
+    <div class="section-head">
+      <h2>Üç adımda başlat</h2>
+      <p>Claude Code kurulu değilse önce <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">resmi kurulum sayfasına</a> bak.</p>
+    </div>
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">AliExpress →</span>
+          <span class="flow-pill">ürün linki</span>
+        </div>
+        <h3>Linki ve tercihlerini yaz</h3>
+        <p><a href="assets/downloads/eticaret-markasi/eticaret-markasi-prompt.md" download>.md dosyasını</a> aç, en üstteki <strong>ÜRÜN LİNKİ</strong> satırına linki yapıştır. Marka adı ya da fiyat kafanda netse <strong>Ön tercihler</strong> tablosuna yaz; Claude onları sormaz.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-pill">.md</span>
+          <span class="flow-label">+ başla</span>
+        </div>
+        <h3>Dosyayı sürükle, "başla" yaz</h3>
+        <p>Boş bir klasörde Claude Code'u aç, dosyayı mesaj kutusuna sürükle, <strong>başla</strong> yaz ve gönder. Linki dosyaya yazmadıysan mesaja ekle.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-bubble">1) Marka adı …</span>
+          <span class="flow-bubble me">önerilenler</span>
+        </div>
+        <h3>Tek soruyu cevapla</h3>
+        <p>Claude ürünü ve pazarı inceledikten sonra 5 kararı tek mesajda sorar. Cevapladıktan sonra sonuna kadar kendisi devam eder; en sonda her şeyi tek sayfada gösteren <code>TESLIM.html</code>'i açar.</p>
+      </li>
+    </ol>
+    <div class="guide-note" style="margin-top:28px">
+      <strong>Gemini API anahtarı nereden?</strong>
+      <p>Google AI Studio'da <strong>Get API key</strong> ile oluştur, görsel üretimi için faturalandırmanın açık olması gerekir. Claude anahtarı bulamazsa proje klasöründe bir <code>.env</code> dosyası açar; <code>GEMINI_API_KEY=</code> satırının sonuna anahtarı yapıştırıp <strong>tamam</strong> yazman yeterli. <strong>Anahtarı sohbete yazma.</strong></p>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="ciktilar">
+  <div class="wrap">
+    <div class="section-eyebrow">videodaki örnek</div>
+    <div class="section-head">
+      <h2>Videodaki ürünle ne çıktı?</h2>
+      <p>Ürün: AliExpress'te 547 TL'ye satılan şarjlı bir aroma difüzörü. Marka adını, fiyatı ve tasarım yönünü Claude'un önerilerinden seçtim. Aşağıdaki her şey o çalıştırmanın gerçek çıktısı.</p>
+    </div>
+    <dl class="guide-facts four" style="margin-bottom:48px">
+      <div>
+        <dt>~48 dakika</dt>
+        <dd>Linkten teslim sayfasına kadar, soru turu dahil.</dd>
+      </div>
+      <div>
+        <dt>37 görsel, 6'sı elendi</dt>
+        <dd>Hepsi Nano Banana 2.1 ile, ürünün AliExpress fotoğrafları referans verilerek.</dd>
+      </div>
+      <div>
+        <dt>10 sayfalık site</dt>
+        <dd>Ürün, sepet, taksitli ödeme, sipariş takip, iletişim ve yasal sayfalar.</dd>
+      </div>
+      <div>
+        <dt>30 + 6</dt>
+        <dd>30 Instagram tasarımı ve 6 reklam kreatifi (4 statik, 2 video).</dd>
+      </div>
+    </dl>
+
+    <div class="eb-blok">
+      <div class="eb-blok-bas">
+        <h3><span>01</span>Araştırma ve fiyat</h3>
+        <p>Claude ürün sayfasını tarayıcıda açıp özellik tablosunu, açıklama görsellerini ve kargo seçeneklerini okudu. Satıcının vermediği hiçbir rakamı kullanmadı. Rakipleri taradı, güncel gümrük kurallarını araştırdı; doğrudan gönderimin 75 gün ve 1.762 TL kargo tuttuğunu görünce Türkiye'de stok tutmayı önerdi ve fiyatı buna göre hesapladı.</p>
+      </div>
+      <div class="term eb-fiyat">
+        <div class="term-bar">
+          <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+          <span class="term-title">turkiye-pazar-analizi.md · birim maliyet ≈ 907 TL</span>
+        </div>
+        <table>
+          <tr><th>seçenek</th><th>fiyat</th><th>başa baş ROAS</th></tr>
+          <tr><td>agresif</td><td>1.299 TL</td><td>13,4</td></tr>
+          <tr class="secili"><td>dengeli ✓</td><td>1.699 TL</td><td>4,2</td></tr>
+          <tr><td>premium</td><td>1.999 TL</td><td>3,1</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="eb-blok">
+      <div class="eb-blok-bas">
+        <h3><span>02</span>Marka ve görseller</h3>
+        <p>Logo kodla çizildi (SVG). Görseller ürünün formu, ekranı ve tuşları korunarak üretildi; yorum kartlarındaki fotoğraflar gerçek müşteri fotoğrafları gelene kadar telefonla çekilmiş gibi duran yer tutuculardır.</p>
+      </div>
+      <div class="eb-izgara">
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/galeri-1.webp" alt="Açık zeminde stüdyo ürün fotoğrafı" loading="lazy"><figcaption>stüdyo çekimi</figcaption></figure>
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/galeri-3.webp" alt="Ürünün dijital ekranının yakın planı" loading="lazy"><figcaption>detay yakın plan</figcaption></figure>
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/fayda-2.webp" alt="Akşam mutfak tezgâhında çalışan difüzör" loading="lazy"><figcaption>kullanım sahnesi</figcaption></figure>
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/galeri-6.webp" alt="Kutu içeriğinin üstten çekimi" loading="lazy"><figcaption>kutu içeriği</figcaption></figure>
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/ozellik-1.webp" alt="Traverten taş üzerinde ürün ve lavanta" loading="lazy"><figcaption>özellik sahnesi</figcaption></figure>
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/insta-3.webp" alt="Hediye kutusunun yanında ürün" loading="lazy"><figcaption>instagram sahnesi</figcaption></figure>
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/yorum-1.webp" alt="Mutfak tezgâhında, telefonla çekilmiş gibi duran ürün fotoğrafı" loading="lazy"><figcaption>müşteri fotoğrafı stili</figcaption></figure>
+        <figure class="eb-kare"><img src="assets/img/eticaret-markasi/gorsel/yorum-4.webp" alt="Kargo kutusundan yeni çıkarılmış ürün elde" loading="lazy"><figcaption>müşteri fotoğrafı stili</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="eb-blok">
+      <div class="eb-blok-bas">
+        <h3><span>03</span>Web sitesi</h3>
+        <p>Önce mobil tasarlanmış 10 sayfalık bir Next.js sitesi. Ödeme demo modunda; kart bilgisi hiçbir yere gitmez. Claude sipariş akışını baştan sona kendisi test etti: paket seç, ödemeyi doldur, siparişi tamamla, aynı numarayla takip et.</p>
+      </div>
+      <div class="eb-serit" tabindex="0" aria-label="Mobil ekran görüntüleri, yana kaydırılabilir">
+        <figure class="eb-telefon"><div><img src="assets/img/eticaret-markasi/site/anasayfa-mobil.webp" alt="Anasayfa, mobil görünüm" loading="lazy"></div><figcaption>anasayfa</figcaption></figure>
+        <figure class="eb-telefon"><div><img src="assets/img/eticaret-markasi/site/urun-mobil.webp" alt="Ürün sayfası, mobil görünüm" loading="lazy"></div><figcaption>ürün sayfası</figcaption></figure>
+        <figure class="eb-telefon"><div><img src="assets/img/eticaret-markasi/site/sepet-mobil.webp" alt="Sepet çekmecesi, mobil görünüm" loading="lazy"></div><figcaption>sepet</figcaption></figure>
+        <figure class="eb-telefon"><div><img src="assets/img/eticaret-markasi/site/odeme-mobil.webp" alt="Ödeme sayfası, mobil görünüm" loading="lazy"></div><figcaption>ödeme</figcaption></figure>
+        <figure class="eb-telefon"><div><img src="assets/img/eticaret-markasi/site/tesekkur-mobil.webp" alt="Sipariş alındı sayfası, mobil görünüm" loading="lazy"></div><figcaption>sipariş alındı</figcaption></figure>
+        <figure class="eb-telefon"><div><img src="assets/img/eticaret-markasi/site/takip-mobil.webp" alt="Sipariş takip sayfası, mobil görünüm" loading="lazy"></div><figcaption>sipariş takip</figcaption></figure>
+      </div>
+      <div class="term eb-pencere">
+        <div class="term-bar">
+          <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+          <span class="term-title">localhost:3000/akilli-aroma-difuzoru</span>
+        </div>
+        <img src="assets/img/eticaret-markasi/site/urun-masaustu.webp" alt="Ürün sayfası, masaüstü görünüm" loading="lazy">
+      </div>
+    </div>
+
+    <div class="eb-blok">
+      <div class="eb-blok-bas">
+        <h3><span>04</span>Instagram profili</h3>
+        <p>Profil fotoğrafı, bio, 5 öne çıkan, 13 story ve 12 post; her postun açıklaması ve hashtag'leri. Hepsi sitenin renk ve fontlarıyla HTML'den üretildi. Fiyat ve puan gibi rakamlar site dosyalarından okunduğu için her yerde aynı.</p>
+      </div>
+      <div class="eb-ig">
+        <div class="eb-ig-profil"><img src="assets/img/eticaret-markasi/instagram/profil.webp" alt="Telefon çerçevesinde Instagram profil önizlemesi" loading="lazy"></div>
+        <div>
+          <div class="eb-ig-izgara">
+            <img src="assets/img/eticaret-markasi/instagram/post-01-tanitim.webp" alt="Instagram postu: Tanıtım" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-02-ana-fayda.webp" alt="Instagram postu: Ana fayda" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-03-yasam.webp" alt="Instagram postu: Yaşam tarzı" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-04-ozellik-detayi.webp" alt="Instagram postu: Özellik detayı" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-05-nasil-kullanilir.webp" alt="Instagram postu: Nasıl kullanılır" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-06-musteri-yorumu.webp" alt="Instagram postu: Müşteri yorumu" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-07-marka-hikayesi.webp" alt="Instagram postu: Marka hikâyesi" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-08-karsilastirma.webp" alt="Instagram postu: Karşılaştırma" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-09-teklif.webp" alt="Instagram postu: Teklif" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-10-sss.webp" alt="Instagram postu: SSS" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-11-kutu-icerigi.webp" alt="Instagram postu: Kutu içeriği" loading="lazy">
+            <img src="assets/img/eticaret-markasi/instagram/post-12-cta.webp" alt="Instagram postu: Sipariş çağrısı" loading="lazy">
+          </div>
+          <div class="eb-alt">// öne çıkan story'lerden</div>
+          <div class="eb-serit" tabindex="0" aria-label="Story örnekleri, yana kaydırılabilir">
+            <figure class="eb-story"><img src="assets/img/eticaret-markasi/instagram/story-1-iletisim-1.webp" alt="Öne çıkan story: iletişim" loading="lazy"><figcaption>iletişim</figcaption></figure>
+            <figure class="eb-story"><img src="assets/img/eticaret-markasi/instagram/story-2-ozellikler-2.webp" alt="Öne çıkan story: özellikler" loading="lazy"><figcaption>özellikler</figcaption></figure>
+            <figure class="eb-story"><img src="assets/img/eticaret-markasi/instagram/story-3-yorumlar-1.webp" alt="Öne çıkan story: yorumlar" loading="lazy"><figcaption>yorumlar</figcaption></figure>
+            <figure class="eb-story"><img src="assets/img/eticaret-markasi/instagram/story-4-kargo-iade-1.webp" alt="Öne çıkan story: kargo & iade" loading="lazy"><figcaption>kargo & iade</figcaption></figure>
+            <figure class="eb-story"><img src="assets/img/eticaret-markasi/instagram/story-5-nasil-kullanilir-1.webp" alt="Öne çıkan story: nasıl kullanılır" loading="lazy"><figcaption>nasıl kullanılır</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eb-blok">
+      <div class="eb-blok-bas">
+        <h3><span>05</span>Reklam kreatifleri</h3>
+        <p>Her biri farklı bir açıyı test eden 6 kreatif, akış (4:5) ve Reels (9:16) boyutunda. Videolar HTML animasyonundan kare kare render edildi. Her kreatifin metni, başlığı, UTM'li linki ve tek reklam setinde 4 günlük test planı hazır.</p>
+      </div>
+      <div class="eb-reklam">
+        <figure><img src="assets/img/eticaret-markasi/reklam/kreatif-1-problem-cozum-4x5.webp" alt="Problem ve çözüm reklamı" loading="lazy"><figcaption><span>statik · 1</span>Problem → çözüm</figcaption></figure>
+        <figure><img src="assets/img/eticaret-markasi/reklam/kreatif-2-musteri-yorumu-4x5.webp" alt="Müşteri yorumu reklamı" loading="lazy"><figcaption><span>statik · 2</span>Müşteri yorumu</figcaption></figure>
+        <figure><img src="assets/img/eticaret-markasi/reklam/kreatif-3-karsilastirma-4x5.webp" alt="Karşılaştırma reklamı" loading="lazy"><figcaption><span>statik · 3</span>Sıradan vs marka</figcaption></figure>
+        <figure><img src="assets/img/eticaret-markasi/reklam/kreatif-4-teklif-4x5.webp" alt="Paket teklifi reklamı" loading="lazy"><figcaption><span>statik · 4</span>Paket teklifi</figcaption></figure>
+        <figure><video src="assets/img/eticaret-markasi/reklam/kreatif-5-ozellik-demosu-4x5.mp4" poster="assets/img/eticaret-markasi/reklam/kreatif-5-ozellik-demosu-4x5-kapak.webp" muted loop playsinline autoplay preload="metadata" aria-label="Özellik demosu reklam videosu"></video><figcaption><span>video · 5 · 8 sn</span>Özellik demosu</figcaption></figure>
+        <figure><video src="assets/img/eticaret-markasi/reklam/kreatif-6-sosyal-kanit-4x5.mp4" poster="assets/img/eticaret-markasi/reklam/kreatif-6-sosyal-kanit-4x5-kapak.webp" muted loop playsinline autoplay preload="metadata" aria-label="Sosyal kanıt reklam videosu"></video><figcaption><span>video · 6 · 8 sn</span>Sosyal kanıt</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="detay">
+  <div class="wrap">
+    <div class="section-eyebrow">.md dosyasının içi</div>
+    <div class="section-head">
+      <h2>Claude ne yapıyor?</h2>
+      <p>Bilmen gerekmiyor ama merak edersen: .md dosyası işi 11 aşamaya böler. Claude yalnızca bir kez soru sorar; verdiği her kararı tek satırlık gerekçesiyle <code>KARARLAR.md</code>'ye yazar.</p>
+    </div>
+    <ol class="guide-steps">
+      <li><strong>Ortam.</strong> Eksik araçları yönetici şifresi istemeden kurar, Gemini anahtarını görsel üretmeden doğrular.</li>
+      <li><strong>Ürün.</strong> Özellik tablosunu, açıklama görsellerini, yorumları ve kargoyu okur. Kanıtlanabilir iddiaları ve kullanılmayacak iddiaları ayrı listelere koyar.</li>
+      <li><strong>Pazar.</strong> Persona, rakip tablosu, maliyet kalemleri, üç fiyat seçeneği, başa baş ROAS ve CPA, teslimat kararı, 60 günlük kampanya takvimi ve yasal çerçeve.</li>
+      <li><strong>Tek soru turu.</strong> Marka adı, fiyat, sayfa adresi, tasarım yönü ve WhatsApp; her birinin önerisiyle.</li>
+      <li><strong>Marka.</strong> Kodla çizilmiş SVG logo, renk ve font token'ları, yazım kuralları ve her görsel promptuna eklenen sabit fotoğraf stili.</li>
+      <li><strong>Görseller.</strong> Nano Banana 2.1 ile 35-45 görsel. Önce 1-2 kare denenir, kalanı tek bir Batch API işiyle gönderilir. Her kare açılıp kontrol edilir; kusurlu olan en fazla 3 kez yeniden üretilir.</li>
+      <li><strong>Web sitesi.</strong> Next.js, önce mobil. Sepet çekmecesi, taksitli ve kapıda ödeme, sipariş takip, Meta Pixel olayları ve UTM kaydı.</li>
+      <li><strong>Kalite kontrol.</strong> Her sayfanın mobil ve masaüstü ekran görüntüsü, taşma ve kırık link testleri, uçtan uca sipariş akışı, görsel düzeltme turu ve Lighthouse ölçümü.</li>
+      <li><strong>Instagram.</strong> Profil, 5 öne çıkan, story'ler, 12 post ve açıklamaları.</li>
+      <li><strong>Reklamlar.</strong> 4 statik ve 2 video kreatif, metinleri ve durdurma/ölçekleme kurallarıyla test planı.</li>
+      <li><strong>Teslim.</strong> Hepsini tek sayfada gösteren <code>TESLIM.html</code> ve süreç istatistikleri.</li>
+    </ol>
+  </div>
+</section>
+<section class="guide-section" id="ozellestir">
+  <div class="wrap">
+    <div class="section-eyebrow">kendine göre</div>
+    <div class="section-head">
+      <h2>Neyi değiştirebilirsin?</h2>
+      <p>Dosya düz metin; istediğin bölümü açıp düzenleyebilirsin. En sık değiştirilenler:</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Ön tercihler</dt>
+        <dd>Marka adını, fiyatı, sayfa adresini, tasarım yönünü ve WhatsApp'ı baştan yazarsan Claude bunları sormaz.</dd>
+      </div>
+      <div>
+        <dt>Pazar ve dil (Aşama 3)</dt>
+        <dd>Dosya Türkiye için yazıldı. Rakip siteleri, para birimini ve yasal bölümü değiştirerek başka bir ülkeye uyarlayabilirsin.</dd>
+      </div>
+      <div>
+        <dt>Ürün kaynağı (Aşama 2)</dt>
+        <dd>AliExpress yerine başka bir tedarikçinin ürün sayfasıyla da çalışır; giriş isteyen sayfalarda Claude senden ekran görüntüsü ister.</dd>
+      </div>
+      <div>
+        <dt>Görseller (Aşama 6)</dt>
+        <dd>Çekim listesini, adetleri ve fotoğraf stilini kendi ürününe göre değiştir.</dd>
+      </div>
+      <div>
+        <dt>Site (Aşama 7)</dt>
+        <dd>Sayfa listesi, ödeme seçenekleri ve ürün sayfasının bölümleri madde madde yazılı; ekle ya da çıkar.</dd>
+      </div>
+      <div>
+        <dt>Reklamlar (Aşama 10)</dt>
+        <dd>Test etmek istediğin açıları ve kreatif sayısını tablodan değiştir.</dd>
+      </div>
+    </dl>
+    <div class="guide-note" style="margin-top:36px">
+      <strong>Yayına almadan önce</strong>
+      <p>Sitedeki yorumlar, satış sayıları, sayaçlar ve stok mesajları <strong>demo içeriktir</strong>; Claude bunları ayrı dosyalarda tutar ve işaretler. Gerçek trafik almadan önce gerçek verilerle değiştir ya da kaldır: sahte yorum ve sahte kıtlık 6502 sayılı Kanun'a ve Meta reklam politikalarına aykırıdır. Yasal sayfalar şablondur, bir avukat ya da mali müşavire kontrol ettir. Ölçü ve çalışma süresi gibi bilgileri numuneyi görmeden ekleme.</p>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="prompt">
+  <div class="wrap">
+    <div class="section-eyebrow">.md dosyası</div>
+    <div class="section-head">
+      <h2>Dosyanın tamamı</h2>
+      <p>İndirmek yerine kopyalayıp yeni bir <code>.md</code> dosyasına da yapıştırabilirsin.</p>
+    </div>
+    <div class="term prompt-sheet">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">eticaret-markasi-prompt.md</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="eticaret-prompt">Kopyala</button>
+        <a class="mini-btn" href="assets/downloads/eticaret-markasi/eticaret-markasi-prompt.md" download>.md İndir</a>
+      </div>
+      <pre id="eticaret-prompt" tabindex="0"># Tek Ürünlük E-Ticaret Markası: Uçtan Uca Üretim Promptu
+
+&gt; **ÜRÜN LİNKİ:** ________________________________________________
+
+Bir AliExpress ürün linkinden Türkiye pazarına yönelik tek ürünlük bir marka çıkarır: ürün ve pazar araştırması, marka sistemi, yerelde çalışan e-ticaret sitesi, Instagram profil paketi ve test planıyla birlikte 6 reklam kreatifi.
+
+## Kullanım
+
+1. Bu dosyayı dosya, terminal ve tarayıcı erişimi olan bir kodlama ajanına (ör. Claude Code) ekle.
+2. Ürün linkini yukarıdaki alana ya da mesaja yaz.
+3. İstersen aşağıdaki **Ön tercihler** tablosunu doldur. Doldurduğun maddeler soru turunda sorulmaz.
+4. Ajan bir kez, Aşama 4'te soru sorar; gerisini kendi karar vererek tamamlar.
+
+**Gerekenler:** Gemini API anahtarı (görsel üretimi ücretlidir). Node 20+, Python 3, ffmpeg ve Playwright yoksa Aşama 1'de kurulur.
+
+## Ön tercihler (isteğe bağlı)
+
+| Karar | Tercih |
+|---|---|
+| Marka adı | |
+| Satış fiyatı ya da fiyat konumu (agresif / dengeli / premium) | |
+| Ürün sayfası adresi (slug) | |
+| Tasarım yönü (renk ve his, 2-3 kelime) | |
+| WhatsApp destek numarası | |
+
+---
+
+# Ajan talimatları
+
+## Başlangıç
+
+- Bu dosya sana eklendiyse görevin budur. Mesajda yalnızca link ya da "başla" yazması yeterlidir.
+- Link ne dosyada ne mesajda varsa yalnızca linki iste.
+- Kullanıcıya **bir kez**, Aşama 4'te soru sorarsın. Diğer her kararı kendin verir, `KARARLAR.md`'ye tek satır gerekçeyle yazar ve devam edersin.
+- Kullanıcıyla Türkçe konuş, "sen" diye hitap et. Aşama geçişlerinde tek satırlık durum notu yaz.
+
+## Bitti tanımı
+
+Üç çıktı teslim edilir:
+
+1. **Web sitesi:** Yerelde çalışan tek ürünlük e-ticaret sitesi (anasayfa, ürün, ödeme, sipariş takip, iletişim ve yasal sayfalar).
+2. **Instagram profil paketi:** Logo, bio, 5 öne çıkan (her biri 2-3 story) ve 12 post.
+3. **Reklamlar:** 4 statik + 2 hareketli kreatif ve test planı.
+
+Şunlar teslimde bulunmaz: boş bölüm, kırık link, "lorem ipsum" ya da "buraya görsel gelecek" gibi yer tutucu metin. Tek istisna, kullanıcının bilmesi gereken iş bilgileridir (şirket unvanı, adres, MERSİS, ETBİS, WhatsApp numarası): bunlar `[Şirket Unvanı]` biçiminde köşeli parantezle işaretlenir.
+
+Satıcının vermediği hiçbir rakam (ölçü, ağırlık, hacim, çalışma süresi, desibel, alan) hiçbir çıktıda kullanılmaz.
+
+## Çalışma klasörü
+
+Çalışma klasöründe `eticaret-&lt;urun-kisa-adi&gt;/` aç ve her şeyi oraya koy:
+
+```
+eticaret-&lt;urun&gt;/
+  .env                  # GEMINI_API_KEY (asla commit edilmez)
+  .gitignore            # .env, node_modules, .next
+  SUREC.md              # aşama başlangıç/bitiş saatleri, görsel sayısı, maliyet, sorunlar
+  KARARLAR.md           # verilen her karar, tek satır gerekçeyle
+  TESLIM.html           # tek sayfalık teslim özeti (Aşama 11)
+  01-urun/              # urun-bilgisi.md, turkiye-pazar-analizi.md, aliexpress-gorseller/
+  02-marka/             # MARKA.md, logo/ (SVG + PNG)
+  03-gorseller/         # banner/ ozellik/ fayda/ galeri/ yorumlar/ instagram/ reklam/ + _log.jsonl
+  site/                 # web sitesi projesi
+  04-instagram/         # profil/ one-cikanlar/ postlar/ reklamlar/ profil-onizleme.html
+  05-kontrol/           # ekran görüntüleri, KONTROL.md, Lighthouse çıktıları
+  scripts/              # görsel üretimi, render, kontrol ve video scriptleri
+```
+
+---
+
+## Aşama 1: Ortam
+
+1. Kontrol et: Node 20+, npm, Python 3 (`python3` mü `python` mı, doğrusunu kullan), ffmpeg, Playwright Chromium.
+2. Eksik olanı **yönetici yetkisi gerektirmeyen** yolla kur:
+   - Node: nodejs.org'daki resmi arşivi checksum'ını doğrulayarak kullanıcı klasörüne aç.
+   - ffmpeg: `pip install imageio-ffmpeg` ile gelen ikiliyi kullan.
+   - Chromium: `npx playwright install chromium`.
+   - `winget` (Windows) ya da `brew` (macOS) varsa onları da kullanabilirsin. Komutlar PowerShell ve zsh'de çalışmalı.
+3. **Gemini API anahtarı:** Sırayla `GEMINI_API_KEY`, `GOOGLE_API_KEY` ve proje klasöründeki `.env`'e bak. Görsel üretmeyen bir çağrıyla (`models.list()`) doğrula. Anahtarı ekrana, loga ya da dosyaya yazdırma. Bulunamazsa boş bir `.env` oluştur, anahtarı Aşama 4'te iste ve araştırmaya devam et.
+4. Klasör yapısını kur, `SUREC.md`'ye başlangıç saatini yaz.
+
+## Aşama 2: Ürünü öğren
+
+AliExpress sayfaları JavaScript ile yüklenir. Tarayıcı aracın varsa onu, yoksa Playwright'ı kullan. Topla:
+
+- **Temel bilgiler:** Başlık, fiyat (TL değilse güncel kurla çevir), varyantlar, satış sayısı, puan.
+- **Özellikler tablosunun tamamı:** Ölçü, ağırlık, malzeme, batarya ve şarj, uyumluluk, sertifikalar, paket içeriği.
+- **Açıklama görselleri:** Teknik detayların çoğu buradadır; her görseli açıp oku. Açıklama genellikle ayrı bir adresten yüklenir (sayfa verisinde `descriptionUrl` / `pcDescUrl` gibi bir alan).
+- **Yorumlar:** Özellikle 1-3 yıldızlıları oku; zayıf noktaları, SSS'yi ve itirazları buradan çıkar. Ürünün yorumu yoksa bunu açıkça yaz, satıcı puanını ve ürün kategorisinin bilinen sorunlarını kullan ve bunları "kategori bilgisi" diye işaretle.
+- **Kargo:** Türkiye'ye gönderim seçenekleri, ücretleri ve teslim süreleri.
+- **Görseller:** Hepsini `01-urun/aliexpress-gorseller/`'e indir. İndirilen dosyanın gerçek biçimini kontrol et (`.jpg` uzantılı WebP gelebilir). Bu görseller yalnızca üretim referansıdır; sitede ve Instagram'da kullanılmaz.
+
+Sayfa CAPTCHA ya da giriş ekranı gösterirse aşmaya çalışma; kullanıcıdan sayfanın ekran görüntülerini ya da "farklı kaydet" çıktısını iste. Bu, Aşama 4 dışındaki tek izinli sorudur.
+
+**Çıktı: `01-urun/urun-bilgisi.md`**
+
+- Teknik özellik tablosu; her satırda kaynağı (hangi görsel ya da sayfa alanı).
+- Kutu içeriği; doğrulanamayan kalemler işaretli.
+- **Bilinmeyenler:** satıcının vermediği bilgiler.
+- **Kanıtlanabilir iddialar** ve **kullanılmayacak iddialar** (gerekçesiyle). Örnek: "su geçirmez" yalnızca IP derecesi varsa; "doğa dostu" yalnızca malzeme destekliyorsa; sağlık iddiaları (stres, uyku, bağışıklık) hiçbir koşulda. Site, Instagram ve reklamlardaki her teknik iddia bu dosyadaki bir satıra dayanır.
+- Zayıf noktalar ve her birine verilecek cevap.
+
+## Aşama 3: Türkiye pazar analizi
+
+**Çıktı: `01-urun/turkiye-pazar-analizi.md`**
+
+- **Hedef kitle:** 2-3 persona. Her biri için yaş, yaşam tarzı, Instagram davranışı, satın alma tetikleyicisi ve en büyük itirazı.
+- **Rakip taraması:** Trendyol, Hepsiburada, Amazon.com.tr ve n11'de aynı ya da benzer ürünler. Tabloda fiyat aralığı, puan ve yorum sayısı, en sık şikâyet. Yorumlarını okuyamadığın bir rakip için şikâyet sütununa ürün tipinin bilinen sorununu yaz ve bunu belirt.
+- **Konumlandırma:**
+  - Türkçe ürün adı (marka + kısa tanım).
+  - Tek cümlelik vaat.
+  - 3 ana fayda. Fayda, özelliğin müşteriye sonucudur: "5000 mAh" özellik, "Bir şarjla tüm hafta" faydadır.
+  - "İtiraz → cevap" tablosu.
+- **Fiyat:**
+  - Maliyet kalemleri: ürün, uluslararası kargo, gümrük ve vergi (güncel posta ve hızlı kargo kurallarını araştır, kaynağını yaz), paketleme, yurt içi kargo, ödeme komisyonu, taksit komisyonu, iade karşılığı, KDV.
+  - 3 seçenek (agresif, dengeli, premium) ve önerin.
+  - Her seçenek için: `reklam öncesi birim kâr = KDV hariç fiyat − birim maliyet − komisyonlar`, `marj = birim kâr ÷ KDV dahil fiyat`, `başa baş ROAS = 1 ÷ marj`, `başa baş CPA = birim kâr`.
+  - Psikolojik fiyat ve 1-2-3 adet paket fiyatları.
+- **Teslimat:** AliExpress'ten doğrudan gönderimi (süre, kargo, vergi) Türkiye'de stok tutmakla karşılaştır. Sitedeki teslim süresi vaadi bu karara göre belirlenir; kararı `KARARLAR.md`'ye yaz.
+- **Teklif:** Paket indirimi, kapıda ödeme (ek ücret varsa tutarı), 12 aya varan taksit; mantıklıysa hediye ya da ücretsiz kargo eşiği.
+- **Takvim:** Önümüzdeki 60 gündeki özel günler ve indirim dönemleri; kampanya dilinde kullanılacak ifadeler.
+- **Reklam açıları:** 6 açı, her biri için tek cümlelik hook.
+- **Yasal çerçeve:** Mesafeli satış, 14 günlük cayma hakkı, indirimli fiyatta "son 30 günün en düşük fiyatı" kuralı, ürün iddiaları ve karşılaştırmalı reklam sınırları, KVKK, ETBİS, elektrikli ürünse CE ve Türkçe kılavuz yükümlülüğü.
+
+## Aşama 4: Tek soru turu
+
+Ürünü ve pazarı öğrendikten sonra **tek mesajda**, numaralı olarak sor. Her soruya önerini ekle ki kullanıcı "önerilenler" ya da "1:B, 4:A" yazarak cevap verebilsin. Ön tercihlerde doldurulmuş maddeleri sorma; mesajın başında hangilerini aynen kullandığını söyle.
+
+```
+Ürünü inceledim: &lt;tek cümle ürün özeti&gt; · Türkiye'de en güçlü satış açısı: &lt;tek cümle&gt;.
+Kararlarını etkileyen bulgular: &lt;en fazla 3 madde&gt;
+Başlamadan şu kararları istiyorum. Hepsinde önerimle devam etmem için "önerilenler" yazman yeterli.
+
+1) Marka adı
+   A) &lt;isim&gt;: &lt;neden&gt; · Instagram: @&lt;kullanıcı-adı&gt;
+   B) ...
+   C) ...
+   Önerim: A
+
+2) Satış fiyatı (birim maliyet ≈ X TL)
+   A) Agresif: ... TL (başa baş ROAS ...)
+   B) Dengeli: ... TL (başa baş ROAS ... · başa baş CPA ...)
+   C) Premium: ... TL (başa baş ROAS ...)
+   Paketler: 2 adet ... TL, 3 adet ... TL · Önerim: B
+
+3) Ürün sayfası adresi: /&lt;slug&gt;   (reklamlar buraya yönlenecek)
+
+4) Tasarım yönü
+   A) &lt;2-3 kelime: renkler ve his&gt;
+   B) &lt;2-3 kelime: renkler ve his&gt;
+   Önerim: A
+
+5) WhatsApp destek numarası (boş bırakırsan +90 5XX XXX XX XX yer tutucusunu kullanırım)
+
+[Yalnızca anahtar bulunamadıysa]
+6) Görseller için Gemini API anahtarı gerekiyor. Proje klasöründeki .env dosyasına
+   GEMINI_API_KEY=... satırını ekleyip "tamam" yazman yeterli. Anahtarı sohbete yazma.
+```
+
+Cevaptan sonra bir daha soru sorma. Eksik kalan maddeleri kendi önerinle doldur.
+
+## Aşama 5: Marka sistemi
+
+**Çıktı: `02-marka/MARKA.md` + `02-marka/logo/`**
+
+- **Logo:** Kodla çizilmiş SVG; görsel modeliyle üretilmez.
+  - Wordmark: seçilen başlık fontunun harfleri eğriye çevrilerek (ör. `fontTools`) SVG path olarak yazılır; böylece font yüklenmeden her yerde aynı görünür.
+  - Simge: tek başına kullanılabilen, ürünün silüetinden türetilmiş basit bir işaret.
+  - Koyu ve açık zemin sürümleri.
+  - 1080×1080 profil fotoğrafı PNG'si: simge ortada, alanın yaklaşık %70'inde (daire kırpmada kesilmez).
+- **Renk token'ları:** 1 ana renk, 1 vurgu rengi, nötrler ve kontrast bölüm için bir koyu renk; CSS değişkeni olarak. Her metin/zemin çiftinin WCAG AA kontrastını (normal metin 4,5:1) kontrol et. Site, story, post ve reklamlar aynı token'ları kullanır.
+- **Tipografi:** En fazla 2 Google Fonts ailesi, Türkçe karakterleri (ğ ü ş ı İ ö ç) eksiksiz destekleyen, `latin-ext` alt kümesiyle. Gövde en az 400, başlık 600-800, görsel üstü metin en az 500 ağırlık. Tip ölçeği tanımla (ör. 12/14/16/20/28/40/56).
+- **İkonlar:** Tek bir çizgi ikon ailesi (Lucide ya da Phosphor). Emoji ikon yok.
+- **Yazım kuralları:**
+  - "Sen" diye hitap; kısa cümle.
+  - Ünlem işareti kullanılmaz (indirim rozetleri dahil).
+  - "Devrim", "mucize", "eşsiz", "en iyi", "mükemmel" gibi doğrulanamayan nitelemeler kullanılmaz.
+  - Rakam ve teknik iddia yalnızca `urun-bilgisi.md`'de karşılığı varsa yazılır.
+- **Fotoğraf stili:** İngilizce, sabit bir blok: ışık (yön, saat), renk paleti, malzemeler ve dokular, mekân, lens, aksesuar listesi, yasak öğeler (görselde yazı, logo, stok fotoğraf pozları). Bu blok her görsel promptunun sonuna aynen eklenir; tüm görseller aynı çekimden çıkmış gibi görünür.
+
+### Arayüz kuralları
+
+Kullanılmaz:
+- Mor-mavi gradyanlar, buzlu cam (glassmorphism) kartlar, dekoratif blob ve parıltılar.
+- Her bölümün ortalanmış düzeni.
+- Aynı boyutta tekrarlanan 3'lü kart ızgarası (sayfada en fazla bir kez).
+- Hazır UI kitinin değiştirilmemiş varsayılan teması; varsayılan "Inter + mavi buton".
+- Kameraya gülümseyen stok fotoğraf insanları.
+
+Kullanılır:
+- Tek vurgu rengi; yalnızca birincil buton, rozet ve küçük vurgularda.
+- En az bir bölümde asimetrik ızgara (ör. 5/7 sütun).
+- Tek köşe yarıçapı ölçeği (ör. 8 / 14 / 22 px ve hap biçimi).
+- Bölüm dikey boşluğu mobilde en az 64 px, masaüstünde en az 112 px.
+- Ürünün silüetinden türeyen bir şekil motifi; butonlarda, rozetlerde ve görsel çerçevelerinde tekrar eder.
+- Yapı referansı olarak tek ürün odaklı DTC siteleri (Oura, Ember, Our Place, Ridge): tam genişlik ürün fotoğrafı, az sayıda büyük başlık, düşük renk sayısı. Tasarımları kopyalanmaz.
+
+## Aşama 6: Görsel üretimi (Nano Banana 2.1)
+
+Tüm görseller Google **Nano Banana 2.1** ile Gemini API üzerinden üretilir; başka görsel modeli kullanılmaz.
+
+- **Model kimliği:** `gemini-nano-banana-2.1`. Başlamadan `models.list()` ile doğrula; hata verirse güncel kimliği ve parametreleri Gemini API dokümanından al.
+- **Toplu üretim (Batch API):** Önce tüm çekim listesini `scripts/cekim-listesi.json`'a yaz. 1-2 kareyi doğrudan üreterek ürün sadakatini ve stili doğrula. Kalan bütün kareleri **tek bir Batch API işiyle** gönder: eşzamanlı çağrıya göre yaklaşık %50 daha ucuzdur ve genellikle dakikalar içinde döner. Yeniden üretimleri de toplu gönder.
+
+`scripts/gorsel_uret.py` (tek kare, doğrulama):
+
+```python
+from google import genai
+from google.genai import types
+from PIL import Image
+
+client = genai.Client()  # anahtarı GEMINI_API_KEY'den ya da .env'den okur
+refs = [Image.open(p) for p in referans_yollari]  # AliExpress ürün görselleri
+resp = client.models.generate_content(
+    model="gemini-nano-banana-2.1",
+    contents=[*refs, prompt],
+    config=types.GenerateContentConfig(
+        response_modalities=["IMAGE"],
+        image_config=types.ImageConfig(aspect_ratio="4:5", image_size="2K"),
+    ),
+)
+```
+
+`scripts/gorsel_batch.py` (toplu):
+
+```python
+istekler = [
+    types.InlinedRequest(
+        contents=[types.Content(role="user", parts=[*ref_parcalari, types.Part.from_text(text=prompt)])],
+        config=types.GenerateContentConfig(
+            response_modalities=["IMAGE"],
+            image_config=types.ImageConfig(aspect_ratio=oran, image_size="2K"),
+        ),
+    )
+    for prompt, oran, ref_parcalari in cekimler
+]
+job = client.batches.create(model="gemini-nano-banana-2.1", src=istekler,
+                            config={"display_name": "urun-gorselleri"})
+# client.batches.get(name=job.name).state → JOB_STATE_SUCCEEDED olana kadar 30 sn arayla bekle.
+# Sonuçlar job.dest.inlined_responses içinde, gönderim sırasıyla gelir.
+```
+
+### Kurallar
+
+- **Ürüne sadakat:** Ürünün göründüğü her istekte AliExpress fotoğraflarını referans olarak ver. Promptta ürünü ayrıca tarif et: form, renk, tuşlar, portlar, ekran, oranlar. Ürünün üzerinde satıcı logosu, filigran ya da bizim logomuz olmaz (müşteriye giden ürün logosuzdur).
+- **Ürün üzerindeki metin ve rakamlar** (ekran değerleri, tuş simgeleri) promptta açıkça yazılır; yazılmazsa model referanstaki anlamsız değerleri kopyalar.
+- **Gerçek boyut:** Ürünün yaklaşık boyunu santimetreyle ve tanıdık bir nesneyle kıyaslayarak yaz; yazılmazsa sahnelerde ürün olduğundan büyük çıkar.
+- **Görselde yazı olmaz:** Logo, fiyat, slogan HTML/CSS ile eklenir. Arka planda okunabilir yazı (kitap adı, not kâğıdı, ambalaj) da olmaz; ambalaj sade ve yazısızdır.
+- **Promptlar İngilizce** yazılır ve `MARKA.md`'deki fotoğraf stili bloğuyla biter.
+- **Kontrol:** Her görseli açıp şu listeye göre bak: ürün formu ve detayları, eller (beş parmak, doğal duruş), okunabilir yazı izi, ürün ölçeği, ortam (Türk evi), renk tonu tutarlılığı. Kusurluyu yeniden üret; kare başına en fazla 3 deneme, sonra en iyisini seç. Elenenleri `_elenen` ekiyle sakla.
+- **Kayıt:** Her üretimi `03-gorseller/_log.jsonl`'a yaz: id, dosya, model, oran, saat, mod (doğrudan/batch), prompt.
+- **Site için hazırla:** WebP ya da AVIF, en az iki genişlik. PNG orijinaller saklanır.
+
+### Çekim listesi (35-45 görsel)
+
+| Bölüm | Adet | Oran | Not |
+|---|---|---|---|
+| Anasayfa banner | 4 aday → 1 seçilir | 16:9 masaüstü + 4:5 mobil | Mobil sürüm, seçilen sahnenin dikey kompozisyonudur. Slogan ve buton için ürünün üstüne binmeyen gerçek bir negatif alan. Seçim gerekçesi `KARARLAR.md`'ye. |
+| Öne çıkan özellikler | 1 | 4:5 | Sade, premium ürün sahnesi. |
+| Fayda / kontrast bölüm | 1-2 | 4:5 | Ürün kullanımda, Türk ev ya da yaşam bağlamında. |
+| Ürün galerisi | 6 | 1:1, 2K | 1) açık nötr fonda stüdyo 2) farklı açı 3) detay yakın plan 4) ellerde kullanım 5) yaşam ortamı 6) ölçek ya da kutu içeriği flatlay |
+| Müşteri fotoğrafı yer tutucuları | 8 | 3:4 | Aşağıdaki kurallara uy. |
+| Instagram ek sahneleri | 3-5 | 4:5 | Post kompozisyonları için. |
+| Reklam sahneleri | 2-4 | 4:5 ve 9:16 | Problem anı (ürünsüz) ve kullanım anı. 9:16'da üst %15 ve alt %35 sade bırakılır. |
+
+### Müşteri fotoğrafı yer tutucuları
+
+Yorum kartlarında gerçek müşteri fotoğrafları gelene kadar kullanılır. Telefonla çekilmiş gibi görünmeleri için: orta segment telefon, hafif yamuk kadraj, otomatik pozlama, pencere ışığına karışan lamba ışığı, hafif sensör gürültüsü, arka planda gündelik dağınıklık, profesyonel stil yok.
+
+Ortamlar Türk evlerinden: parke ya da halı, petek, mutfak tezgâhı, balkon, ofis masası, araba içi, yazısız kargo kutusu. 8 karenin her biri farklı mekânda, farklı ışıkta ve günün farklı saatinde. Yüz görünmez ya da kısmen görünür (el, kol, omuz).
+
+## Aşama 7: Web sitesi
+
+### Teknik yapı
+
+- **Altyapı:** Next.js (App Router) ve TypeScript. Stil için Tailwind ya da CSS Modules; Aşama 5'teki arayüz kurallarına uyar.
+- **İçerik tek kaynakta:** `site/content/` altında `ayarlar.ts` (marka, fiyat, paketler, taksit oranları, slug, WhatsApp, Meta Pixel ID, `demoModu: true`, şirket bilgileri), `urun.ts`, `yorumlar.ts`, `sosyal-kanit.ts`, `sss.ts`. Sayı ve fiyat başka hiçbir dosyada sabit yazılmaz.
+- **Çalıştırma:** `cd site &amp;&amp; npm install &amp;&amp; npm run dev` ile http://localhost:3000. README'de çalıştırma ve içerik değiştirme anlatılır.
+- **Türkçe:** `&lt;html lang="tr"&gt;`. Fiyatlar `Intl.NumberFormat('tr-TR')` ile ("1.299,90 TL"). Büyük harf dönüşümü `toLocaleUpperCase('tr-TR')` ile ("i" → "İ"). Tarihler "14 Kasım Cuma" biçiminde.
+- **Önce mobil:** Trafik Instagram'ın uygulama içi tarayıcısından gelir. Tasarımı 390 px'te kur, sonra genişlet. Hover'a dayalı etkileşim ve açılır pencere yok. Dokunma alanları en az 44 px; form alanlarında yazı en az 16 px (iOS yakınlaştırmasını önler).
+- **Hız:** Mobil LCP 2,5 sn altı hedeflenir. `next/image`; hero görseli `&lt;picture&gt;` ile tek kaynaktan (yalnızca ekrana uyan kompozisyon iner) ve `fetchPriority="high"`; `font-display: swap`; galeri tembel yüklenir.
+- **Erişilebilirlik:** AA kontrast, görünür focus, Türkçe alt metinler. `prefers-reduced-motion` açıksa kayan yazı ve animasyonlar durur.
+- **Ölçümleme:** `lib/analytics.ts` içinde Meta Pixel olayları: PageView, ViewContent, AddToCart, InitiateCheckout, AddPaymentInfo, Purchase. Pixel ID boşsa olaylar yalnızca `console.debug` ile yazılır. Gelen UTM parametreleri saklanır ve sipariş kaydına eklenir.
+
+### Sayfalar
+
+| Adres | Sayfa |
+|---|---|
+| `/` | Anasayfa |
+| `/&lt;slug&gt;` | Ürün sayfası (reklamların hedefi) |
+| `/odeme` | Tek sayfalık ödeme |
+| `/siparis-alindi` | Teşekkür ve sipariş numarası |
+| `/siparis-takip` | Sipariş takip |
+| `/iletisim` | İletişim |
+| `/mesafeli-satis-sozlesmesi`, `/iade-ve-degisim`, `/kvkk`, `/gizlilik` | Yasal sayfalar; şablon metin, şirket bilgileri köşeli parantezli yer tutucu |
+
+### Her sayfada
+
+- **Duyuru çubuğu:** En üstte 32-36 px, şu mesajlar sonsuz ve yumuşak kayar: "12 aya varan taksit · Ücretsiz kargo · Güvenli ödeme · 14 gün iade · Kapıda ödeme". Üzerine gelince ya da dokununca durur.
+- **Header:** Logo, menü (Ürün, Sipariş Takip, İletişim), adet rozetli sepet ikonu.
+- **Sepet:** Sağdan açılan çekmece; sayfa değişmez, içinden ödemeye geçilir. Tek adet varsa "2. adedi ekle" önerisi.
+- **WhatsApp butonu:** Sabit; tıklanınca "Merhaba, &lt;ürün&gt; hakkında bilgi almak istiyorum" mesajı hazır gelir. Sayfanın kendi WhatsApp butonu ya da sabit alt çubukla çakışmaz.
+- **Footer** (güven sinyali olarak eksiksiz): logo ve tek cümlelik marka tanımı; sayfa ve yasal sayfa linkleri; Visa, Mastercard, Troy, American Express logoları (SVG); "256-bit SSL ile güvenli ödeme" rozeti; şirket unvanı, adres, MERSİS, vergi ve ETBİS yer tutucuları; WhatsApp, e-posta, çalışma saatleri.
+
+### Anasayfa
+
+1. **Hero:** Tam genişlikte seçilen banner. Negatif alanda küçük üst etiket, en fazla 6 kelimelik ürüne özel slogan (masaüstünde en fazla 2 satır, 40-56 px) ve **"Keşfet"** butonu (ürün sayfasına). Mobilde 4:5 kompozisyon; buton ekranın alt üçte birinde.
+2. **Öne çıkan özellikler:** Solda ürün görseli; sağda üst başlık, ürünü özetleyip faydaları anlatan bir paragraf ve altında 3-4 satırlık HTML liste (ikon, kalın kısa başlık, tek satır açıklama).
+3. **Kontrast bölüm:** Koyu ya da ana renk zemin. Önce müşterinin bugünkü alternatifinin (ör. sprey, kablolu cihaz) 2-3 somut sorunu, sonra ürünün bunları nasıl çözdüğü; 3-4 özellik çip olarak; yanında ürün kullanımda görseli.
+4. **Müşteri değerlendirmeleri:** Önce rakam satırı ("1.400+ teslim edilen sipariş · 300+ müşteri yorumu · 4,9/5 ortalama puan"); altında mobilde parmakla kaydırılan fotoğraflı yorum kartları. Her kartta 5 yıldız, fotoğraf, tek paragraf yorum, "Burcu A." biçiminde isim, şehir, tarih, varyant ve "Doğrulanmış alıcı" rozeti.
+5. **Kapanış:** Slogan ve **"Hemen Sipariş Ver"** (ürün sayfasına).
+
+### Ürün sayfası
+
+Mobilde "Hemen Al" butonunun üst kenarı en fazla 1,5 ekran yüksekliğindedir (390×844'te ≤ 1.266 px). Galeri, ürün adı, puan ve fiyat bu alanın içindedir.
+
+1. **Galeri:** 6 görsel. Masaüstünde büyük ana görsel ve küçük önizlemeler; mobilde kaydırılan carousel ve nokta göstergesi. Dokununca tam ekran büyütme.
+2. **Ürün adı:** Kalın; altında yıldızlar ve "4,9 (312 değerlendirme)". Bu yazıya dokununca sayfa yorumlara kayar.
+3. **Özellikler:** 3-4 ikonlu çip.
+4. **Değişen kanıt satırı:** Birkaç saniyede bir yumuşak geçişle: "Sevilen ürün · 1.300+ memnun müşteri" · "Şu an 5 kişi ödeme adımında" (3-9 arası yavaşça değişir) · "Son 30 günün en düşük fiyatı".
+5. **Fiyat:** Büyük güncel fiyat, üstü çizili eski fiyat, indirim yüzdesi rozeti; altında "12 aya varan taksit · aylık X TL'den başlayan"; gece yarısı sıfırlanan kampanya sayacı.
+6. **Paket seçimi:** 1, 2, 3 adet; birinde "En çok tercih edilen" etiketi; adet başı fiyat. Varyant varsa seçimi burada.
+7. **Butonlar:** **"Hemen Al"** (birincil, doğrudan ödemeye) ve **"Sepete Ekle"** (ikincil, çekmeceyi açar).
+8. **Güven rozetleri:** Ücretsiz kargo · 12 aya varan taksit · 14 gün iade.
+9. **Teslimat tahmini:** "Bugün 16:00'ya kadar verilen siparişler aynı gün kargoda · Tahmini teslimat: 14-16 Kasım". Tarih o güne göre hesaplanır, hafta sonlarını atlar, Aşama 3'teki teslimat kararına uyar.
+10. **Açılır paneller:** Ürün Özellikleri / Teknoloji · Kutu İçeriği · Kargo ve Teslimat Süreci · İade ve Değişim.
+11. **Kullanıcı deneyimleri:** Fotoğraflı yorum şeridi; altında "Müşteriler ne diyor": puan dağılımı çubukları, sayılarıyla en çok bahsedilen konular, tek cümlelik özet. Konular sayfadaki yorumların içeriğiyle örtüşür.
+12. **Karşılaştırma tablosu:** "Sıradan Ürünler" ve "&lt;Marka&gt;" sütunları, 6-8 satır, ✓/✗. Bizim sütunumuz vurgulu. Rakip marka adı yok; bizim her ✓ satırımız `urun-bilgisi.md`'ye dayanır.
+13. **SSS:** 6 soru, akordeon; gerçek itirazlardan: kargo süresi, kullanım, garanti ve iade, ödeme ve kapıda ödeme, ölçü ve uyumluluk, ürüne özgü güvenlik.
+14. **Güven şeridi:** WhatsApp destek · ürüne uygun doğru bir rozet ("Doğa dostu" yalnızca kanıtlıysa; değilse ör. "Türkçe kullanım kılavuzu") · 1.300+ mutlu müşteri · Güvenli ödeme.
+15. **Yorum duvarı:** 15 yorum (8 fotoğraflı, 7 fotoğrafsız, karışık), masonry; ilk 6'sı görünür, "Daha fazla göster" butonu.
+16. **Sabit alt çubuk (mobil):** Satın alma butonları ekrandan çıkınca altta fiyat ve "Hemen Al".
+17. **Aciliyet:** Sayfada en fazla 3 öğe (kampanya sayacı, "Bu fiyatla son 23 adet", sabit çubukta kısa hatırlatma). Kırmızı renk ve yanıp sönme kullanılmaz.
+
+### Yorum metinleri
+
+- 40-80 kelime; her yorum ürünü kendi kullanım anından anlatır (nerede, neyi sevdi, neye yaradı).
+- Ses tonu değişir: kimi günlük, kimi ölçülü; biri "ilk başta tereddüt ettim ama..." diye başlar, biri hediye almıştır, biri kargo hızından söz eder.
+- Aynı kalıpla başlamaz; emoji en fazla bir yorumda.
+- Farklı yaş ve şehirlerden "Ad S." isimler; son 60 gün içinde tarihler; satın alınan varyant ya da paket.
+- Anasayfadakilerin hepsi 5★. Ürün sayfasındaki 15 yorumdan 1-2'si 4★ ve küçük, yapıcı bir not içerir (4,9 ortalamasıyla tutarlı).
+- Rakamlar her yerde aynıdır ve `sosyal-kanit.ts`'ten okunur: 1.400+ teslim edilen sipariş, 1.300+ mutlu müşteri, 312 yorum, 4,9/5.
+
+### Ödeme (`/odeme`): demo modu
+
+- **Form:** Tek sayfa, üyeliksiz. Ad soyad, telefon (+90 maskeli), e-posta, il (81 il listesi), ilçe, açık adres.
+- **Ödeme:** Kart (maskeli form; altında tek çekim, 3, 6, 9, 12 ay taksit seçenekleri aylık tutar ve toplamla) ve kapıda ödeme (ek ücret açıkça yazılı).
+- **Diğer:** Sipariş özeti masaüstünde sağda, mobilde üstte açılır-kapanır. "İndirim kodun mu var?" linki. Güven rozetleri ve **"Siparişi Tamamla"**. Hata mesajları Türkçe, alanın hemen altında; ilk hatalı alana odaklanılır.
+- **Demo:** Kart bilgisi hiçbir yere gönderilmez, hiçbir yerde saklanmaz. Butonun altında küçük "Demo ödeme · tahsilat yapılmaz" notu; `demoModu` ile kapanır.
+- **Gönderim sonrası:** Sipariş numarası (ör. `SP-24831`); sipariş özeti localStorage'a; `/siparis-alindi`'ye yönlendirme. Bu sayfada özet, tahmini teslimat, "Siparişini WhatsApp'tan onayla" butonu ve takip linki.
+
+### Sipariş takip ve iletişim
+
+- **Takip:** Sipariş numarası ve telefonun son 4 hanesiyle sorgu. Çizelge: Sipariş Alındı → Hazırlanıyor → Kargoya Verildi → Dağıtımda → Teslim Edildi; kargo firması ve örnek takip numarası. Demoda durum oluşturulma zamanına göre ilerler; `SP-10001` örnek siparişi her zaman çalışır.
+- **İletişim:** WhatsApp birincil kanal; e-posta, çalışma saatleri, kısa form (gönderince teşekkür mesajı) ve SSS linkleri.
+
+### Demo içerik
+
+Yorumlar, satış sayıları, canlı sayaçlar ve stok/aciliyet mesajları örnek içeriktir. Hepsi `yorumlar.ts` ve `sosyal-kanit.ts`'te durur ve `demo: true` işaretlidir. Sitenin görünümünden bu yüzden hiçbir şey eksiltilmez.
+
+README'de "Yayına almadan önce" bölümü:
+- Bu içerikler gerçek reklam trafiğinden önce gerçek verilerle değiştirilir ya da kaldırılır. Sahte yorum ve sahte kıtlık, 6502 sayılı Kanun ile Ticari Reklam ve Haksız Ticari Uygulamalar Yönetmeliği'ne aykırıdır; Meta reklam politikalarına da takılır.
+- "Son 30 günün en düşük fiyatı" ibaresi gerçek fiyat geçmişine bağlanır.
+- Yasal sayfalar şablondur; avukat ya da mali müşavir kontrol eder.
+
+## Aşama 8: Kalite kontrol
+
+1. **Üretim derlemesiyle** (`next build &amp;&amp; next start`) sunucuyu çalıştır. Her sayfanın Playwright ile 390×844 ve 1440×900 tam sayfa ekran görüntüsünü `05-kontrol/`'e al; sabit öğeleri (header, WhatsApp, alt çubuk) görüntü sırasında gizle. Her görüntüyü açıp bak.
+2. **Otomatik kontroller:** yatay taşma (`scrollWidth &gt; clientWidth`), kırık görsel, konsol hatası, iç linklerin HTTP durumu, mobilde "Hemen Al" konumu. Sonuçlar `05-kontrol/rapor.json`'a.
+3. **Uçtan uca akış:** Ürün sayfası → paket seç → Sepete Ekle → Hemen Al → boş formla gönder (hata mesajları) → formu doldur → Siparişi Tamamla → teşekkür → aynı numarayla takip. Her adımın ekran görüntüsü. localStorage'da kart verisi olmadığını doğrula.
+4. **Görsel düzeltme turu:** Ekran görüntülerini şu listeyle gözden geçir; bulduğun her sorunu `05-kontrol/KONTROL.md`'ye (sayfa · sorun · düzeltme) yaz, düzelt ve görüntüleri yeniden al:
+   - Başlıklarda tek kelimelik son satır ya da anlamı bölen satır kırılması.
+   - Sabit öğelerin içerikle ya da birbiriyle çakışması.
+   - Görselsiz uzun metin blokları, içi boş renk alanları.
+   - Aynı boyutta tekrar eden kart ızgaraları.
+   - Aynı türden bölümler arasında tutarsız boşluk ve hizalama.
+   - 44 px altı dokunma alanı, 16 px altı form yazısı, AA altı kontrast.
+   - Görselde ürünün üstüne binen metin.
+5. **Lighthouse (mobil):** Anasayfa ve ürün sayfası için performans, erişilebilirlik ve LCP `SUREC.md`'ye. LCP 2,5 sn üstündeyse nedenini ve denenenleri yaz.
+
+## Aşama 9: Instagram profil paketi
+
+Tüm tasarımlar **kodla** üretilir: sitenin renk ve font token'larıyla HTML/CSS şablonları, Playwright ile PNG. Fiyat, puan ve müşteri sayısı gibi rakamlar şablona elle yazılmaz; `site/content/` dosyalarından okunur. Sitedeki fotoğraflar kullanılır; yeni Nano Banana sahnesi yalnızca gerektiğinde üretilir.
+
+### Profil (`04-instagram/profil/`)
+
+- `profil.md`: kullanıcı adı önerisi (ve 2 yedek); isim alanı (marka + aranacak anahtar kelime); en fazla 150 karakterlik bio (3-4 satır: değer önerisi, güven unsuru, CTA; en fazla 2 emoji); UTM'li bio linki.
+- Profil fotoğrafı: Aşama 5'teki PNG.
+
+### Öne çıkanlar (`04-instagram/one-cikanlar/`)
+
+- 5 öne çıkan: **İletişim · Özellikler · Yorumlar · Kargo &amp; İade · Nasıl Kullanılır** (ürüne göre biri "SSS" olabilir).
+- **Kapaklar:** 1080×1920; simge ortadaki 1:1 alanda; aynı ikon ailesi ve marka renkleri.
+- **Story'ler:** Her öne çıkan için 2-3, toplam 10-15, 1080×1920. Kritik öğeler üst ve alt 250 px'te olmaz. Yorum story'lerinde sitedeki yorum kartları kullanılır. İletişim story'sinde WhatsApp, e-posta, çalışma saatleri ve site adresi bulunur.
+
+### 12 post (`04-instagram/postlar/`)
+
+- **Boyut:** 1080×1350 (4:5). Profil ızgarası 3:4 kırptığı için kritik öğeler sağ ve sol kenardan en az 60 px içeride.
+- **Izgara:** 4 sıra × 3 sütun; fotoğraf ağırlıklı ve tipografi ağırlıklı kareler dönüşümlü. İlk görünen 9 karede en az 4 ürün fotoğrafı, 1 teklif ve 1 müşteri yorumu bulunur.
+- **İçerik karışımı:** Tanıtım, ana fayda, özellik detayı, nasıl kullanılır, müşteri yorumu, karşılaştırma, itiraz cevabı (SSS), teklif, yaşam tarzı, kutu içeriği, marka hikâyesi, CTA.
+- **Açıklamalar (`aciklamalar.md`):** Her post için ilk satır hook, 3-5 satır metin, sonda CTA ve 5-10 hashtag. Paylaşım sırası ızgara sırasının tersidir.
+- **Önizleme (`profil-onizleme.html`):** Telefon çerçevesinde profil fotoğrafı, bio, öne çıkan halkaları ve 3:4 ızgara. Instagram logosu kullanılmaz; sade, genel bir arayüz.
+
+## Aşama 10: Reklam kreatifleri (4 statik + 2 hareketli)
+
+Her kreatif farklı bir açıyı test eder ve iki boyutta üretilir: 4:5 (1080×1350, akış) ve 9:16 (1080×1920, story/reels). 9:16'da üst %14 ve alt %35 metinsiz kalır (Reels arayüzü kapatır). Rakamlar `site/content/`'ten okunur.
+
+| # | Açı | Tür |
+|---|---|---|
+| 1 | Problem → çözüm | Statik |
+| 2 | Müşteri yorumu / UGC (telefon fotoğrafı + yorum kartı) | Statik |
+| 3 | Sıradan ürün vs &lt;Marka&gt; | Statik |
+| 4 | Teklif (paket indirimi + ücretsiz kargo + taksit) | Statik |
+| 5 | Özellik demosu: 3 fayda sırayla | Hareketli, 6-10 sn |
+| 6 | Sosyal kanıt: sayaç animasyonu + akan yorum kartları | Hareketli, 6-10 sn |
+
+- **Hareketli kreatifler:** HTML/CSS animasyonu; zaman çizelgesi kare kare ilerletilir (`document.getAnimations()` ile `currentTime` ayarlanır ya da GSAP timeline `seek`). Her kare Playwright ile alınır, ffmpeg ile 30 fps, H.264, `yuv420p` MP4'e çevrilir (`-pix_fmt yuv420p -movflags +faststart`, ses yok). Hook ilk 1 saniyede gelir; video sessizken de anlaşılır.
+- Metin, kreatifte ürünün üstüne binmez.
+
+**`04-instagram/reklamlar/REKLAMLAR.md`**, her kreatif için:
+- Açı ve test hipotezi (beklenen etkisiyle).
+- Hedef persona.
+- Birincil metin (kritik mesaj ilk 125 karakterde).
+- Başlık (en fazla 40 karakter).
+- CTA butonu.
+- UTM'li hedef URL: `/&lt;slug&gt;?utm_source=instagram&amp;utm_medium=paid&amp;utm_campaign=lansman&amp;utm_content=kreatif-N`.
+- Demo sosyal kanıt (yorum, müşteri sayısı) içeren kreatiflerin gerçek veri gelmeden yayına alınmayacağı notu.
+
+**Test planı:**
+- Tek kampanya, geniş hedefleme, 6 kreatif aynı reklam setinde. Günlük bütçe, kreatif başına başa baş CPA'nın en az 3-4 katı veri toplayacak şekilde; test 3-4 gün.
+- Metrikler ve hedefleri: hook oranı (3 sn izlenme ÷ gösterim), link CTR, CPC, sepete ekleme oranı, CPA ve ROAS (Aşama 3'teki başa baş değerleriyle karşılaştırmalı).
+- Durdurma ve ölçekleme kuralları; eşikler TL ve yüzde olarak.
+- Kazanan kreatiften 3 yeni varyant fikri.
+
+## Aşama 11: Teslim özeti
+
+Proje kökünde `TESLIM.html` oluştur ve sonunda tarayıcıda aç. İçerik:
+
+1. **Özet:** Ürün, marka, fiyat ve 3 maddelik konumlandırma.
+2. **Site:** http://localhost:3000 linki; mobil ve masaüstü ekran görüntüleri (sayfalar arasında geçiş).
+3. **Instagram:** Profil önizlemesi, öne çıkan kapakları, tüm story'ler ve postlar.
+4. **Reklamlar:** 6 kreatif (videolar sayfada oynatılır), metinleri ve test planı özeti.
+5. **Süreç:** `SUREC.md`'den toplam süre, aşama süreleri, üretilen ve elenen görsel sayısı, tahmini API maliyeti (varsayımıyla), üretilen dosya sayısı, Lighthouse sonuçları ve açık kalan konular.
+
+## Son mesaj
+
+Kısa tut:
+- Neler üretildi.
+- Site nasıl çalıştırılır (`cd site &amp;&amp; npm run dev`).
+- `TESLIM.html`'in yolu.
+- Yayına almadan önce yapılması gereken 3 iş.
+- Hedefin tutmadığı yerler (ör. LCP), varsa.
+
+## Değişmez kurallar
+
+- Ürüne dair uydurma özellik, rakam ya da iddia kullanma; her teknik bilgi `urun-bilgisi.md`'ye dayanır.
+- AliExpress görsellerini ve satıcının marka adını sitede ve Instagram'da kullanma.
+- Karşılaştırmalarda rakip marka adı kullanma.
+- CAPTCHA ya da giriş ekranlarını aşmaya çalışma.
+- API anahtarını hiçbir dosyaya, loga ya da mesaja yazma.
+- Aşama 4 dışında soru sorma (tek istisna: link yoksa link, sayfa erişilemezse ekran görüntüsü).</pre>
+    </div>
+  </div>
+</section>
+<section class="guide-section" id="sorunlar">
+  <div class="wrap">
+    <div class="section-eyebrow">takılırsan</div>
+    <div class="section-head">
+      <h2>Sık karşılaşılan sorunlar</h2>
+    </div>
+    <div class="guide-faq">
+      <details>
+        <summary>AliExpress sayfası açılmıyor ya da doğrulama istiyor</summary>
+        <p><strong>Neden:</strong> AliExpress bazen robot doğrulaması ya da giriş ekranı gösterir; Claude bunu aşmaya çalışmaz.<br><strong>Çözüm:</strong> Claude durup senden sayfanın ekran görüntülerini ister. Ürün sayfasını tarayıcında aç, aşağı kaydırarak birkaç ekran görüntüsü al ya da sayfayı "Farklı kaydet" ile kaydedip sohbete ekle.</p>
+      </details>
+      <details>
+        <summary>Gemini anahtarı çalışmıyor</summary>
+        <p><strong>Neden:</strong> Görsel üretimi ücretsiz kotada çalışmaz ya da <code>.env</code> satırı hatalıdır.<br><strong>Çözüm:</strong> Google AI Studio'da faturalandırmanın açık olduğunu kontrol et. <code>.env</code> dosyasında satır tam olarak <code>GEMINI_API_KEY=anahtarın</code> biçiminde olmalı; boşluk ve tırnak olmasın. Sonra <strong>tamam</strong> yaz.</p>
+      </details>
+      <details>
+        <summary>Görsellerde ürün aslına benzemiyor</summary>
+        <p><strong>Neden:</strong> Satıcının fotoğrafları az ya da ürünü farklı açılardan göstermiyor olabilir.<br><strong>Çözüm:</strong> Claude her kareyi kontrol edip en fazla 3 kez yeniden üretir. Yine beğenmediğin kare olursa adını ve sorunu yaz: <code>galeri-3'ü yeniden üret, tuş daha küçük olmalı</code>.</p>
+      </details>
+      <details>
+        <summary>Site açılmıyor</summary>
+        <p><strong>Neden:</strong> Claude Node'u senin kullanıcı klasörüne kurduysa yeni açtığın terminal onu henüz tanımayabilir.<br><strong>Çözüm:</strong> Claude'a <code>siteyi başlat</code> yaz ya da yeni bir terminal açıp <code>cd site && npm install && npm run dev</code> çalıştır. Site <code>http://localhost:3000</code> adresinde açılır.</p>
+      </details>
+      <details>
+        <summary>Sitedeki yorumlar ve satış rakamları gerçek mi?</summary>
+        <p><strong>Hayır.</strong> Sitenin eksiksiz görünmesi için örnek olarak üretilir ve <code>yorumlar.ts</code> ile <code>sosyal-kanit.ts</code> dosyalarında "demo" diye işaretlenir. Yayına almadan önce gerçek yorumlar ve gerçek rakamlarla değiştir; README'de nasıl yapılacağı yazılı.</p>
+      </details>
+      <details>
+        <summary>Gerçekten satış yapabilir miyim?</summary>
+        <p><strong>Doğrudan değil.</strong> Ödeme demo modundadır ve tahsilat yapmaz. Satışa geçmek için bir sanal POS (iyzico, PayTR vb.) bağlanmalı, şirket ve ETBİS bilgileri girilmeli, ürün numunesi alınmalıdır. Claude'un hazırladığı pazar analizi ve README bu adımları listeler.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="guide-section guide-service">
+  <div class="wrap">
+    <div class="service-note">
+      <div>
+        <span class="svc-ai">✻ AI production ve Meta reklam yönetimi</span>
+        <h2>Bunu senin yerine ben yapayım mı?</h2>
+        <p>Ürünün için AI ile ürün fotoğrafları ve reklam videoları üretiyor, kreatifleri doğru kitleye çıkarıyor, testlerle kazananları bulup bütçeni oraya kaydırıyorum.</p>
+      </div>
+      <div class="service-note-actions">
+        <a href="index.html#services" class="btn btn-primary">Hizmeti incele</a>
+        <a href="index.html#contact" class="btn btn-ghost">Görüşelim</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="guide-section guide-next">
+  <div class="wrap">
+    <div class="next-card">
+      <div>
+        <div class="section-eyebrow">başka bir video</div>
+        <h2>Başka bir videonun dosyasını mı arıyorsun?</h2>
+        <p>Tüm prompt, kılavuz ve dosyalar ana sayfada tek listede.</p>
+      </div>
+      <div>
+        <form class="next-search" action="index.html" method="get" role="search">
+          <span class="finder-chev" aria-hidden="true">❯</span>
+          <input type="search" name="q" placeholder='ara… örn. "reklam"' aria-label="Videolarda ara" enterkeyhint="search" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Ara</button>
+        </form>
+        <a href="index.html#icerikler" class="back-link">← Tüm içeriklere dön</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
+    <div class="social-row">
+      <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
+      <a href="index.html#icerikler">İçerikler</a>
+      <a href="index.html#contact">İletişim</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> fatihd.mov</div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+/* Reklam videoları yalnızca ekrandayken oynar; hareket azaltma açıksa durur ve kontrol gösterilir. */
+(function(){
+  var v = document.querySelectorAll('.eb-reklam video');
+  var az = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  v.forEach(function(x){ x.removeAttribute('autoplay'); if(az){ x.controls = true; } });
+  if(az || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.play().catch(function(){}); } else { e.target.pause(); } }); }, { threshold: .35 });
+  v.forEach(function(x){ io.observe(x); });
+})();
+</script>
+</body>
+</html>

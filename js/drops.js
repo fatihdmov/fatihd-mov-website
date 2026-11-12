@@ -22,6 +22,19 @@
 
 const DROPS = [
   {
+    slug: "eticaret-markasi",
+    date: "2026-11-11",
+    title: "Bir linkten e-ticaret markası",
+    summary: ".md dosyasını ve bir AliExpress linkini Claude Code'a ver: ürünü ve pazarı araştırsın, markayı kursun, site, Instagram profil paketi ve 6 reklam kreatifi hazırlasın.",
+    keywords: "e-ticaret eticaret marka markası aliexpress dropshipping tek ürün ürün linki site web sitesi mağaza next.js instagram profil post story reklam kreatif meta nano banana gemini görsel ürün fotoğrafı fiyat roas pazar analizi trendyol fable prompt",
+    icon: "briefcase",
+    reelUrl: "https://www.instagram.com/reel/DfmeL8sucek/",
+    resources: [
+      { type: "guide", label: "Kurulumu Gör", path: "eticaret-markasi.html" },
+      { type: "file", label: ".md Dosyasını İndir", filename: "eticaret-markasi-prompt.md", path: "assets/downloads/eticaret-markasi/eticaret-markasi-prompt.md" }
+    ]
+  },
+  {
     slug: "durus-kocu",
     date: "2026-11-09",
     title: "Duruş koçu",

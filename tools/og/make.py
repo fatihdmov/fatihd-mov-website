@@ -27,6 +27,7 @@ TEMPLATE = pathlib.Path(__file__).with_name("template.html")
 # (sayfa yolu, slug, başlık, alt satır)
 PAGES = [
     ("index.html", "fatihd-mov", "Videolardaki kaynaklar", "Prompt, kılavuz ve dosyalar tek yerde"),
+    ("eticaret-markasi.html", "eticaret-markasi", "Bir linkten e-ticaret markası", "Site, Instagram paketi ve 6 reklam kreatifi"),
     ("durus-kocu.html", "durus-kocu", "Duruş koçu", "Kamburlaşınca ekran bulanıklaşsın"),
     ("bilgisayar-saglik-kontrolu.html", "bilgisayar-saglik-kontrolu", "Bilgisayar sağlık kontrolü", "Disk, ekran kartı ve işlemci testi, PDF rapor"),
     ("meta-reklam-analizi.html", "meta-reklam-analizi", "Meta reklam analizi", "Her reklama tek karar, PDF sunum"),
