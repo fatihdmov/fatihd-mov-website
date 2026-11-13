@@ -22,6 +22,20 @@
 
 const DROPS = [
   {
+    slug: "ajan-ofisi",
+    date: "2026-11-12",
+    title: "Dijital ajan ofisi",
+    summary: "Claude Code projelerini tek panelde çalışan bir ekibe dönüştür: her çalışan bir klasör, bir cümle yazarsın, iş doğru kişiye gider. Detaylı kılavuz ve kurulum dosyası.",
+    keywords: "ajan ofisi ofis dijital ofis ekip çalışan ajan agent agents multi agent çok ajanlı genel müdür panel claude code claude.md mcp bağlayıcı connector rutin zamanlanmış telegram bildirim token limit pro plan muhasebeci video editörü seslendirmen fotoğrafçı skill github otomasyon",
+    icon: "users",
+    reelUrl: "https://www.instagram.com/reel/DfpFMMUO4se/",
+    resources: [
+      { type: "guide", label: "Kılavuzu Gör", path: "ajan-ofisi.html" },
+      { type: "file", label: "Ofis .md Dosyasını İndir", filename: "ajan-ofisi-kur.md", path: "assets/downloads/ajan-ofisi/ajan-ofisi-kur.md" },
+      { type: "file", label: "Çalışan Prompt'larını İndir", filename: "calisan-kur.md", path: "assets/downloads/ajan-ofisi/calisan-kur.md" }
+    ]
+  },
+  {
     slug: "eticaret-markasi",
     date: "2026-11-11",
     title: "Bir linkten e-ticaret markası",

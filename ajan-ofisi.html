@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kendi Dijital Ajan Ofisini Kur: Claude Code Kılavuzu — fatihd.mov</title>
+<meta name="description" content="Bilgisayarındaki Claude Code projelerini tek bir panelde çalışan bir ekibe dönüştür. Her çalışan bir klasör, her klasörün bir iş tanımı var; sen bir cümle yazarsın, iş doğru kişiye gider. Kurulum dosyası, prompt'lar, token gerçekleri ve güvenlik kuralları bu sayfada.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="fatihd.mov">
+<meta property="og:url" content="https://fatihd.mov/ajan-ofisi.html">
+<meta property="og:image" content="https://fatihd.mov/assets/og/ajan-ofisi.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23191918%22/><text x=%2250%22 y=%2266%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%23d97757%22 font-family=%22monospace%22>&gt;_</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.toc{ display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+.toc a{ text-decoration:none; }
+.guide-facts.two{ grid-template-columns: repeat(2,1fr); }
+.guide-section h3.sub{ font-size:17px; margin:36px 0 12px; }
+.term + .guide-note, .guide-note + .term, .guide-steps + .guide-note, .guide-facts + .guide-note{ margin-top:24px; }
+.term.prompt-sheet.short pre{ max-height:none; }
+.bar-row{ display:grid; grid-template-columns: 220px 1fr 90px; gap:12px; align-items:center; font-size:14px; color: var(--text-dim); margin:10px 0; }
+.bar-track{ height:12px; border-radius:6px; background: var(--surface); border:1px solid var(--border); overflow:hidden; display:flex; }
+.bar-cache{ background: color-mix(in srgb, var(--accent) 38%, transparent); }
+.bar-real{ background: var(--accent); }
+.bar-num{ font-family: var(--mono); font-size:13px; color: var(--text); text-align:right; }
+.bar-legend{ display:flex; gap:18px; font-size:13px; color: var(--text-dim); margin-top:8px; flex-wrap:wrap; }
+.bar-legend i{ display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:6px; }
+@media (max-width: 900px){ .guide-facts.two{ grid-template-columns:1fr; } }
+@media (max-width: 600px){ .bar-row{ grid-template-columns: 1fr 80px; } .bar-row .bar-track{ grid-column: 1 / -1; grid-row: 2; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="fatihd.mov ana sayfa">fatihd<span class="dot">.</span>mov</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#icerikler">İçerikler</a></li>
+      <li><a href="index.html#services">Hizmetler</a></li>
+      <li><a href="index.html#about">Hakkımda</a></li>
+      <li><a class="nav-cta" href="index.html#contact">Görüşelim</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç">☰</button>
+  </div>
+</nav>
+
+<header class="wrap guide-hero">
+  <div class="guide-intro">
+    <a href="index.html#icerikler" class="back-link">← Tüm içerikler</a>
+    <div class="section-eyebrow">claude code · dijital ajan ofisi · detaylı kılavuz</div>
+    <h1>Kendi dijital<br>ajan ofisini kur.</h1>
+    <p>Bilgisayarındaki Claude Code projelerini <strong>tek bir panelde çalışan bir ekibe</strong> dönüştür. Her çalışan bir klasör, her klasörün bir iş tanımı var. Sen panele bir cümle yazarsın, <strong>iş doğru kişiye gider</strong>, o kişi kendi klasöründe işi yapar ve sana rapor bırakır. Bazıları sen uyurken çalışır, raporu telefonuna gönderir.</p>
+    <p><strong>Önce şunu bil:</strong> benim ofisim bana özel. Bu sayfa sana hazır bir ofis vermiyor; <strong>kendi ofisini kurmayı</strong> öğretiyor. Balık değil, balık tutmak.</p>
+    <div class="hero-ctas">
+      <a href="#yol" class="btn btn-primary">Yol haritasına geç</a>
+      <a href="assets/downloads/ajan-ofisi/ajan-ofisi-kur.md" class="btn btn-ghost" download>Ofis .md Dosyasını İndir</a>
+      <button type="button" class="btn btn-ghost" data-share><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> <span class="only-touch">Bilgisayarına gönder</span><span class="only-mouse">Linki kopyala</span></button>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Gerekenler</dt>
+        <dd>Ücretli bir Claude planı (Pro yeter), Claude Code ve Node.js. Windows'ta da Mac'te de çalışır. Kod bilmen gerekmiyor; ben de bilmiyorum.</dd>
+      </div>
+      <div>
+        <dt>Süre</dt>
+        <dd>İlk çalışanın 30-60 dakika, ofisin kendisi 1-2 saat. Ama asıl süre çalışanlarını eğitmek: benimkiler aylar içinde, deneye yanıla oluştu.</dd>
+      </div>
+      <div>
+        <dt>Telefondaysan</dt>
+        <dd>Ofis bilgisayarda çalışıyor. Bu sayfayı okumak için telefon yeter, kurulum için bilgisayarında aç.</dd>
+      </div>
+    </dl>
+    <nav class="toc" aria-label="Sayfa içeriği">
+      <a class="tag-pill" href="#nedir">Ofis ne?</a>
+      <a class="tag-pill" href="#kurallar">4 kural</a>
+      <a class="tag-pill" href="#yol">Yol haritası</a>
+      <a class="tag-pill" href="#calisan">İlk çalışan</a>
+      <a class="tag-pill" href="#yetki">Yetkiler</a>
+      <a class="tag-pill" href="#mcp">MCP</a>
+      <a class="tag-pill" href="#ornekler">Benim ekibim</a>
+      <a class="tag-pill" href="#taktikler">Taktikler</a>
+      <a class="tag-pill" href="#hazir">Hazır skill'ler</a>
+      <a class="tag-pill" href="#ofis">Ofisi kur</a>
+      <a class="tag-pill" href="#telegram">Telegram</a>
+      <a class="tag-pill" href="#token">Token</a>
+      <a class="tag-pill" href="#guvenlik">Güvenlik</a>
+      <a class="tag-pill" href="#sorunlar">Sorunlar</a>
+      <a class="tag-pill" href="#dosyalar">Dosyalar</a>
+    </nav>
+  </div>
+</header>
+
+<section class="guide-section" id="nedir">
+  <div class="wrap">
+    <div class="section-eyebrow">önce mantık</div>
+    <div class="section-head">
+      <h2>Ajan ofisi ne yapıyor?</h2>
+      <p>Benim ofisimde altı oda ve on altı çalışan var: içerik fikri bulan, reels kurgulayan, dış ses okuyan, reklamları okuyan, ay sonunda harcamalarımı toplayan… Hepsi aslında bilgisayarımdaki birer proje klasörü. Ofis, onları tek ekranda toplayan yerel bir panel.</p>
+    </div>
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-bubble me">bu ayki harcamalarıma bak</span>
+        </div>
+        <h3>Bir cümle yaz</h3>
+        <p>Panelin altındaki kutuya ne istediğini yaz. İstersen kime gideceğini de seç.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">genel müdür →</span>
+          <span class="flow-pill">Muhasebeci</span>
+        </div>
+        <h3>Genel müdür yönlendirir</h3>
+        <p>Kişi seçmediysen genel müdür işi okur ve doğru çalışana verir. Kendisi iş yapmaz.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">kendi klasöründe →</span>
+          <span class="flow-pill">rapor.md</span>
+        </div>
+        <h3>Çalışan yapar, rapor bırakır</h3>
+        <p>Çalışan kendi klasöründe Claude Code ile işi yapar. Raporda ne yaptığı, dosyaların nerede olduğu ve onayını bekleyen işler yazar.</p>
+      </li>
+    </ol>
+    <div class="guide-note" style="margin-top:32px">
+      <strong>Neden işe yarıyor?</strong>
+      <p>Eskiden her proje için ayrı pencere açıyordum, hangisinde ne konuştuğumu unutuyordum. Şimdi her şey tek ekranda. Çok adımlı işlerde bir çalışanın raporu sonrakine geçer: <strong>fikir bul → videoyu kurgula → siteye koy</strong> tek cümleyle olur. Sabah 08:00'de içerik fikirlerim hazır, ay sonunda harcama raporum telefonumda.</p>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="kurallar">
+  <div class="wrap">
+    <div class="section-eyebrow">bütün sistem</div>
+    <div class="section-head">
+      <h2>Ofisin 4 kuralı</h2>
+      <p>Bunları anlarsan geri kalan her şey ayrıntı.</p>
+    </div>
+    <dl class="guide-facts four">
+      <div>
+        <dt>1 · Her çalışan bir klasör</dt>
+        <dd>Bilgisayarında "Muhasebeci" diye bir klasör açtığında aslında bir masa açıyorsun. O klasörde çalışan Claude sadece o işi yapar.</dd>
+      </div>
+      <div>
+        <dt>2 · CLAUDE.md iş tanımıdır</dt>
+        <dd>Klasördeki bu metin dosyasını Claude her açılışta okur: kimsin, ne iş yaparsın, neyi asla yapmazsın, neyi yapmadan önce sorarsın.</dd>
+      </div>
+      <div>
+        <dt>3 · MCP bir anahtardır</dt>
+        <dd>Claude'u reklam hesabına, mağazaya, ses servisine bağlayan köprü. Ofis giriş kartı gibi: sadece izin verdiğin kapıları açar.</dd>
+      </div>
+      <div>
+        <dt>4 · Genel müdür dağıtır</dt>
+        <dd>İşi okur, doğru çalışana verir. Hiçbir aleti yok, sadece düşünür. İstersen onu atlayıp çalışanı kendin seçersin.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="guide-section" id="durust">
+  <div class="wrap">
+    <div class="section-eyebrow">dürüst olayım</div>
+    <div class="section-head">
+      <h2>Bu ofisi bir günde kurmadım</h2>
+      <p>Bilgisayarın başına oturup "bugün kendime dijital ofis kuracağım" demedim. Neredeyse bir yıldır tek tek projeler yaptım: bir içerik ajanı, bir muhasebe ajanı, bir video ajanı… Her birinde çok deneme yanılma yaptım. Ofis en sonda geldi; biriken projelerimi tek çatı altında toplamak istedim.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Kopyalama</dt>
+        <dd>Benim çalışanlarım benim işime, benim markalarıma göre eğitildi. Senin bilgisayarında büyük ihtimalle senin istediğin gibi çalışmazlar.</dd>
+      </div>
+      <div>
+        <dt>Kendin kur</dt>
+        <dd>Bu sayfadaki dosyalar Claude'a seni tanımasını ve <strong>senin</strong> projelerinden <strong>senin</strong> ofisini kurmasını söyler. Aynı dosyayı on kişi kullansa on farklı ofis çıkar.</dd>
+      </div>
+      <div>
+        <dt>Kazancın</dt>
+        <dd>Tekrar eden işlerin hafifler. Daha önemlisi: bu süreçte Claude'la o kadar çok konuşacaksın ki onu gerçekten iyi kullanmayı öğreneceksin. Bu, hayatının her alanına yarar.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="guide-section" id="once">
+  <div class="wrap">
+    <div class="section-eyebrow">başlamadan önce</div>
+    <div class="section-head">
+      <h2>Claude Code ve paket</h2>
+      <p>Claude Code, bilgisayarındaki bir klasörün içinde çalışan Claude. Dosya okur, dosya yazar, izin verdiğin programları çalıştırır. Kurulu değilse <a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">resmi kurulum sayfasına</a> bak.</p>
+    </div>
+    <ol class="guide-steps">
+      <li><strong>Claude Code'u kur</strong> ve Claude hesabınla giriş yap. İki yerden açabilirsin: Claude masaüstü uygulamasının <strong>Code</strong> sekmesi ya da terminale <code>claude</code> yazarak. İkisi de aynı Claude.</li>
+      <li><strong>Paket:</strong> Bu kılavuzdaki her şeyi <strong>Pro</strong> planla yaptım. Daha yoğun kullanırsan Max planlar daha fazla kullanım verir. Güncel fiyat ve limitler için <a href="https://claude.com/pricing" target="_blank" rel="noopener">claude.com/pricing</a>.</li>
+      <li><strong>API anahtarı gerekmiyor.</strong> Abonelikle giriş yaptığında kullandıkça kartından para çekilmez; paketinin kullanım limitinden düşer. Limit birkaç saatlik pencerelerle yenilenir, bir de haftalık sınır vardır. Durumunu Claude Code'da <code>/usage</code> yazarak görürsün.</li>
+      <li><strong>Node.js</strong> kurulu olsun. Ofisin sunucusu onunla çalışır. Emin değilsen Claude'a sor: <code>Bilgisayarımda Node.js kurulu mu? Değilse adım adım kurdur.</code></li>
+    </ol>
+  </div>
+</section>
+
+<section class="guide-section" id="yol">
+  <div class="wrap">
+    <div class="section-eyebrow">yol haritası</div>
+    <div class="section-head">
+      <h2>Dört aşamada kendi ofisin</h2>
+      <p>Sıra önemli: önce çalışanlar, sonra ofis. Boş masalı bir ofis kimseye iş yapmaz.</p>
+    </div>
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-pill">Claude Projelerim/</span>
+        </div>
+        <h3>Klasörleri aç</h3>
+        <p>Masaüstünde <strong>Claude Projelerim</strong> klasörü, içinde her çalışan için bir klasör.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-pill">CLAUDE.md</span>
+          <span class="flow-label">× her çalışan</span>
+        </div>
+        <h3>Çalışanları eğit</h3>
+        <p>Her klasörde iş görüşmesi prompt'unu ver, iş tanımını yazdır, küçük bir görevle test et.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-pill">ofis/</span>
+          <span class="flow-pill">.md</span>
+        </div>
+        <h3>Ofisi kur</h3>
+        <p>Yeni bir <strong>ofis</strong> klasörüne kurulum dosyasını koy. Claude seni tanır ve paneli kurar.</p>
+      </li>
+      <li class="flow-step">
+        <div class="flow-visual" aria-hidden="true">
+          <span class="flow-label">rutin →</span>
+          <span class="flow-pill">📱 Telegram</span>
+        </div>
+        <h3>Test et, rutin ekle</h3>
+        <p>Önce token harcamayan demo, sonra gerçek görev. İstersen zamanlanmış işler ve telefona bildirim.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="guide-section" id="calisan">
+  <div class="wrap">
+    <div class="section-eyebrow">1. aşama</div>
+    <div class="section-head">
+      <h2>İlk çalışanını kur: iş görüşmesi</h2>
+      <p>Çoğu kişi yeni klasöre "sen benim muhasebecimsin" yazıp geçiyor. Bu yetmez: Claude senin muhasebecinin ne yapacağını bilemez. Onun yerine Claude'a seninle <strong>iş görüşmesi</strong> yaptır. Soruları tek tek sorar, sen cevapladıkça kafandaki iş, Claude'un okuyabileceği bir iş tanımına dönüşür.</p>
+    </div>
+    <ol class="guide-steps">
+      <li>Masaüstünde <strong>Claude Projelerim</strong> klasörünü aç, içine ilk çalışanın klasörünü aç. Örnek: <strong>Muhasebeci</strong>.</li>
+      <li>Claude Code'u bu klasörde aç ve aşağıdaki prompt'u ilk mesaj olarak yapıştır. <code>[ROL]</code> yerine çalışanın unvanını yaz.</li>
+      <li>Soruları kendi işine göre cevapla. Örnek görevler iste dediğinde gerçek işlerinden örnek ver.</li>
+      <li>Claude'un yazdığı <strong>CLAUDE.md</strong>'yi oku. Eksik ya da yanlış bir şey varsa söyle, birlikte düzeltin.</li>
+      <li>Küçük bir test görevi ver. İlk seferde mükemmel olmaz; 3-4 denemede istediğin gibi çalışır.</li>
+    </ol>
+    <h3 class="sub">İş görüşmesi prompt'u</h3>
+    <div class="term prompt-sheet short">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">ilk mesaj · her yeni çalışan için</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="gorusme-prompt">Kopyala</button>
+      </div>
+      <pre id="gorusme-prompt" tabindex="0">Bu klasörde benim [ROL] çalışanım olacaksın. Henüz kod yazma.
+
+Önce benimle bir iş görüşmesi yap. Soruları TEK TEK sor, cevabımı bekle:
+1. Bu işte tam olarak neyi senden bekliyorum? Bana 3 örnek görev sor.
+2. Hangi dosyalarla çalışacaksın, nereden alacaksın, sonucu nereye koyacaksın?
+3. Çıktı nasıl görünmeli? (dil, ton, format, uzunluk)
+4. KESİNLİKLE yapmaman gereken şeyler neler?
+5. Hangi işleri yapmadan önce bana sormalısın?
+6. Bir dış servise ya da araca ihtiyacın var mı? (Varsa en güvenli, en az yetkili şekilde nasıl bağlarız?)
+
+Görüşme bitince bu klasöre şu başlıklarla kısa ve net bir CLAUDE.md yaz:
+- Kimsin ve kime çalışıyorsun
+- Görevlerin
+- Nasıl çalışırsın (adım adım)
+- Çıktı kuralları
+- YAPMA listesi
+- Onay gerektiren işler
+- Bittiğinde vereceğin rapor (ne yapıldı, dosyalar nerede, onay bekleyen ne var)
+
+CLAUDE.md'yi 60 satırı geçirme. Her görevde okunacak, gereksiz uzunluk token yakar.
+Yazdıktan sonra bana göster ve onay iste.</pre>
+    </div>
+    <h3 class="sub">Örnek: Muhasebeci'nin YAPMA listesi</h3>
+    <p style="color:var(--text-dim);font-size:14.5px;max-width:720px;margin-bottom:14px">Bir ajana ne yapacağını söylemek kolay. Asıl iş, neyi <strong style="color:var(--text)">yapmayacağını</strong> söylemek. Muhasebeci iyi bir ilk çalışan çünkü sana en önemli dersi öğretir: sınır koymak.</p>
+    <div class="term prompt-sheet short">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">Muhasebeci/CLAUDE.md · bir bölüm</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="muhasebe-ornek">Kopyala</button>
+      </div>
+      <pre id="muhasebe-ornek" tabindex="0">## YAPMA
+- Hiçbir dosyayı silme veya değiştirme. Kaynak dosyalar sadece okunur.
+- Banka, ödeme veya muhasebe sistemlerine bağlanma.
+- Rakam tahmin etme. Veri yoksa "veri yok" yaz.
+- Yatırım tavsiyesi verme.
+
+## Rapor
+- Bu ayın toplam gelir ve gideri, en büyük 5 gider kalemi, geçen aya göre fark.
+- Raporu ofis-ciktilari/ klasörüne yaz.</pre>
+    </div>
+    <div class="guide-note">
+      <strong>Test için gerçek hassas veri koyma</strong>
+      <p>Klasöre bankadan indirdiğin bir ekstre (CSV/Excel) ya da birkaç fatura koyabilirsin. <strong>Kart numarası, şifre, kimlik numarası</strong> içeren dosya koyma. Test görevi: <code>Bu klasördeki ekstreden bu ayın gider özetini çıkar. En çok nereye para gitmiş?</code></p>
+    </div>
+    <p style="color:var(--text-dim);font-size:14.5px;max-width:720px;margin-top:20px">Video editörü, fotoğrafçı ve yazılımcı için hazır başlangıç prompt'ları ve örnek CLAUDE.md bölümleri <a href="#dosyalar" style="color:var(--accent);text-decoration:underline">çalışan kurulum dosyasında</a>.</p>
+  </div>
+</section>
+
+<section class="guide-section" id="yetki">
+  <div class="wrap">
+    <div class="section-eyebrow">en az yetki</div>
+    <div class="section-head">
+      <h2>Çalışana ne kadar yetki?</h2>
+      <p>Kural basit: bir çalışan işini ne kadar az yetkiyle yapabiliyorsa o kadar güvenli. Ofis kurulurken Claude her çalışan için bunu sana tek tek sorar.</p>
+    </div>
+    <dl class="guide-facts four">
+      <div>
+        <dt>Sadece okur</dt>
+        <dd>Dosyalara bakar, özet çıkarır, hiçbir şey yazamaz. Para ve kişisel veriyle çalışanlar için ideal. Araçlar: <code>Read, Glob, Grep</code>.</dd>
+      </div>
+      <div>
+        <dt>Dosya yazar</dt>
+        <dd>Taslak, rapor, kod, sayfa hazırlar. Çoğu çalışan böyle. İnternette araştırma da eklenebilir: <code>WebSearch, WebFetch</code>.</dd>
+      </div>
+      <div>
+        <dt>Komut çalıştırır</dt>
+        <dd>Çok güçlü bir yetki; kimseye tamamen açma. Sadece işine yarayan komuta dar izin ver. Örnek, Remotion ile video üreten editör: <code>Bash(npx remotion:*)</code>.</dd>
+      </div>
+      <div>
+        <dt>Dış servise bağlanır</dt>
+        <dd>MCP ile. Servisin bütün araçlarını değil, sadece okuma ve üretim araçlarını ver. Sil, yayınla, gönder, öde: <strong>asla</strong>.</dd>
+      </div>
+    </dl>
+    <div class="guide-note">
+      <strong>Panelden çalışan sana soru soramaz</strong>
+      <p>Ofis çalışanları arka planda çalışır. İzin listesinde olmayan bir şeye ihtiyaç duyarlarsa sana soramazlar, o adımda takılırlar ve raporda söylerler. Bu yüzden çalışanın CLAUDE.md'sindeki işlerle izin listesini birlikte kontrol et. Uzun, konuşarak ilerleyen işleri terminalde yap; kısa ve tekrar eden işleri panele bırak.</p>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="mcp">
+  <div class="wrap">
+    <div class="section-eyebrow">dış servisler</div>
+    <div class="section-head">
+      <h2>MCP nasıl bağlanır?</h2>
+      <p>İnternette arama Claude'un kendi aleti, kutudan çıktığı gibi var. Ama reklam hesabına, mağazana ya da bir ses üretme servisine kendiliğinden erişemez. MCP, Claude'u bu servislere bağlayan köprü.</p>
+    </div>
+    <ol class="guide-steps">
+      <li><strong>Bağla:</strong> claude.ai → <strong>Ayarlar → Bağlayıcılar (Connectors)</strong>. Kullandığın servisi seç, bir kere giriş yap. Listede yoksa servisin kendi sitesinde "MCP" adresini ara.</li>
+      <li><strong>Kontrol et:</strong> Çalışanın klasöründe Claude Code'u aç, <code>/mcp</code> yaz. Bağlantı listede ve "bağlı" görünüyorsa çalışanın elinde artık bir anahtar var.</li>
+      <li><strong>Kapıları seç:</strong> <code>/mcp</code> ekranında servisin araç listesine bak. Ofiste çalışana sadece işine yarayanları ver. Benim seslendirmenimin servisinde ses klonlama, ses tasarlama gibi onlarca araç var; ona sadece beşini verdim: sesleri listele, ses üret, üretimi takip et.</li>
+      <li><strong>Kredi kuralı yaz:</strong> Para harcayan servislerde CLAUDE.md'ye ekle: <code>Görev başına en fazla 1 üretim. Önce maliyeti söyle. Hata olursa tekrar deneme, bana sor.</code> Sınır koymazsan bir gecede bütün krediyi harcayabilir.</li>
+      <li><strong>Ofiste görünmüyorsa:</strong> claude.ai'de bağladığın servisler, ofisin arka planda çalıştırdığı Claude'da her zaman yüklenmiyor; bende yüklenmedi. Çözüm, bağlantıyı o çalışanın klasörüne ayrıca eklemek: <code>claude mcp add --scope local --transport http &lt;ad&gt; &lt;servisin MCP adresi&gt;</code>. Sonra o klasörde Claude Code'u normal aç, <code>/mcp</code> yaz ve bir kez giriş yap. Ofis kurulum dosyası bu adımı Claude'a zaten anlatıyor.</li>
+    </ol>
+    <div class="guide-note">
+      <strong>E-ticaret markan varsa</strong>
+      <p>Aynı mantıkla mağazana bağlı bir <strong>Mağaza Müdürü</strong> kurabilirsin: satışlara, stoklara, en çok satanlara bakar. Ürün, fiyat ya da sipariş değiştiren hiçbir araç vermezsin. "Bugün kaç sipariş geldi?" diye sormak panele bir cümle yazmak kadar kolay olur.</p>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="ornekler">
+  <div class="wrap">
+    <div class="section-eyebrow">benim ofisimden</div>
+    <div class="section-head">
+      <h2>Çalışanlarım nasıl kuruldu?</h2>
+      <p>Bitmiş hâllerini değil, nasıl oluştuklarını anlatıyorum. Her biri sana farklı bir şey öğretiyor.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Video Editör · program kullanmak</dt>
+        <dd>Reels'lerimi <strong>Remotion</strong> ile, kodla üretiyor. Sesimi yazıya döküyor, her kelimenin saniyesini buluyor, altyazı ve kartları o kelimeye oturtuyor. İlk videolar kötüydü; her reddettiğim tarz (kâğıt, marker, el yazısı) bir kurala dönüştü. Ofiste ona komut izni vermedim: panelden kurgu planı alıyorum, üretimi terminalde, başında durarak yapıyoruz.</dd>
+      </div>
+      <div>
+        <dt>Model Fotoğrafçısı · para kuralı</dt>
+        <dd>E-ticaret markam için ürün fotoğrafından model çekimi görselleri hazırlıyor. Bir görsel sitesinin ücretsiz modunu kullanıyor. En üstte üç yıldızla yazılı kuralı: <strong>"Ücretsiz limit dolarsa asla ücretli üretime devam etme, dur ve sor."</strong> Yapay zekâ işi bitirmeye o kadar odaklı ki önüne çıkan "devam" tuşuna basabilir. Para kuralı en üstte, en net hâliyle yazılır.</dd>
+      </div>
+      <div>
+        <dt>Seslendirmen · MCP</dt>
+        <dd>Metni Türkçe dış sese çeviriyor. Ses servisine MCP ile bağlı ama elinde sadece 5 araç var. Kuralı: <strong>görev başına tek üretim</strong>, önce maliyeti öğren, hata olursa tekrar deneme. Çünkü her deneme kredi.</dd>
+      </div>
+    </dl>
+    <dl class="guide-facts" style="margin-top:28px">
+      <div>
+        <dt>Meta Reklam Analisti · okur, dokunmaz</dt>
+        <dd>Reklam hesabını sadece okur: harcama, tıklama, satış. Reklam açamaz, durduramaz, bütçeye dokunamaz. Her gece özet çıkarır. Kuralı: <strong>veri yoksa rakam uydurma, "veri bulunamadı" de.</strong></dd>
+      </div>
+      <div>
+        <dt>İçerik Avcısı · rutin</dt>
+        <dd>Her sabah 08:00'de ben uyanmadan internette araştırıp günün video fikirlerini hazırlıyor. Zamanı gelince kendi kendine çalışan işlere rutin diyorum.</dd>
+      </div>
+      <div>
+        <dt>Markalar ayrı</dt>
+        <dd>Birden fazla markan varsa ajanları markaya göre ayır. Tek ajana iki markayı yüklersen er geç renkleri, dili, müşteriyi karıştırır.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="guide-section" id="taktikler">
+  <div class="wrap">
+    <div class="section-eyebrow">bir yılda öğrendiklerim</div>
+    <div class="section-head">
+      <h2>Proje kurma taktikleri</h2>
+      <p>Her projede çok deneme yanılma yaptım. Bunlar o denemelerden kalanlar.</p>
+    </div>
+    <ol class="guide-steps">
+      <li><strong>Önce Claude seni tanısın.</strong> "Muhasebeci ol" deme; iş görüşmesi yaptır.</li>
+      <li><strong>Önce plan, sonra iş.</strong> <code>Henüz kod yazma, önce bana planı göster.</code> Planı beğenmezsen tek satır kod yazılmadan değiştirirsin.</li>
+      <li><strong>Küçük başla.</strong> İlk gün tek bir işi kusursuz yapsın. Sonra yenisini ekle.</li>
+      <li><strong>Her hata bir kural.</strong> Beğenmediğin bir şey olduğunda: <code>Bunu bir daha yapma, kurallarına ekle.</code></li>
+      <li><strong>İlerleme dosyası tut.</strong> Çalışmanın sonunda: <code>Bugün ne yaptık, ILERLEME.md'ye yaz.</code> Ertesi gün Claude kaldığı yeri oradan okur.</li>
+      <li><strong>Uzun işlerde devir notu.</strong> Sohbet çok uzadığında: <code>Yeni oturum için bir devir notu yaz.</code> Yeni oturuma o notu ver; baştan anlatmazsın, token da kazanırsın.</li>
+      <li><strong>Uydurma yasağı.</strong> Her ajana yaz: <code>Emin değilsen söyle, rakam uydurma.</code> Yapay zekâ boşluğu tahminle doldurmayı sever.</li>
+      <li><strong>Önce yedek.</strong> Büyük bir değişiklikten önce klasörün kopyasını al. Bozulursa geri dönersin.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="guide-section" id="hazir">
+  <div class="wrap">
+    <div class="section-eyebrow">sıfırdan yazmak zorunda değilsin</div>
+    <div class="section-head">
+      <h2>Hazır skill ve ajanlar</h2>
+      <p>İnsanlar hazırladıkları ajanları ve skill'leri paylaşıyor; çoğu GitHub'da. Skill, Claude'a belli bir işi öğreten hazır talimat paketi. Anthropic'in kendi kütüphanesi: <a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">github.com/anthropics/skills</a>. Claude Code'da <code>/plugin</code> yazarak hazır eklentilere de bakabilirsin.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Güvenilir yerden indir</dt>
+        <dd>Yıldız (star) sayısı yüksek, yakın zamanda güncellenmiş, bilinen kişilerin projeleri.</dd>
+      </div>
+      <div>
+        <dt>Kurmadan önce oku</dt>
+        <dd>Anlamıyorsan Claude'a okut: <code>Bu dosya ne yapıyor, bilgisayarıma zararı olur mu?</code></dd>
+      </div>
+      <div>
+        <dt>Kişiselleştir</dt>
+        <dd>Olduğu gibi kullanma. Başkasının muhasebecisi senin harcamalarını bilmez. Şifreni, API anahtarını hiçbir dosyaya yapıştırma.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="guide-section" id="ofis">
+  <div class="wrap">
+    <div class="section-eyebrow">2. aşama</div>
+    <div class="section-head">
+      <h2>Ofisi kur: tek bir dosya</h2>
+      <p>Çalışanların hazırsa sıra ofiste. Kurulum dosyası sana hazır bir ofis vermez; Claude'a senin ofisini nasıl kuracağını anlatır. Claude önce seni tanır, sonra kodu yazar. Sen tek satır kod yazmazsın.</p>
+    </div>
+    <ol class="guide-steps">
+      <li>Masaüstünde <strong>Claude Projelerim</strong>'in yanına yeni bir klasör aç: <strong>ofis</strong>. <a href="assets/downloads/ajan-ofisi/ajan-ofisi-kur.md" download style="color:var(--accent);text-decoration:underline">ajan-ofisi-kur.md</a> dosyasını içine koy.</li>
+      <li>Claude Code'u <strong>ofis</strong> klasöründe aç ve şunu yaz: <code>ajan-ofisi-kur.md dosyasını oku ve beni adım adım yönlendirerek ofisimi kur.</code></li>
+      <li><strong>Soruları cevapla:</strong> işletim sistemin, paketin, çalışan klasörlerin (farklı yerlerde olabilirler), her çalışanın unvanı, yetkisi, modeli, ekipler ve hiçbir çalışanın dokunmaması gereken klasörler. Sonunda bir tablo gösterir ve onay ister.</li>
+      <li>Onay verince <strong>kodu yazar</strong>: çalışanları çalıştıran küçük bir sunucu ve tarayıcıda açılan bir panel. İlk sürüm sade: kartlar ve renkler.</li>
+      <li><strong>Başlatma dosyasına çift tıkla</strong> (Windows'ta <code>baslat.bat</code>, Mac'te <code>baslat.command</code>). Panel tarayıcıda açılır.</li>
+      <li><strong>Önce demo:</strong> kurulum dosyasında token harcamayan bir demo modu var. Her şey yerli yerinde mi, onunla gör. Sonra tek bir çalışana küçük, gerçek bir görev ver.</li>
+      <li><strong>Hata çıkarsa</strong> mesajı olduğu gibi kopyala, Claude'a yapıştır. Düzeltir. Bende de çok takıldı.</li>
+    </ol>
+    <dl class="guide-facts" style="margin-top:32px">
+      <div>
+        <dt>Sadece senin bilgisayarında</dt>
+        <dd>Panel internete açılmaz; sunucu yalnızca bu bilgisayardan (127.0.0.1) görülür.</dd>
+      </div>
+      <div>
+        <dt>Senin açık sohbetine yazmaz</dt>
+        <dd>Panelden verilen her iş o klasörde yeni bir oturum açar ve kaydedilir. Görev kartındaki <code>claude --resume &lt;numara&gt;</code> ile terminalde o konuşmaya devam edebilirsin.</dd>
+      </div>
+      <div>
+        <dt>Önce çalışan, sonra güzel</dt>
+        <dd>Benim ofisim gibi 3D görünüm istiyorsan her şey çalıştıktan sonra Claude'a söyle. Kurulum dosyasında bu son, isteğe bağlı aşama.</dd>
+      </div>
+    </dl>
+    <div class="guide-note">
+      <strong>Ekranda gizlemek istediğin adlar varsa</strong>
+      <p>Marka ya da müşteri adını ekranda göstermek istemiyorsan Claude'a söyle: panelde "Marka 1" gibi bir takma ad görünür, gerçek ad sadece çalışanın prompt'una gider. Ekran kaydı alacak ya da ekran paylaşacak biri için çok işe yarar; ben de böyle kullanıyorum.</p>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="telegram">
+  <div class="wrap">
+    <div class="section-eyebrow">isteğe bağlı</div>
+    <div class="section-head">
+      <h2>Raporlar telefonuna gelsin</h2>
+      <p>Rutin, zamanı gelince kendi kendine çalışan iş: "her sabah 08:00", "her pazartesi 09:00", "her ayın son günü 20:00". Raporu Telegram ile telefonuna gönderebilirsin. Ücretsiz, beş dakikada kurulur.</p>
+    </div>
+    <ol class="guide-steps">
+      <li>Telegram'da <strong>@BotFather</strong>'a <code>/newbot</code> yaz, botuna bir ad ver. Sana bir <strong>token</strong> verir.</li>
+      <li>Kendi botuna bir mesaj at ("merhaba" yeter).</li>
+      <li>Claude'a sor: <code>Telegram'a rapor göndermek istiyorum. Token'ı ve chat id'yi nereye yazacağım, chat id'mi nasıl bulurum?</code> Gerisini o halleder.</li>
+      <li>Bir çalışana rutin ekletip "şimdi dene" ile test et. Telefonun titrediyse tamam.</li>
+    </ol>
+    <div class="guide-note">
+      <strong>Token bir şifredir</strong>
+      <p>Kimseyle paylaşma, ekran kaydında görünmesin. Mesajı çalışan değil <strong>sunucu</strong> gönderir ve sadece senin kendi sohbetine; yani hiçbir çalışan senin adına kimseye mesaj atamaz. Rutinler bilgisayar ve ofis açıkken çalışır; kaçan rutini ofis birkaç saat içinde telafi eder.</p>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="token">
+  <div class="wrap">
+    <div class="section-eyebrow">en çok sorulan</div>
+    <div class="section-head">
+      <h2>Bu sistem çok mu token yakıyor?</h2>
+      <p>Token, Claude'un okuduğu ve yazdığı metnin ölçü birimi; kelime sayısı gibi düşün. Aşağıdaki rakamlar benim ofisimdeki gerçek görevlerden.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Ofisin kendisi: 0</dt>
+        <dd>Panel, görünüm, boşta oturan çalışanlar hiç token harcamaz. Bütün gün açık dursa bile sayaç kıpırdamaz. Token sadece bir çalışan iş yaparken gider.</dd>
+      </div>
+      <div>
+        <dt>Panel = terminal</dt>
+        <dd>Panelden verilen iş, o klasörde terminale aynı cümleyi yazmakla aynı motoru, aynı paketi, aynı limiti kullanır. Ofis ekstra bir yapay zekâ çalıştırmaz.</dd>
+      </div>
+      <div>
+        <dt>İki küçük fark</dt>
+        <dd><strong>Genel müdür:</strong> kişi seçmezsen önce o çalışır; aleti yok, hafif. Kişiyi kendin seçersen sıfır. <strong>Temiz sayfa:</strong> her iş yeni oturumda başlar. Uzun bir terminal sohbetinde Claude her mesajda bütün geçmişi yeniden okur; bu yüzden çoğu zaman tasarruftur.</dd>
+      </div>
+    </dl>
+    <h3 class="sub">Gerçek görevler</h3>
+    <div class="bar-row"><span>"Çay doldur" (şaka)</span><span class="bar-track"><span class="bar-cache" style="width:2.1%"></span><span class="bar-real" style="width:.1%"></span></span><span class="bar-num">~33 bin</span></div>
+    <div class="bar-row"><span>"YouTube'a başlamalı mıyım?"</span><span class="bar-track"><span class="bar-cache" style="width:6.4%"></span><span class="bar-real" style="width:.2%"></span></span><span class="bar-num">~100 bin</span></div>
+    <div class="bar-row"><span>Reklam özeti sorusu</span><span class="bar-track"><span class="bar-cache" style="width:13.1%"></span><span class="bar-real" style="width:.3%"></span></span><span class="bar-num">~205 bin</span></div>
+    <div class="bar-row"><span>Günün video fikri (web araştırması)</span><span class="bar-track"><span class="bar-cache" style="width:97.9%"></span><span class="bar-real" style="width:2.1%"></span></span><span class="bar-num">~1,5 milyon</span></div>
+    <div class="bar-legend"><span><i style="background:color-mix(in srgb, var(--accent) 38%, transparent)"></i>önbellek: aynı metni tekrar okuma</span><span><i style="background:var(--accent)"></i>gerçekten yazılan ve yeni okunan</span></div>
+    <div class="guide-note" style="margin-top:24px">
+      <strong>1,5 milyon korkutmasın</strong>
+      <p>Bu sayının <strong>%98'i önbellek</strong>. Claude Code her adımda kendi talimatlarını, iş tanımını ve o ana kadar okuduklarını yeniden okur; aynı metni tekrar okumak yeni metin okumaktan çok daha ucuzdur. Claude'un o işte gerçekten yazdığı metin yaklaşık 30 bin token. Panel bir de dolar tutarı gösterebilir: bu, aynı işi API ile yapsaydın ödeyeceğin <strong>tahmini</strong> tutardır. Abonelikle çalışırken kartından çekilmez, limitinden düşer.</p>
+    </div>
+    <h3 class="sub">Token'ı gerçekten ne yakar?</h3>
+    <ol class="guide-steps">
+      <li><strong>Model.</strong> Opus en güçlü ve en pahalı, Sonnet daha hafif. Sadece bir aleti çalıştıran çalışana Opus verme; Pro'da limit hızlı dolar.</li>
+      <li><strong>İnternette araştırma.</strong> Çalışan sayfa sayfa okudukça bağlam büyür.</li>
+      <li><strong>Rutinler.</strong> Sen uyurken de çalışırlar. Gerçekten ihtiyacın olanı kur.</li>
+      <li><strong>Uzun iş tanımları.</strong> CLAUDE.md her görevde okunur. Kısa ve net tut.</li>
+      <li><strong>Gereksiz bağlantılar.</strong> Her MCP'nin araç listesi her görevde Claude'a okunur. Kullanmadığın bağlantıyı o çalışana açma.</li>
+    </ol>
+    <div class="guide-note">
+      <strong>"Çok ajanlı sistemler çok yakar" doğru mu?</strong>
+      <p>Ajanların sürekli birbiriyle konuştuğu, aynı anda onlarca ajanın çalıştığı sistemlerde evet. Bu ofiste çalışanlar birbiriyle sohbet etmez; işi bitiren sadece kısa bir raporu sonrakine devreder. Çalışanlar kendi içinde alt ajan da açmaz.</p>
+    </div>
+    <h3 class="sub">Panelden mi, terminalden mi?</h3>
+    <dl class="guide-facts two">
+      <div>
+        <dt>Panelin artıları</dt>
+        <dd>Bütün projelerine tek yerden iş verirsin, hangi klasörde olduğunu hatırlaman gerekmez. Güvenlik kuralları her göreve otomatik eklenir. Çıktılar hep aynı düzende bir klasöre gider. Zincirli işler yapılır. Sen yokken rutinler çalışır, rapor telefonuna gelir.</dd>
+      </div>
+      <div>
+        <dt>Panelin eksileri</dt>
+        <dd>Çalışan sana soru soramaz, en makul varsayımla bitirir. Her görev sıfırdan başlar, önceki konuşmayı hatırlamaz; gereken bilgiyi görevin içine yaz. İşin ortasında araya giremezsin, sadece durdurursun. Dosya düzenlemeleri tek tek onay beklemeden yapılır.</dd>
+      </div>
+    </dl>
+    <p style="color:var(--text-dim);font-size:14.5px;max-width:720px;margin-top:20px"><strong style="color:var(--text)">Benim kullanımım:</strong> kısa, net, tekrar eden işler panelden; uzun ve konuşarak ilerleyen işler terminalden. Çalışanın kurallarını (CLAUDE.md) da terminalde, ne değiştiğini görerek değiştiriyorum.</p>
+  </div>
+</section>
+
+<section class="guide-section" id="guvenlik">
+  <div class="wrap">
+    <div class="section-eyebrow">asla gevşetme</div>
+    <div class="section-head">
+      <h2>Güvenlik kuralları</h2>
+      <p>Temel kural: <strong>ajan taslak hazırlar, onayı insan verir.</strong> Kurulum dosyası bu kuralları her çalışanın her görevine otomatik ekler.</p>
+    </div>
+    <dl class="guide-facts">
+      <div>
+        <dt>Yasak işler</dt>
+        <dd>Hiçbir çalışan yayınlamaz, paylaşmaz, mesaj veya e-posta göndermez, ödeme veya sipariş yapmaz, canlı veritabanına yazmaz, dosya silmez. Gerekirse taslağı hazırlar ve raporda "onay gerekiyor" yazar.</dd>
+      </div>
+      <div>
+        <dt>Yasak klasörler</dt>
+        <dd>Gerçek para, gerçek sipariş ya da müşteri verisiyle çalışan bir projen varsa onu ofise bağlama. Kurulumda Claude bunu sorar ve kodda da engeller.</dd>
+      </div>
+      <div>
+        <dt>Şifreler</dt>
+        <dd>Şifre, API anahtarı ve token'lar CLAUDE.md'ye yazılmaz, ekranda gösterilmez, paylaşılmaz. İnternetten indirdiğin dosyaları kurmadan önce okursun.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="guide-section" id="sorunlar">
+  <div class="wrap">
+    <div class="section-eyebrow">takılırsan</div>
+    <div class="section-head">
+      <h2>Sık karşılaşılan sorunlar</h2>
+      <p>Hepsinin ortak çözümü: hatayı olduğu gibi kopyala, Claude'a yapıştır.</p>
+    </div>
+    <div class="guide-faq">
+      <details>
+        <summary>Windows'ta "claude" bulunamadı ya da çalışan hiç başlamıyor</summary>
+        <p><strong>Neden:</strong> Sunucu Claude'u bir kabuk (PowerShell/cmd) olmadan başlatır ve programın tam yolunu bilmesi gerekir.<br><strong>Çözüm:</strong> Claude'a sor: <code>claude.exe nerede kurulu? Yolunu ofis ayarına yaz.</code> PowerShell'de <code>claude</code> komutu betik izni yüzünden çalışmıyorsa <code>claude.cmd</code> yaz.</p>
+      </details>
+      <details>
+        <summary>claude.ai'de bağladığım servis ofiste görünmüyor</summary>
+        <p><strong>Neden:</strong> claude.ai bağlayıcıları arka planda (başsız) çalışan Claude Code'da her zaman yüklenmiyor.<br><strong>Çözüm:</strong> Bağlantıyı o çalışanın klasörüne ekle: <code>claude mcp add --scope local --transport http &lt;ad&gt; &lt;adres&gt;</code>, sonra o klasörde Claude Code'u normal aç, <code>/mcp</code> yaz ve giriş yap. Ayrıntısı <a href="#mcp">MCP bölümünde</a>.</p>
+      </details>
+      <details>
+        <summary>Çalışan "izin yok" deyip yarıda kaldı</summary>
+        <p><strong>Neden:</strong> İhtiyaç duyduğu araç ya da komut izin listesinde yok; arka planda sana soramadığı için duruyor.<br><strong>Çözüm:</strong> Bu iş gerçekten gerekiyorsa o aracı ya da komutu ofis ayarında o çalışana <strong>dar</strong> olarak ekle. Gerekmiyorsa CLAUDE.md'den o adımı çıkar.</p>
+      </details>
+      <details>
+        <summary>"İç içe oturum" ya da giriş hatası alıyorum</summary>
+        <p><strong>Neden:</strong> Sunucuyu bir Claude Code penceresinin içinden başlattıysan bazı ortam değişkenleri alt sürece geçer. Ya da Claude girişinin süresi dolmuştur.<br><strong>Çözüm:</strong> Ofisi başlatma dosyasıyla, ayrı bir pencerede aç. Giriş hatasında terminalde <code>claude</code> yazıp yeniden giriş yap.</p>
+      </details>
+      <details>
+        <summary>Kartımdan para çekilir mi?</summary>
+        <p><strong>Neden sorulur:</strong> Panel dolar tutarı gösterebiliyor.<br><strong>Cevap:</strong> O tutar API fiyatıyla yapılmış bir tahmin. Abonelikle giriş yaptıysan kullanım limitinden düşer. Bilgisayarında <code>ANTHROPIC_API_KEY</code> diye bir ortam değişkeni tanımlıysa Claude ücretli API'yi kullanabilir; kurulum dosyası Claude'a bunu kontrol edip seni uyarmasını söyler.</p>
+      </details>
+      <details>
+        <summary>Port dolu, panel açılmıyor</summary>
+        <p><strong>Neden:</strong> Ofis zaten açık ya da başka bir program aynı portu kullanıyor.<br><strong>Çözüm:</strong> Açık olan ofis penceresini bul ya da Claude'a <code>4747 portunu hangi program kullanıyor?</code> diye sor.</p>
+      </details>
+      <details>
+        <summary>Telegram'a rapor gelmiyor</summary>
+        <p><strong>Neden:</strong> Botuna hiç mesaj atmadın, chat id yanlış ya da token eksik.<br><strong>Çözüm:</strong> Botuna bir mesaj at, sonra kartta "şimdi dene"ye bas. Hâlâ gelmiyorsa sunucu penceresindeki hatayı Claude'a ver.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section" id="dosyalar">
+  <div class="wrap">
+    <div class="section-eyebrow">indir ya da kopyala</div>
+    <div class="section-head">
+      <h2>Dosyalar</h2>
+      <p>İndirmek yerine kopyalayıp yeni bir <code>.md</code> dosyasına da yapıştırabilirsin.</p>
+    </div>
+    <h3 class="sub">1 · Ofis kurulum dosyası</h3>
+    <div class="term prompt-sheet">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">ajan-ofisi-kur.md · ofis/ klasörüne koy</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="ofis-md">Kopyala</button>
+        <a class="mini-btn" href="assets/downloads/ajan-ofisi/ajan-ofisi-kur.md" download>.md İndir</a>
+      </div>
+      <pre id="ofis-md" tabindex="0"># Dijital Ajan Ofisi Kurulum Rehberi (Claude Code için)
+
+&gt; **Bu dosyayı kim okur?** Claude Code okur. Siz sadece "ofis" klasöründe Claude Code'u açıp şunu yazarsınız:
+&gt; `ajan-ofisi-kur.md dosyasını oku ve beni adım adım yönlendirerek ofisimi kur.`
+&gt;
+&gt; Bu rehber hazır bir ofis vermez. Claude size sorular sorar ve **sizin** projelerinizden **sizin** ofisinizi kurar.
+&gt; Fikir fatihd.mov'un kendi ofisinden geliyor; kod sizin bilgisayarınızda, sizin için sıfırdan yazılır.
+
+---
+
+## Claude, önce bunu oku: senin görevin
+
+Kullanıcının bilgisayarındaki Claude Code proje klasörlerini **tek bir yerel panelde** "çalışan ekip" olarak
+göstereceksin. Her proje klasörü bir çalışandır. Kullanıcı panele bir görev yazar, görev doğru çalışana gider,
+o çalışan kendi klasöründe Claude Code ile işi yapar ve rapor verir.
+
+Kullanıcı büyük ihtimalle **kod bilmiyor**. Bu yüzden:
+
+- Türkçe, kısa ve sade konuş. Teknik terim kullanacaksan bir cümleyle ne olduğunu açıkla.
+- **Soruları tek tek sor**, her cevabı bekle. Aynı anda 10 soru sorma.
+- Her aşamanın sonunda kullanıcıya "şimdi şunu dene" de ve sonucu ona sor. Kullanıcı test eder, sen düzeltirsin.
+- Kullanıcının onayı olmadan sistem ayarı değiştirme, program kurma veya klasör silme.
+- Kodu sade tut. İlk sürüm çalışsın, süslemeyi sonra yaparız.
+
+---
+
+## Aşama 0: Tanışma (önce sadece soru sor, kod yazma)
+
+Sırayla şunları öğren:
+
+1. **İşletim sistemi:** Windows mu, Mac mi? (Komut satırı komutları buna göre değişir.)
+2. **Claude planı:** Pro mu, Max mı? (Hangi çalışanın hangi modeli kullanacağına bununla karar vereceğiz.)
+3. **Çalışan klasörleri:** Projeleriniz hangi klasörde? (Örnek: Masaüstü/Claude Projelerim.)
+   Projeler farklı yerlerde olabilir; kullanıcı her birinin yolunu ayrı ayrı da verebilir. Hepsini tek listede topla.
+   O klasörlere bak, listele ve kullanıcıya göster: "Şu klasörleri buldum, her biri bir çalışan olsun mu?"
+   Her klasörün CLAUDE.md dosyasını oku. Yoksa kullanıcıya söyle; CLAUDE.md'siz çalışan, iş tanımı olmayan çalışan gibidir.
+4. **Her çalışan için:**
+   - Ofiste görünecek unvanı ne olsun? (Örnek: "Muhasebeci", "Video Editörü")
+   - Tek cümleyle ne iş yapıyor?
+   - Dosya düzenleyebilsin mi, yoksa sadece okusun mu?
+   - İnternette arama yapabilsin mi?
+   - Bir dış servise bağlı mı (MCP)? Bağlıysa bu çalışan o servisin **hangi araçlarını** kullanabilsin?
+     (Kural: yayınla, sil, ödeme yap, gönder gibi araçlar **asla** izin listesine girmez.)
+   - Hangi model? Önerin: düşünmesi gereken işlere Opus, sadece bir araç çalıştıran işlere Sonnet.
+     Pro planda limitin hızlı dolmaması için emin değilsen Sonnet öner.
+5. **Ekipler:** Çalışanları gruplamak ister mi? (Örnek: İçerik Ekibi, Finans, Teknoloji.) Bir ekip, panelde bir oda ya da bir bölümdür.
+6. **Hiçbir çalışanın dokunmaması gereken klasör var mı?** (Gerçek ödeme, gerçek sipariş, müşteri verisi gibi.) Bunları "yasak klasörler" diye not et.
+7. **Görünüm:** İlk sürüm sade bir 2D panel olacak (kartlar ve renkler). Kullanıcı isterse en sonda 3D ofis görünümü ekleriz.
+
+Topladıklarını kullanıcıya bir tablo halinde göster ve onay al. Onaydan sonra Aşama 1'e geç.
+
+---
+
+## Aşama 1: Ayar dosyası (`ofis.config.json`)
+
+Bütün kişiselleştirme tek bir dosyada durur. Kullanıcı ileride bir çalışan eklemek isterse sadece bu dosya değişir.
+
+```json
+{
+  "ofis": { "ad": "&lt;kullanıcının ofis adı&gt;", "port": 4747 },
+  "genelMudur": { "model": "sonnet" },
+  "varsayilan": { "model": "sonnet", "araclar": ["Read", "Write", "Edit", "Glob", "Grep", "WebSearch", "WebFetch", "TodoWrite"] },
+  "ekipler": [ { "id": "icerik", "ad": "İçerik Ekibi" } ],
+  "calisanlar": [
+    {
+      "id": "muhasebeci",
+      "rol": "Muhasebeci",
+      "ekip": "finans",
+      "klasor": "C:/Users/.../claude projelerim/muhasebeci",
+      "aciklama": "Faturaları ve giderleri okur, özet çıkarır",
+      "model": "sonnet",
+      "araclar": ["Read", "Glob", "Grep"],
+      "mcpIzin": {}
+    }
+  ],
+  "yasakKlasorler": []
+}
+```
+
+- `araclar`: Claude Code'un yerleşik araçları. Sadece okuyacak çalışana `Read, Glob, Grep` yeter.
+- **`Bash` kimseye varsayılan olarak verilmez.** Bir çalışan gerçekten komut çalıştıracaksa (örnek: Remotion ile video üreten
+  video editörü) sadece o komutlara dar izin ver: `"Bash(npx remotion:*)"`. Kullanıcıya bunun ne demek olduğunu açıkla.
+  Başsız modda çalışan izin soramaz; izin listesinde olmayan komutta takılır. Bu yüzden çalışanın CLAUDE.md'sindeki
+  komutlarla izin listesini birlikte kontrol et.
+- `mcpIzin`: `{ "bağlantı-adı": ["araç1", "araç2"] }`. Sadece okuma ve üretim araçları. Yayınla, sil, gönder, ödeme araçları yok.
+- Yasak klasörler listesindeki hiçbir klasör `klasor` olarak kullanılamaz. Bunu kodda da kontrol et.
+
+---
+
+## Aşama 2: Sunucu (çalışanları çalıştıran motor)
+
+Bağımlılık gerektirmeyen tek bir Node.js dosyası yaz (`server.js`). Node kurulu değilse kullanıcıya nasıl kuracağını anlat.
+
+**Güvenlik:** Sunucu sadece `127.0.0.1` adresini dinler. Ofis internete açılmaz, sadece bu bilgisayardan görülür.
+
+### Bir çalışanı çalıştırmak
+
+Her görev, çalışanın **kendi klasöründe** başsız (headless) bir Claude Code çağrısıdır:
+
+```
+claude -p --output-format stream-json --verbose
+       --model &lt;çalışanın modeli&gt;
+       --permission-mode acceptEdits
+       --allowedTools &lt;araclar&gt; &lt;mcp araçları&gt;
+       --append-system-prompt "&lt;ofis kuralları, aşağıda&gt;"
+```
+
+- Çalışma klasörü (`cwd`) = çalışanın klasörü. Böylece Claude o klasörün **CLAUDE.md** dosyasını kendiliğinden okur.
+- Görev metni komutun argümanı olarak değil, **stdin** üzerinden verilir. Türkçe karakter ve tırnak sorunlarını önler.
+- **Windows:** `claude` komutunu bir kabuk (cmd/PowerShell) üzerinden değil, doğrudan `claude.exe` dosyasını başlatarak çalıştır.
+  Dosyanın yerini kullanıcıyla birlikte bul (`where claude` veya `Get-Command claude`). Yolu ayar dosyasına yaz.
+- Sunucu bir Claude Code oturumunun içinden başlatılırsa, alt sürece giden ortam değişkenlerinden `CLAUDECODE` ve
+  `CLAUDE_CODE_` ile başlayanları temizle. Yoksa iç içe oturum hatası çıkabilir.
+- MCP bağlantısı olmayan çalışanlara `--strict-mcp-config --mcp-config '{"mcpServers":{}}'` ekle. Böylece hiçbir dış servis yüklenmez
+  ve gereksiz araç tanımları token yakmaz.
+- `stream-json` çıktısındaki olayları oku: araç kullanımı ("dosya okuyor", "internette arıyor") panelde canlı görünsün.
+  `result` olayındaki `usage` ve `session_id` bilgisini sakla.
+- `ANTHROPIC_API_KEY` ortam değişkeni tanımlıysa kullanıcıyı uyar: bu durumda Claude aboneliği değil, **ücretli API** kullanılır.
+
+### Her çalışana eklenen ofis kuralları (`--append-system-prompt`)
+
+```
+Sen &lt;ofis adı&gt; ofisinde &lt;rol&gt; olarak çalışıyorsun. Patronun &lt;kullanıcının adı&gt;.
+Bulunduğun klasördeki CLAUDE.md bu işin kurallarıdır; ona sadık kal.
+Yeni dosyaları "ofis-ciktilari/&lt;tarih&gt;-&lt;görev no&gt;/" klasörüne kaydet.
+YASAK: hiçbir şeyi yayınlama, paylaşma, mesaj veya e-posta gönderme, ödeme veya sipariş yapma,
+canlı veritabanına yazma, mevcut dosyaları silme. Bunlar gerekiyorsa taslağını hazırla ve raporda
+"onay gerekiyor" yaz.
+Bitirince kısa bir rapor yaz: ne yapıldı, dosyalar nerede, onay bekleyen ne var.
+```
+
+### Oturumlar
+
+- Her görev yeni bir oturum açar. Kullanıcının o klasörde açık duran sohbetine yazmaz.
+- Oturum numarasını görev kartında göster. Kullanıcı isterse o klasörde `claude --resume &lt;numara&gt;` yazıp
+  aynı konuşmaya kaldığı yerden devam edebilir.
+- Her çalışanın kendi iş sırası olsun. Bir çalışan meşgulse yeni iş sıraya girer.
+
+### Genel müdür (görevi doğru kişiye yönlendiren)
+
+Kullanıcı görevi "otomatik" gönderirse önce genel müdür çalışır. Genel müdür iş yapmaz, sadece plan çıkarır:
+
+```
+claude -p --output-format json --model &lt;genelMudur.model&gt;
+       --tools "" --no-session-persistence
+       --strict-mcp-config --mcp-config '{"mcpServers":{}}'
+       --system-prompt "&lt;çalışan listesi + kurallar&gt;"
+```
+
+- `--tools ""`: hiçbir araç yok, sadece düşünür. Bu yüzden ucuzdur.
+- Sistem prompt'u: çalışanların id, rol ve tek cümlelik açıklaması. Kurallar: en az adım kullan, çoğu iş **tek** çalışana gider,
+  zincir sadece bir çalışanın çıktısı diğerine gerçekten lazımsa kurulur. Sadece şu JSON'u döndür:
+  `{"ozet":"&lt;tek cümle&gt;","adimlar":[{"birim":"&lt;id&gt;","gorev":"&lt;net talimat&gt;"}]}`
+- Zincirde önceki çalışanın raporu (en fazla ~4000 karakter) sonrakine eklenir.
+- Kullanıcı panelden doğrudan bir kişi seçerse genel müdür **atlanır**. Bu hem hızlı hem tasarrufludur. Kullanıcıya bunu söyle.
+
+### Uç noktalar
+
+- `GET /` → panel
+- `GET /api/akis` → canlı olaylar (Server-Sent Events): çalışan durumu, canlı log, görev, token istatistiği
+- `POST /api/gorev {metin, hedef}` → `hedef`: `"otomatik"` ya da bir çalışan id'si
+- `POST /api/gorev/:id/durdur` → çalışan süreçlerini durdurur
+- `POST /api/gorev {..., demo: true}` → **token harcamadan** sahte bir akış oynatır. Önce bununla test et.
+
+Görev geçmişini ve toplam token sayısını `veri/gorevler.json` dosyasına yaz.
+
+---
+
+## Aşama 3: Panel (`public/index.html`)
+
+İlk sürüm sade olsun:
+
+- Her ekip bir bölüm, her çalışan bir kart: unvan, tek cümlelik açıklama ve durum (boşta / düşünüyor / çalışıyor / bitti / hata).
+- Çalışırken kartta o an ne yaptığı yazsın ("📖 CLAUDE.md okuyor", "🌐 internette arıyor").
+- Altta görev kutusu: metin, "kime?" seçimi (otomatik ya da kişi) ve gönder düğmesi.
+- Sağda canlı akış ve görev listesi. Görev kartında rapor, çıktı klasörü ve `claude --resume` komutu görünsün.
+- Üstte toplam token sayacı. Not: Claude'un gösterdiği dolar tutarı **API fiyatıyla tahmindir**. Abonelikle çalışırken
+  kartınızdan ayrıca para çekilmez, kullanım limitinizden düşer. Panelde bunu küçük bir notla yaz.
+- Gizlemek istediği bir ad varsa (marka adı, müşteri adı) ekranda "Marka 1" gibi takma ad göstermeyi öner.
+  Gerçek ad sadece çalışanın prompt'una gider. Video çekecek ya da ekran paylaşacak kişiler için çok işe yarar.
+
+Kullanıcıya bir başlatma dosyası hazırla (Windows'ta `baslat.bat`, Mac'te `baslat.command`): sunucuyu açsın ve tarayıcıyı başlatsın.
+
+**Burada dur.** Kullanıcıya önce demo görevi denet, sonra tek bir çalışana gerçek ve küçük bir görev verdir.
+Rapor geldikten sonra token sayısını birlikte inceleyin.
+
+---
+
+## Aşama 4: Bağlantılar (MCP), isteğe bağlı
+
+- Kullanıcının claude.ai'de bağladığı bağlayıcılar başsız (`claude -p`) modda **yüklenmeyebilir**.
+  Böyle olursa bağlantıyı o çalışanın klasörüne yerel olarak ekle:
+  `claude mcp add --scope local --transport http &lt;ad&gt; &lt;servisin MCP adresi&gt;`
+  Sonra kullanıcı o klasörde Claude Code'u **normal (etkileşimli)** açar, `/mcp` yazar ve bir kez giriş yapar.
+- Servis araçlarının gerçek adları `mcp__&lt;ad&gt;__&lt;araç&gt;` biçimindedir. İlk çalışmada `init` olayındaki araç listesinden doğrula.
+- Kredi harcayan servislerde (görsel, video, ses üretimi) çalışanın kuralına "görev başına tek üretim, fazlası için onay iste" yaz.
+
+## Aşama 5: Rutinler ve telefona bildirim, isteğe bağlı
+
+- Çalışana zamanlanmış görev ekle: `"rutinler": [{"ad": "...", "tekrar": "gunluk|haftalik|aylik-son-gun", "gun": 1, "saat": "08:00", "gorev": "..."}]`
+- Sunucu açıkken her 30 saniyede bir kontrol et. Bilgisayar kapalıyken kaçan rutini birkaç saat içinde telafi et.
+  Yeni eklenen rutin ilk görüldüğünde hemen çalışmasın.
+- Rapor telefona **Telegram** ile gidebilir:
+  1. Telegram'da **@BotFather**'a `/newbot` yaz, bota ad ver, verdiği **token**'ı al.
+  2. Botuna bir mesaj at, sonra `https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates` adresinden **chat id**'ni bul.
+  3. Token ve chat id'yi ayar dosyasına yaz. Mesajı çalışan değil **sunucu** gönderir ve sadece kullanıcının kendi sohbetine gönderir.
+- Uyar: Token bir şifredir. Ekran kaydı veya ekran paylaşımında görünmesin.
+
+## Aşama 6: Görünüm, isteğe bağlı
+
+Her şey çalıştıktan sonra kullanıcı isterse paneli güzelleştir: masalar, karakterler, 3D ofis (Three.js), gündüz/akşam modu.
+Önce çalışan bir sistem, sonra güzel bir sistem.
+
+---
+
+## Token tasarrufu kuralları (kullanıcıya da anlat)
+
+1. Ofisin kendisi (panel, görünüm, boştaki çalışanlar) **hiç token harcamaz**. Token sadece bir görev çalışırken harcanır.
+2. Panelden verilen görev, o klasörde terminale yazılan mesajla aynı motoru kullanır. Fark: yeni ve temiz bir oturum açılır
+   ve genel müdür devreye girerse onun küçük bir planlama maliyeti eklenir. Kişiyi doğrudan seçerseniz bu maliyet de olmaz.
+3. Her çalışana iş için yetecek en hafif modeli verin. Her işe Opus vermek Pro limitini hızlı bitirir.
+4. CLAUDE.md dosyalarını kısa ve net tutun. Çalışan bu dosyayı her görevde okur.
+5. Rutinleri gerçekten ihtiyaç kadar kurun. Siz uyurken de çalışırlar.
+6. Gereksiz MCP bağlantısı yüklemeyin. Her bağlantının araç tanımları her görevde bağlama girer.
+
+## Güvenlik kuralları (asla gevşetme)
+
+- Hiçbir çalışan yayınlamaz, mesaj göndermez, ödeme veya sipariş yapmaz, dosya silmez. Taslak hazırlar, onayı insan verir.
+- Gerçek para, gerçek sipariş veya müşteri verisi olan klasörler ofise bağlanmaz.
+- Şifreler, API anahtarları ve token'lar CLAUDE.md'ye yazılmaz, ekranda gösterilmez.
+- İnternetten indirilen skill veya ajan dosyalarını kurmadan önce oku. Ne yaptığını anlamadığın bir dosyayı çalıştırma.</pre>
+    </div>
+    <h3 class="sub">2 · Çalışan kurulum prompt'ları</h3>
+    <div class="term prompt-sheet">
+      <div class="term-bar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-title">calisan-kur.md · muhasebeci, video editörü, fotoğrafçı, yazılımcı</span>
+        <button class="btn btn-primary prompt-copy" type="button" data-copy-from="calisan-md">Kopyala</button>
+        <a class="mini-btn" href="assets/downloads/ajan-ofisi/calisan-kur.md" download>.md İndir</a>
+      </div>
+      <pre id="calisan-md" tabindex="0"># İlk 4 Çalışanınızı Kurmak: Başlangıç Prompt'ları
+
+&gt; Bu prompt'lar size hazır bir çalışan vermez. Claude'un size soru sormasını ve **sizin** cevaplarınıza göre
+&gt; çalışanın iş tanımını (CLAUDE.md) yazmasını sağlar. Kendi işinize göre değiştirin.
+
+## Klasör yapısı
+
+```
+Masaüstü/
+├── claude projelerim/
+│   ├── video editörü/
+│   ├── muhasebeci/
+│   ├── yazılımcı/
+│   └── fotoğrafçı/
+└── ofis/            ← en sonda, ajan-ofisi-kur.md bu klasöre konur
+```
+
+Her klasörü Claude Code'da ayrı açın. (Masaüstü uygulamasında klasör seçerek, terminalde o klasöre girip `claude` yazarak.)
+
+---
+
+## 1. Evrensel prompt: "İş görüşmesi"
+
+Her yeni klasörde ilk mesaj olarak bunu yapıştırın. `[ROL]` kısmını değiştirin.
+
+```
+Bu klasörde benim [ROL] çalışanım olacaksın. Henüz kod yazma.
+
+Önce benimle bir iş görüşmesi yap. Soruları TEK TEK sor, cevabımı bekle:
+1. Bu işte tam olarak neyi senden bekliyorum? Bana 3 örnek görev sor.
+2. Hangi dosyalarla çalışacaksın, nereden alacaksın, sonucu nereye koyacaksın?
+3. Çıktı nasıl görünmeli? (dil, ton, format, uzunluk)
+4. KESİNLİKLE yapmaman gereken şeyler neler?
+5. Hangi işleri yapmadan önce bana sormalısın?
+6. Bir dış servise ya da araca ihtiyacın var mı? (Varsa en güvenli, en az yetkili şekilde nasıl bağlarız?)
+
+Görüşme bitince bu klasöre şu başlıklarla kısa ve net bir CLAUDE.md yaz:
+- Kimsin ve kime çalışıyorsun
+- Görevlerin
+- Nasıl çalışırsın (adım adım)
+- Çıktı kuralları
+- YAPMA listesi
+- Onay gerektiren işler
+- Bittiğinde vereceğin rapor (ne yapıldı, dosyalar nerede, onay bekleyen ne var)
+
+CLAUDE.md'yi 60 satırı geçirme. Her görevde okunacak, gereksiz uzunluk token yakar.
+Yazdıktan sonra bana göster ve onay iste.
+```
+
+**Neden işe yarıyor?** Claude'a "muhasebeci ol" demek yetmez. Sizin muhasebecinizin ne yapacağını Claude bilemez.
+Görüşme, sizin kafanızdaki işi Claude'un okuyabileceği bir iş tanımına çevirir.
+
+---
+
+## 2. Muhasebeci: sadece okur, hiçbir şeye dokunmaz
+
+**Öğrettiği ders:** sınır koymak. Çalışan ne kadar az yetkiyle iş görebiliyorsa o kadar güvenlidir.
+
+Klasöre örnek bir dosya koyun: bankadan indirilen ekstre (CSV/Excel) ya da birkaç fatura PDF'i. **Gerçek kart numarası veya şifre içeren dosya koymayın.**
+
+Görüşmeden sonra CLAUDE.md'de mutlaka olması gerekenler:
+
+```
+## YAPMA
+- Hiçbir dosyayı silme veya değiştirme. Kaynak dosyalar sadece okunur.
+- Banka, ödeme veya muhasebe sistemlerine bağlanma.
+- Rakam tahmin etme. Veri yoksa "veri yok" yaz.
+- Yatırım tavsiyesi verme.
+
+## Rapor
+- Bu ayın toplam gelir ve gideri, en büyük 5 gider kalemi, geçen aya göre fark.
+- Raporu ofis-ciktilari/ klasörüne yaz.
+```
+
+Ofiste bu çalışana sadece `Read, Glob, Grep` aracı verilir. Yani isteseniz de dosya yazamaz.
+
+**Test görevi:** `Bu klasördeki ekstreden bu ayın gider özetini çıkar. En çok nereye para gitmiş?`
+
+---
+
+## 3. Video Editörü: bilgisayarınızdaki bir aracı kullanır
+
+**Öğrettiği ders:** Claude'a bilgisayarınızdaki bir programı kullandırmak ve bu izni dar tutmak.
+
+Gerekli araç: **Remotion**. Videoyu kodla üreten bir araç: siz ne istediğinizi yazarsınız, Claude videonun kodunu yazar,
+Remotion bunu mp4'e çevirir. Çalışması için **Node.js** gerekir. İlk mesaj olarak şunu yazın:
+
+```
+Bu klasörde Remotion ile video üretmek istiyorum. Bilgisayarımda Node.js var mı kontrol et;
+yoksa nasıl kuracağımı adım adım anlat. Sonra bu klasöre boş bir Remotion projesi kur.
+```
+
+&gt; **Lisans:** Remotion bireyler ve küçük ekipler için ücretsizdir; büyük şirketler ücretli lisans alır.
+&gt; Güncel koşulları remotion.dev sitesinden okuyun.
+
+Kurulum bitince evrensel "iş görüşmesi" prompt'unu verin. CLAUDE.md'de olması gerekenler:
+
+```
+## Görevlerin
+- Verdiğim metinden kısa animasyonlu videolar üret (tanıtım, reels, bilgi kartı).
+- Önce Remotion önizlemesini (Studio) göster, onaydan sonra mp4 üret.
+- Stil: [renklerim, yazı tipim, logo dosyam] — her videoda aynı kalsın.
+
+## YAPMA
+- kaynak/ klasöründeki dosyaların (ses, logo, görüntü) üzerine yazma, silme. Her video yeni bir dosya.
+- Remotion ve proje kurulumu dışında komut çalıştırma.
+- Videoyu hiçbir yere yükleme, paylaşma.
+```
+
+Ofiste bu çalışana genel komut izni (`Bash`) değil, sadece Remotion komutlarına dar izin verilir:
+`Bash(npx remotion:*)` ve kurulum için `Bash(npm install:*)`.
+
+**Test görevi:** `Bu metinden 15 saniyelik, büyük yazılı bir tanıtım animasyonu üret: "Kendi dijital ofisini kur." Önce önizlemeyi göster.`
+
+---
+
+## 4. Fotoğrafçı: dış servise bağlanır (MCP)
+
+**Öğrettiği ders:** MCP. Claude'a bir dış servisin "anahtarını" vermek ve kredi harcamasını sınırlamak.
+
+1. claude.ai → **Ayarlar → Bağlayıcılar (Connectors)** bölümünden kullandığınız görsel üretim servisini bağlayın
+   (Higgsfield, Kling vb.). Ya da servisin kendi sitesindeki MCP adresini Claude Code'a ekletin.
+2. Claude Code'da `/mcp` yazın: bağlantının listede ve "bağlı" göründüğünü kontrol edin.
+
+CLAUDE.md'de olması gerekenler:
+
+```
+## Görevlerin
+- Ürün fotoğrafından (urunler/ klasörü) model üzerinde çekim görseli üret.
+- Önce prompt'u yaz ve bana göster, onaydan sonra üret.
+
+## Kredi kuralı
+- Görev başına EN FAZLA 1 üretim. Daha fazlası için onay iste.
+- Üretmeden önce kalan krediyi kontrol et ve raporda yaz.
+
+## YAPMA
+- Hiçbir şeyi yayınlama, paylaşma.
+- Hesap ayarlarına, ödeme bilgilerine dokunma.
+```
+
+Ofiste bu çalışana sadece üretim ve listeleme araçları izin verilir. Yayınla, sil, abonelik gibi araçlar verilmez.
+
+**Test görevi:** `urunler/ klasöründeki tişört fotoğrafı için stüdyo ışığında bir model çekimi prompt'u yaz. Onaylarsam üret.`
+
+&gt; **E-ticaret markanız varsa:** Aynı mantıkla Shopify gibi bir mağaza bağlantısıyla "Mağaza Müdürü" kurabilirsiniz.
+&gt; Kural aynı: sadece okuma araçları (satış, stok, en çok satanlar). Ürün, fiyat veya sipariş değiştiren hiçbir araç yok.
+
+---
+
+## 5. Yazılımcı: site yapar, yayınlamadan önce sorar
+
+**Öğrettiği ders:** "taslak hazırla, onayı insan versin" kuralı.
+
+CLAUDE.md'de olması gerekenler:
+
+```
+## Görevlerin
+- Basit, tek sayfalık siteler ve açılış sayfaları yap (HTML/CSS ya da istediğim çatı).
+- Değişiklikleri önce bilgisayarda çalıştırıp bana göster.
+
+## Yayın kuralı
+- Siteyi Vercel'e SADECE önizleme olarak yükleyebilirsin.
+- Canlı (production) yayına almak için mutlaka bana sor.
+
+## YAPMA
+- Alan adı (domain) satın alma, ödeme sayfası açma.
+- Şifre, API anahtarı veya token'ı koda ya da CLAUDE.md'ye yazma.
+```
+
+Vercel bağlantısı için iki yol var: Vercel'in resmi MCP bağlantısı ya da Vercel'in komut satırı aracı (CLI).
+Claude'a sorun: `Bu klasörü Vercel'e bağlamak için en güvenli yol hangisi? Adım adım anlat.`
+
+**Test görevi:** `Bana "Yakında açılıyoruz" yazan, e-posta bırakma kutusu olan sade bir açılış sayfası yap ve bilgisayarımda aç.`
+
+---
+
+## Son kontrol listesi (her çalışan için)
+
+- [ ] Klasörde CLAUDE.md var, 60 satırı geçmiyor.
+- [ ] YAPMA listesi ve onay gerektiren işler yazılı.
+- [ ] Çalışan, test görevini o klasörde normal Claude Code'da başarıyla yaptı.
+- [ ] En az 3-4 kez deneyip CLAUDE.md'yi düzelttiniz. (İlk seferde mükemmel olmaz, olması da gerekmez.)
+
+Dört çalışan da hazırsa: `ofis` klasörünü açın, `ajan-ofisi-kur.md` dosyasını içine koyun ve ofisinizi kurdurun.</pre>
+    </div>
+  </div>
+</section>
+
+<section class="guide-section guide-next">
+  <div class="wrap">
+    <div class="next-card">
+      <div>
+        <div class="section-eyebrow">başka bir video</div>
+        <h2>Başka bir videonun dosyasını mı arıyorsun?</h2>
+        <p>Tüm prompt, kılavuz ve dosyalar ana sayfada tek listede.</p>
+      </div>
+      <div>
+        <form class="next-search" action="index.html" method="get" role="search">
+          <span class="finder-chev" aria-hidden="true">❯</span>
+          <input type="search" name="q" placeholder='ara… örn. "ofis"' aria-label="Videolarda ara" enterkeyhint="search" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Ara</button>
+        </form>
+        <a href="index.html#icerikler" class="back-link">← Tüm içeriklere dön</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap footer-inner">
+    <div class="brand">fatihd<span class="dot" style="color:#d97757;">.</span>mov</div>
+    <div class="social-row">
+      <a href="https://instagram.com/fatihd.mov" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:contact.fatihdemirel@gmail.com">E-posta</a>
+      <a href="index.html#icerikler">İçerikler</a>
+      <a href="index.html#contact">İletişim</a>
+    </div>
+    <div class="copyright">© <span id="year"></span> fatihd.mov</div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+
